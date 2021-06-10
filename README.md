@@ -1,5 +1,4 @@
 # Javascript_Tutorials
-My Javascript Notes from various tutorials
 
 #Notes are taken from the following tutorials:
 - [https://softtech.udemy.com/course/the-complete-javascript-course]
