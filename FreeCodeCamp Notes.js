@@ -1,16 +1,28 @@
 
+/*
 
-// Freecodecamp JavaScript Algorithms and Data Structures
+    Freecodecamp - JavaScript Algorithms and Data Structures
+
+*/
+
+// Note: Skipped some of the basics in "Basic Javascript" section 
+
+//#region Var 
 
 // Variables which are declared without the "var" keyword are automatically created in the global scope. 
 // This can create unintended consequences elsewhere in your code or when running a function again. 
 // You should always declare your variables with "var".
 
-// A lookUpProfile function that takes name and a property (prop) as arguments has been pre-written for you.
-// The function should check if name is an actual contact's firstName and the given property (prop) is a property of that contact.
-// If both are true, then return the "value" of that property.
-// If name does not correspond to any contacts then return the string No such contact.
-// If prop does not correspond to any valid properties of a contact found to match name then return the string No such property.
+
+//#endregion
+
+//#region Codding Challenge: Profile Lookup 
+
+    // A lookUpProfile function that takes name and a property (prop) as arguments has been pre-written for you.
+    // The function should check if name is an actual contact's firstName and the given property (prop) is a property of that contact.
+    // If both are true, then return the "value" of that property.
+    // If name does not correspond to any contacts then return the string No such contact.
+    // If prop does not correspond to any valid properties of a contact found to match name then return the string No such property.
 
   // Setup
     var contacts = [
@@ -63,6 +75,10 @@
     lookUpProfile("Akira", "likes");
 
 
+//#endregion
+
+//#region The parseInt() 
+
 // The parseInt() function parses a string and returns an integer. Here's an example:
 
     var a = parseInt("007");
@@ -84,7 +100,11 @@
 // This example converts the string 11 to an integer 3.
 
 
-// you used a single conditional operator. You can also chain them together to check for multiple conditions.
+//#endregion
+
+//#region Single conditional operators 
+
+// Single conditional operators can also be used to check for multiple conditions.
 
     function findGreaterOrEqual(a, b) {
         return (a === b) ? "a and b are equal" 
@@ -102,8 +122,9 @@
     checkSign(10);
 
 
-// Recursive programming
+//#endregion
 
+//#region Recursive programming 
 
 // Replace Loops using Recursion
 // Recursion is the concept that a function can be expressed in terms of itself. 
@@ -120,7 +141,6 @@
     }
 
 
-
 // However, notice that multiply(arr, n) == multiply(arr, n - 1) * arr[n - 1]. 
 // That means you can rewrite multiply in terms of itself and never need to use a loop.
 
@@ -132,7 +152,6 @@
             return multiply(arr, n - 1) * arr[n - 1];
         }
     }
-
 
 
 // The recursive version of multiply breaks down like this. 
@@ -183,7 +202,6 @@
 // countup(n - 1) has already been evaluated and returned [1, 2, ..., n - 1].
 
 
-
 // We have defined a function named rangeOfNumbers with two parameters. 
 // The function should return an array of integers which begins with a number 
 // represented by the startNum parameter and ends with a number represented by the endNum parameter. 
@@ -203,8 +221,10 @@
 
     rangeOfNumbers(1, 5) // [1, 2, 3, 4, 5]
 
+//#endregion
 
-// Explore Differences Between the var and let Keywords
+//#region Differences Between the "var" and "let" keywords 
+
 // One of the biggest problems with declaring variables with the "var" keyword 
 // is that you can overwrite variable declarations without an error.
 
@@ -289,8 +309,9 @@
 
 // Here the console will display the value 2, and an error that i is not defined.
 
+//#endregion
 
-// Mutate an Array Declared with const
+//#region Mutate an Array Declared with "const" keyword 
 
 // The const declaration has many use cases in modern JavaScript.
 // Some developers prefer to assign all their variables using const by default, 
@@ -311,8 +332,9 @@
 // Like all arrays, the array elements in s are mutable, but because const was used, you cannot use the variable identifier s 
 // to point to a different array using the assignment operator.
 
+//#endregion
 
-// Prevent Object Mutation
+//#region Prevent Object Mutation 
 
 // As seen in the previous challenge, const declaration alone doesn't really protect your data from mutation. 
 // To ensure your data doesn't change, JavaScript provides a function Object.freeze to prevent data mutation.
@@ -333,7 +355,9 @@
 // and the console will display the value { name: "FreeCodeCamp", review: "Awesome" }.
 
 
-// Use Arrow Functions to Write Concise Anonymous Functions
+//#endregion
+
+//#region Use Arrow Functions to Write Concise Anonymous Functions 
 
 // In JavaScript, we often don't need to name our functions, especially when passing a function 
 // as an argument to another function. Instead, we create inline functions. 
@@ -362,8 +386,9 @@
 
 // This code will still return the string value by default.
 
+//#endregion
 
-// Write Arrow Functions with Parameters
+//#region Write Arrow Functions with Parameters 
 
 // Just like a regular function, you can pass arguments into an arrow function.
 
@@ -383,8 +408,9 @@
 
 // multiplier(4, 2) would return the value 8.
 
+//#endregion
 
-// Set Default Parameters for Your Functions
+//#region Set Default Parameters for Your Functions 
 
 // In order to help us create more flexible functions, ES6 introduces default parameters for functions.
 
@@ -402,7 +428,9 @@
 
 
 
-// Use the Rest Parameter with Function Parameters
+//#endregion
+
+//#region Use the Rest Parameter with Function Parameters 
 
 // In order to help us create more flexible functions, ES6 introduces the rest parameter for function parameters. 
 // With the rest parameter, you can create functions that take a variable number of arguments. 
@@ -420,7 +448,10 @@
 // to apply map(), filter() and reduce() on the parameters array.
 
 
-// Use the Spread Operator to Evaluate Arrays In-Place
+//#endregion
+
+//#region Use the Spread Operator to Evaluate Arrays In-Place 
+
 // ES6 introduces the spread operator, which allows us to expand arrays and other expressions in places 
 // where multiple parameters or elements are expected.
 
@@ -451,8 +482,10 @@
 
     arr2 = [...arr1];  // This code will work
 
+//#endregion
 
-// Use Destructuring Assignment to Extract Values from Objects
+//#region Use Destructuring Assignment to Extract Values from Objects 
+
 
 // Destructuring assignment is special syntax introduced in ES6, 
 // for neatly assigning values taken directly from an object.
@@ -514,7 +547,9 @@
     const { johnDoe: { age: userAge, email: userEmail }} = user;
 
 
-// Use Destructuring Assignment to Assign Variables from Arrays
+//#endregion
+
+//#region Use Destructuring Assignment to Assign Variables from Arrays 
 
 // ES6 makes destructuring arrays as easy as destructuring objects.
 // One key difference between the spread operator and array destructuring is that 
@@ -539,8 +574,12 @@
     [a, b] = [b,a]
 
 
-// Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
-// In some situations involving array destructuring, we might want to collect the rest of the elements into a separate array.
+//#endregion
+
+//#region Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements 
+
+// In some situations involving array destructuring, 
+// we might want to collect the rest of the elements into a separate array.
 
 // The result is similar to Array.prototype.slice(), as shown below:
 
@@ -549,5 +588,110 @@
     console.log(arr);
 
 // The console would display the values 1, 2 and [3, 4, 5, 7].
+
+//#endregion
+
+//#region Use Destructuring Assignment to Pass an Object as a Function's Parameters 
+
+// In some cases, you can destructure the object in a function argument itself.
+// Consider the code below:
+
+    const profileUpdate = (profileData) => {
+    const { name, age, nationality, location } = profileData;
+
+    }
+
+// This effectively destructures the object sent into the function. This can also be done in-place:
+
+    const profileUpdate = ({ name, age, nationality, location }) => {
+
+    }
+
+// When profileData is passed to the above function, 
+// the values are destructured from the function parameter for use within the function.
+
+
+    const stats = {
+        max: 56.78,
+        standard_deviation: 4.34,
+        median: 34.54,
+        mode: 23.87,
+        min: -0.75,
+        average: 35.85
+    };
+  
+    const half = ({max,min}) => (max + min) / 2.0; 
+
+
+//#endregion
+
+//#region Create Strings using Template Literals 
+
+// A new feature of ES6 is the template literal. 
+// This is a special type of string that makes creating complex strings easier.
+
+// Template literals allow you to create multi-line strings and to use string interpolation features to create strings.
+// Consider the code below:
+
+    const person = {
+    name: "Zodiac Hasbro",
+    age: 56
+    };
+
+    const greeting = `Hello, my name is ${person.name}!
+    I am ${person.age} years old.`;
+
+    console.log(greeting);
+
+
+//#endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
