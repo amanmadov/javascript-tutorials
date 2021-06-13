@@ -1653,22 +1653,147 @@
     let checkPass = /(?=\w{3,6})(?=\D*\d)/;
     checkPass.test(password);
 
+// Coding challenge:
+// Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, and have two consecutive digits.
+
+    let sampleWord = "astronaut";
+    let pwRegex =  /(?=\w{6})(?=\w*\d{2})/;
+    let result = pwRegex.test(sampleWord);
+
+
+// Hint 1
+// Remeber to use 2 lookaheads to check the patterns in the string. 
+// The first lookahead is very similar to that given in the example 
+// - ‘(?=\w{3,6})’ - only the lower-number 3 is too low for our test cases, 
+// and an upper-number is completely unneccesarry. 
+// This first lookahead is only used to find a string consisting of a certain amount of characters. 
+// A second lookahead must be used to check for consecutive numerical values at the end of the string.
+
+// Hint 2
+// The second lookahead is also similar to that given in the example - (?=\D*\d) - however, 
+// this expression too must be modified to pass all test cases. 
+// Remember to specify the exact amount of numbers you want to appear at the end of the string.
+
 //#endregion
 
+//#region Check For Mixed Grouping of Characters 
 
+// Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses ().
+// If you want to find either Penguin or Pumpkin in a string, you can use the following Regular Expression: /P(engu|umpk)in/g
+// Then check whether the desired string groups are in the test string by using the test() method.
 
+    let testStr = "Pumpkin";
+    let testRegex = /P(engu|umpk)in/;
+    testRegex.test(testStr);
 
+// The test method here would return true.
 
+//#endregion
 
+//#region Reuse Patterns Using Capture Groups 
 
+// Some patterns you search for will occur multiple times in a string. 
+// It is wasteful to manually repeat that regex. 
+// There is a better way to specify when you have multiple repeat substrings in your string.
 
+// You can search for repeat substrings using capture groups. 
+// Parentheses, ( and ), are used to find repeat substrings. 
+// You put the regex of the pattern that will repeat in between the parentheses.
 
+// To specify where that repeat string will appear, you use a backslash (\) and then a number. 
+// This number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group.
 
+// The example below matches any word that occurs twice separated by a space:
 
+    let repeatStr = "regex regex";
+    let repeatRegex = /(\w+)\s\1/;
+    repeatRegex.test(repeatStr);
+    repeatStr.match(repeatRegex);
 
+// The test call would return true, and the match call would return ["regex regex", "regex"].
+// Using the .match() method on a string will return an array with the string it matches, along with its capture group.
 
+// Hint 1
+// Given code below:
 
+    let testString = "test test test";
+    let reRegex = /(test)\s\1/;
+    let result = reRegex.test(testString);
 
+// result will match only test test because \1 in this example stands for the same text 
+// as most recently matched by the 1st capturing group (test).
+// If we were to literally translate the regex, it would look something like this:
+
+    let re = /(test)\s\1/;
+    let literalRe = /test\stest/;
+
+// Both re and literalRe would match the same thing.
+
+// Hint 2
+// Given the code below:
+
+    let testString = "test test test";
+    let reRegex = /(test)(\s)\1\2\1/;
+    let result = reRegex.test(testString);
+
+// result will match whole test test test because:
+// \1 repeats (test)
+// \2 repeats (\s)
+
+// Hint 3
+// The code below:
+
+    let testString = "test test test test test test";
+    let reRegex = /(test)(\s)\1\2\1/g;
+    let result = reRegex.test(testString);
+
+// because we used \g, our Regex doesn’t return after first full match (test test test) and matched all repetitions. 
+// Think about how you can assert the start and end of the string.
+
+//#endregion
+
+//#region Use Capture Groups to Search and Replace 
+
+// Searching is useful. However, you can make searching even more powerful when it also changes (or replaces) the text you match.
+
+// You can search and replace text in a string using .replace() on a string. 
+// The inputs for .replace() is first the regex pattern you want to search for. 
+// The second parameter is the string to replace the match or a function to do something.
+
+    let wrongText = "The sky is silver.";
+    let silverRegex = /silver/;
+    wrongText.replace(silverRegex, "blue");
+
+// The replace call would return the string The sky is blue..
+// You can also access capture groups in the replacement string with dollar signs ($).
+
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+
+// The replace call would return the string Camp Code.
+// Write a regex fixRegex using three capture groups that will search for each word in the string one two three. 
+// Then update the replaceText variable to replace one two three with the string three two one and assign the result to the result variable. 
+// Make sure you are utilizing capture groups in the replacement string using the dollar sign ($) syntax.
+
+    let str = "one two three";
+    let fixRegex = /(\w+)\s(\w+)\s(\w+)/;  
+    let replaceText = "$3 $2 $1"; 
+    let result = str.replace(fixRegex, replaceText);
+
+//#endregion
+
+//#region Remove Whitespace from Start and End 
+
+// Sometimes whitespace characters around strings are not wanted but are there. 
+// Typical processing of strings is to remove the whitespace at the start and end of it.
+// Write a regex and use the appropriate string methods to remove whitespace at the beginning and end of strings.
+
+// Note: The String.prototype.trim() method would work here, but you'll need to complete this challenge using regular expressions.
+
+    let hello = "   Hello, World!  ";
+    let wsRegex = /^\s+|\s+$/g; 
+    let result = hello.replace(wsRegex, ""); 
+
+//#endregion
 
 
 
