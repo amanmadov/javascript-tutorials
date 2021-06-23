@@ -6888,7 +6888,7 @@
 // We'll also pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3*3#A2.
 
 // Solution:
-    function palindrome(str) {
+    function isPalindrome(str) {
         let newStr = str.toLowerCase().replace(/[\W_\s]+/g,"");
         let length = newStr.length;
         let half = length / 2;
@@ -6904,10 +6904,24 @@
         }
     }
 
+    isPalindrome("eye");
+
 //#endregion
 
+//#region Roman Numeral Converter 
 
+// Convert the given number into a roman numeral.
+// All roman numerals answers should be provided in upper-case.
 
+    function convertToRoman(num) {
+        return num;
+    }
+
+    convertToRoman(36);
+
+// Solution:
+
+//#endregion
 
 
 
