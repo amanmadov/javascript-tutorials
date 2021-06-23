@@ -1,12 +1,15 @@
 
 
-/*
 
-  ================================================================================================
-  Udemy: The Complete JavaScript Course 2021: From Zero to Expert  by Jonas Schmedttman
-  ================================================================================================
 
-*/
+let jsCourse = {
+
+    courseName : "The Complete JavaScript Course 2021: From Zero to Expert",
+        author : "Jonas Schmedttman",
+           url : "https://softtech.udemy.com/course/the-complete-javascript-course"
+
+}
+
 
 
 
@@ -373,6 +376,8 @@
 
 // Adding elements to an array
 
+    const cities = ["London", "Paris", "Rome"];
+    
     const arrayLength = cities.push("Madrid")       // Adds element to the last index. Returns new array length.  
     // ["London", "Paris", "Rome", "Madrid"]
 
@@ -848,19 +853,21 @@
 
 
 
+*/
 
+
+/*
 
     Scopes in Javascipt
 
     There are three different types of scope in JavaScript:
-        1. Global Scope
-        2. Function Scope  
-        3. Block Scope
+    1. Global Scope
+    2. Function Scope  
+    3. Block Scope
 
 */
 
-
-// 1. Global Scope
+//#region 1. Global Scope 
 
     const age = 33;
     const name = 'Mesut';
@@ -877,12 +884,14 @@
 
 
 // Variables "age" and "name" are global variables in the above code.
-// So the global scope is once more for top level code. So this is for variables that are declared outside of any function or block.
+// So the global scope is once more for top level code. 
+// So this is for variables that are declared outside of any function or block.
 // These variables will be accessible everywhere in our program, in all functions and all blocks.
 
 
+//#endregion
 
-// 2. Function Scope
+//#region 2. Function Scope 
 
     function sayHi() {
         var a = 0;
@@ -897,9 +906,9 @@
 // And outside of the function, the variables are not accessible at all.
 
 
+//#endregion
 
-
-// 3. Block Scope
+//#region 3. Block Scope 
 
 // Traditionally, only functions used to create scopes in JavaScript. But starting in ES6, blocks also creates scopes now.
 // And with blocks, we mean everything that is between curly braces, such as the block of an if statement or a for loop.
@@ -923,10 +932,9 @@
 // Finally, also starting in ES6, all functions are now also block scoped, at least in strict mode, which you should always be using anyway.
 
 
+//#endregion
 
-
-// THE SCOPE CHAIN
-
+//#region The Scope Chain 
 
     const myName = 'Mesut';
 
@@ -955,8 +963,8 @@
 // Block Scope: decade, (but can access age, millenial, myName)
 
 
-// Every scope always has access to all the variables from all its outer scopes. So from all its parent scopes.
-// And by the way, all this also applies to function arguments.
+// Every scope always has access to all the variables from all its outer scopes. 
+// So from all its parent scopes. And by the way, all this also applies to function arguments.
 
 // In other words, if one scope needs to use a certain variable, but cannot find it in the current scope, 
 // it will look up in the scope chain and see if it can find a variable in one of the parent scopes.
@@ -967,11 +975,11 @@
 
 
 
+//#endregion
 
+//#region Scope Chain vs Call Stack 
 
 // There is one more thing that we need to talk about, which is the difference between the scope chain and to call stack.
-
-// Scope Chain vs Call Stack
 
     const a = 'Mesut';
     first();
@@ -999,7 +1007,8 @@
 
 // So to summerize scoping asks the question, "Where do variables live?"
 // Or "Where can we access a certain variable, "and where not?" That's what scoping is all about.
-// Only "let" and "const" variables are block scoped. Variables declared with "var" automatically end up in the closest function scope.
+// Only "let" and "const" variables are block scoped. 
+// Variables declared with "var" automatically end up in the closest function scope.
 
 
     var you = 'awesome';
@@ -1026,15 +1035,11 @@
 
     greet(); // prints out: Hello Atilla.
 
+//#endregion
 
+//#region Hoisting 
 
 /*
-
-
-
-    Hoisting
-
-
 
     So in JavaScript we have a mechanism called "hoisting".
     And hoisting basically make some types of variables accessible, 
@@ -1043,38 +1048,31 @@
     moved to the top of their scope for example, to the top of a function.
     Now, hoisting does not work the same for all variable types.
 
-
-
     Function declerations are hoisted. Variables declared using "var" are alse hoisted.
     But variables declared with "let" and "const" are not hoisted instead they are stored
     (uninitialized) in a place called TDZ or Temporal Dead Zone.
 
     But now what about function expressions and arrow functions?
-    How does hoisting work for this? Well, it depends if they were created using "var" or "const" or "let".
+    How does hoisting work for this? 
+    Well, it depends if they were created using "var" or "const" or "let".
     Because keep in mind that these functions are simply variables.
     And so they behave the exact same way as variables in regard to hoisting.
 
     This means that a function expression or arrow function created with "var" is hoisted to undefined.
-    But if created with "let" or "const", it's not usable before it's declared in a code because of the Temporal Dead Zone.
+    But if created it with "let" or "const", it's not usable before it's declared in a code because of the Temporal Dead Zone.
 
     And this is actually the reason why that we cannot use function expressions 
-    before we write them in the code, unlike function declarations.
-
-
-
-
+    before we write them in the code(calling them), unlike function declarations.
 
 */
 
+    var name = 'Mesut';
 
-
-var name = 'Mesut';
-
-if (myName === 'Mesut') {
-    console.log(myName + " is a " + job); // ReferenceError: Cannot access 'job' before initialization
-    const job = 'player';
-    console.log(x); // ReferenceError: x is not defined
-}
+    if (myName === 'Mesut') {
+        console.log(myName + " is a " + job); // ReferenceError: Cannot access 'job' before initialization
+        const job = 'player';
+        console.log(x); // ReferenceError: x is not defined
+    }
 
 /*
 
@@ -1140,20 +1138,22 @@ if (myName === 'Mesut') {
     // Undefined is a falsy value so be careful with handling the variables declared using "var"
 
 
+//#endregion
+
+//#region Best practises
+
 
 /*
 
-    Best practises
-    Just don't use "var" to declare variables. 
-    Use "const" most of the time to declare variables and "let" if you really need to change the variable later.
-    Also in order to write clean code, you should declare your variables at the top of each scope.
-    That will just make your code at least look a little bit better.
-    Finally, always declare all your functions first and use them only after the declaration.
+    Best practises:
 
+    - Just don't use "var" to declare variables. 
+    - Use "const" most of the time to declare variables and "let" if you really need to change the variable later.
+    - Also in order to write clean code, you should declare your variables at the top of each scope.
+      That will just make your code at least look a little bit better.
+    - Finally, always declare all your functions first and use them only after the declaration.
 
 */
-
-
 
     var x = "1";
     let y = "2";
@@ -1162,18 +1162,18 @@ if (myName === 'Mesut') {
     console.log(y === window.y); // false
     console.log(z === window.z); // false
 
-    // The variables declared with "var" will create a property on the global window object.
+    // important: The variables declared with "var" will create a property on the global window object.
 
 
+//#endregion
 
-
+//#region  This Keyword 
 
 /*
 
-    This Keyword
-
-    "this" keyword or "this" variable is basically a special variable that is created for every execution context 
-    and therefore any function. In fact, it's one of the three components of any execution context, 
+    "this" keyword or "this" variable is basically a special variable 
+    that is created for every execution context and therefore any function. 
+    In fact, it's one of the three components of any execution context, 
     along with the variable environment and scope chain. Now, in general terms, the "this" keyword, 
     will always take the value of the owner of the function in which, the "this" keyword is used.
     We can also say that it points to the owner of that function. And that may sound very abstract.
@@ -1188,17 +1188,17 @@ if (myName === 'Mesut') {
     Arrow functions:        this = this of surrounding function (lexical this)
     Event listeners:        this = DOM element that the handler is attached to 
 
-
 */
 
 
-    // MDN: A function's this keyword behaves a little differently in JavaScript compared to other languages. 
-    // It also has some differences between strict mode and non-strict mode.
+// MDN: A function's this keyword behaves a little differently in JavaScript compared to other languages. 
+// It also has some differences between strict mode and non-strict mode.
 
-    // Global context
-    // In the global execution context (outside of any function), this refers to the global object whether in strict mode or not.
+// Global context
+// In the global execution context (outside of any function), this refers to the global object whether in strict mode or not.
 
-    // In web browsers, the window object is also the global object:
+// In web browsers, the window object is also the global object:
+
     console.log(this === window); // true
 
     a = 37;
@@ -1209,11 +1209,11 @@ if (myName === 'Mesut') {
     console.log(b)         // "MDN"
 
 
-    // Function context
-    // Inside a function, the value of this depends on how the function is called.
+// Function context
+// Inside a function, the value of this depends on how the function is called.
 
-    // Since the following code is not in strict mode, and because the value of this is not set by the call, 
-    // this will default to the global object, which is window in a browser.
+// Since the following code is not in strict mode, and because the value of this is not set by the call, 
+// this will default to the global object, which is window in a browser.
 
 
     function f1() {
@@ -1238,14 +1238,12 @@ if (myName === 'Mesut') {
     f2() === undefined; // true
 
 
-    // Note: In the second example, this should be undefined, because f2 was called directly and not as a method or 
-    // property of an object (e.g. window.f2()). This feature wasnt implemented in some browsers when they first 
-    // started to support strict mode. As a result, they incorrectly returned the window object.
+// Note: In the second example, this should be undefined, 
+// because f2 was called directly and not as a method or property of an object (e.g. window.f2()). 
+// This feature wasnt implemented in some browsers when they first started to support strict mode. 
+// As a result, they incorrectly returned the window object.
 
-    // To set the value of this to a particular value when calling a function, 
-    // use call(), or apply() as in the examples below.
-
-
+// To set the value of this to a particular value when calling a function use call(), or apply().
 
 
     const jonas = {
@@ -1262,6 +1260,8 @@ if (myName === 'Mesut') {
     }
 
     // this is called method borrowing
+    matilda.calcAge = jonas.calcAge;
+
     matilda.calcAge(); // 20
 
 
@@ -1270,9 +1270,9 @@ if (myName === 'Mesut') {
 
     f(); // NaN because year is undefined
 
+//#endregion
 
-
-    // Regular Functions vs Arrow Functions
+//#region Regular Functions vs Arrow Functions 
 
     const jonas = {
         year: 1991,
@@ -1285,6 +1285,64 @@ if (myName === 'Mesut') {
 
     jonas.greet(); // Hey undefined
 
+// This is the fact that an arrow function does not get its own this keyword, 
+// it will simply use the this keyword from its surroundings.
+// So in other words, its parents this keyword, and the parent scope of this greet method is the global scope. 
+
+    console.log("Hey " + this.firstName); // Hey undefined
+
+ // But what if our code was like below
+
+    var firstName = "Matilda"; 
+
+    const jonas = {
+        year: 1991,
+        firstName: "Jonas",
+        calcAge: function () {
+            console.log(2021 - this.year);
+        },
+        greet: () => console.log("Hey " + this.firstName)
+    }
+
+    jonas.greet(); // Hey Matilda
+
+// Because var creates properties on the global window.
+
+/*
+
+    So from above example, the big takeaway is that as a best practice you should never ever use an arrow function as a method.
+    And in my opinion, that's even true if you're not even using the this keyword in a particular method.
+    Because if you have this rule of never using an arrow function as a method, 
+    then you never have to think about which type of function you should use.
+    Just use a normal function expression, so that you can prevent this kind of mistakes from happening.
+    So this mistake that we saw here with Hey Matilda is easy to prevent by simply not using var.
+    But even then, Hey undefined is still a buck. It's still not correct.
+    And so that would have easily been avoided by just using a regular function. 
+
+*/
+
+    const jonas = {
+        year: 1991,
+        firstName: "Jonas",
+        calcAge: function () {
+            console.log(2021 - this.year);
+        },
+        greet: function (){
+            console.log("Hey " + this.firstName);
+        }
+    }
+
+    jonas.greet(); // Hey Jonas
+
+
+// And now, one final example of a pitfall of this keyword is when we have a function inside of a method.
+// And that is a pretty common thing to happen. And so let's now take a look at an example of that.
+
+
+
+
+
+//#endregion
     
 
 
