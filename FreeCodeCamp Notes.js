@@ -6914,6 +6914,7 @@
 // All roman numerals answers should be provided in upper-case.
 
     function convertToRoman(num) {
+        
         return num;
     }
 
@@ -6921,11 +6922,41 @@
 
 // Solution:
 
+
+    function convertToRoman(num) {
+        const romanNumList = {
+                                M: 1000,
+                                CM: 900, 
+                                D: 500,
+                                CD: 400, 
+                                C: 100, 
+                                XC: 90,
+                                L: 50, 
+                                XL: 40, 
+                                X: 10, 
+                                IX: 9, 
+                                V: 5, 
+                                IV: 4, 
+                                I: 1
+                            };
+        let roman = "";
+
+        for(let key in romanNumList){
+            // console.log("current key: " + key);
+            while (num >= romanNumList[key]) {
+                // console.log("current num: " + num);
+                // console.log("current roman: " + roman);
+                roman += key;
+                num -= romanNumList[key];
+            }
+        }
+
+        return roman;
+    }
+
+    convertToRoman(36);
+
 //#endregion
-
-
-
-
 
 
 
