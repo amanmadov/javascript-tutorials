@@ -6888,20 +6888,27 @@
 // We'll also pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3*3#A2.
 
 // Solution:
+
+    // function isPalindrome(str) {
+    //     let newStr = str.toLowerCase().replace(/[\W_\s]+/g,"");
+    //     let length = newStr.length;
+    //     let half = length / 2;
+    //     if(length % 2 === 0){
+    //         const firstHalf = newStr.slice(0, half);
+    //         const secondHalf = newStr.slice(-half).split("").reverse().join("");
+    //         return firstHalf === secondHalf;
+    //     }
+    //     else{
+    //         const firstHalf = newStr.slice(0, (length - 1) / 2);
+    //         const secondHalf = newStr.slice( - ((length - 1) / 2)).split("").reverse().join("");
+    //         return firstHalf === secondHalf;
+    //     }
+    // }
+
     function isPalindrome(str) {
         let newStr = str.toLowerCase().replace(/[\W_\s]+/g,"");
-        let length = newStr.length;
-        let half = length / 2;
-        if(length % 2 === 0){
-            const firstHalf = newStr.slice(0, half);
-            const secondHalf = newStr.slice(-half).split("").reverse().join("");
-            return firstHalf === secondHalf;
-        }
-        else{
-            const firstHalf = newStr.slice(0, (length - 1) / 2);
-            const secondHalf = newStr.slice( - ((length - 1) / 2)).split("").reverse().join("");
-            return firstHalf === secondHalf;
-        }
+        let reversed = newStr.split("").reverse().join();
+        return newStr === reversed;
     }
 
     isPalindrome("eye");
@@ -6955,6 +6962,47 @@
     }
 
     convertToRoman(36);
+
+//#endregion
+
+//#region Caesars Cipher 
+
+/*
+
+    One of the simplest and most widely known ciphers is a Caesar cipher, also known as a shift cipher. 
+    In a shift cipher the meanings of the letters are shifted by some set amount.
+    A common modern use is the ROT13 cipher, where the values of the letters are shifted by 13 places. Thus A ↔ N, B ↔ O and so on.
+    Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+    All letters will be uppercase. Do not transform any non-alphabetic character (i.e. spaces, punctuation), but do pass them on.
+
+*/
+
+    function rot13(str) {
+
+        return str;
+    }
+
+    rot13("SERR PBQR PNZC");
+
+// Solution:
+
+    function rot13(str) {
+        return str.split('').map(c => getRotted(c)).join("");
+    }
+
+    function getRotted(letter) {
+
+        const regularAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const rot13Alphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLM';
+
+        if(letter.match(/[A-Z]/i)){
+            let index = regularAlphabet.indexOf(letter);
+            return rot13Alphabet.charAt(index);
+        }
+        return letter; 
+    }
+
+    rot13("SERR PBQR PNZC");
 
 //#endregion
 
