@@ -7006,22 +7006,163 @@
 
 //#endregion
 
+//#region Telephone Number Validator
+
+/*
+
+    Return true if the passed string looks like a valid US phone number.
+
+    The user may fill out the form field any way they choose as long as it has the format of a valid US number. 
+    The following are examples of valid formats for US numbers (refer to the tests below for other variants):
+
+    555-555-5555
+    (555)555-5555
+    (555) 555-5555
+    555 555 5555
+    5555555555
+    1 555 555 5555
+
+    For this challenge you will be presented with a string such as 800-692-7753 or 8oo-six427676;laskdjf. 
+    Your job is to validate or reject the US phone number based on any combination of the formats provided above. 
+    The area code is required. If the country code is provided, you must confirm that the country code is 1. 
+    Return true if the string is a valid US phone number; otherwise return false.
+
+*/
+
+    function telephoneCheck(str) {
+        return true;
+    }
+    
+    telephoneCheck("555-555-5555");
+
+
+// Solution:
+
+
+    function telephoneCheck(str) {
+        const regex = /^(1\s)?\d\d\d[-\s]\d\d\d[\s-]\d\d\d\d$|^(1\s?)?\(\d\d\d\)[-\s]?\d\d\d[\s-]?\d\d\d\d$|^\d{10}$/g;
+        return regex.test(str);
+    }
+
+    telephoneCheck("555-555-5555");
 
 
 
+//#endregion
+
+//#region Cash Register 
+
+/*
+
+    Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), 
+    payment as the second argument (cash), and cash-in-drawer (cid) as the third argument.
+
+    cid is a 2D array listing available currency.
+
+    The checkCashRegister() function should always return an object with a status key and a change key.
+
+    Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.
+
+    Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.
+
+    Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+
+    Currency Unit	Amount
+    Penny	$0.01 (PENNY)
+    Nickel	$0.05 (NICKEL)
+    Dime	$0.1 (DIME)
+    Quarter	$0.25 (QUARTER)
+    Dollar	$1 (ONE)
+    Five Dollars	$5 (FIVE)
+    Ten Dollars	$10 (TEN)
+    Twenty Dollars	$20 (TWENTY)
+    One-hundred Dollars	$100 (ONE HUNDRED)
+    See below for an example of a cash-in-drawer array:
+
+*/
+
+[
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]
 
 
+    function checkCashRegister(price, cash, cid) {
+        var change;
+        return change;
+    }
+    
+    checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+
+// Solution:
+
+    function checkCashRegister(price, cash, cid) {
+
+        // To handle arithmetic operations
+        function strip(number) {
+            return (parseFloat(number).toPrecision(12));
+        }
+
+        let change = cash - price;
+        cid.reverse();
+
+        // return if any match equal to the change due
+        if(cid.map(c => c[1] === change).includes(true)) return {status: "CLOSED", change:cid.reverse()};
+
+        const MONEYS = {
+            "PENNY": 0.01,
+            "NICKEL": 0.05,
+            "DIME": 0.1,
+            "QUARTER": 0.25,
+            "ONE": 1,
+            "FIVE": 5,
+            "TEN": 10,
+            "TWENTY": 20,
+            "ONE HUNDRED": 100
+        }
+
+        let changeList = [];
 
 
+        for(let index = 0; index < cid.length; index++) {
+            if(change === 0) break;
+            let sum = 0;
+            let counter = 0;
+            while(change >= MONEYS[cid[index][0]] && cid[index][1] > 0){
+                counter++;
+                sum = strip(sum + MONEYS[cid[index][0]])
+                //sum = Number(sum).toFixed(2) + Number(MONEYS[cid[index][0]]).toFixed(2);
+                change = strip(change - MONEYS[cid[index][0]]);
+                //change = Number(change).toFixed(2) - Number(MONEYS[cid[index][0]]).toFixed(2);
+                cid[index][1] = cid[index][1] - MONEYS[cid[index][0]];
+                //cid[index][1] = Number(cid[index][1]).toFixed(2) - Number(MONEYS[cid[index][0]]).toFixed(2);
+            }
+
+            if(sum > 0){
+                let d = [cid[index][0], counter * MONEYS[cid[index][0]]];
+                changeList.push(d);
+            }
+            
+        }
+
+        // if there is change left return INSUFFICIENT_FUNDS
+        if(strip(change) > 0) return {status: "INSUFFICIENT_FUNDS", change: []}
+
+        // if enough banknote for the change 
+        return {status: "OPEN", change: changeList}
+    }
+
+    checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
 
 
-
-
-
-
-
-
-
+//#endregion
 
 
 
