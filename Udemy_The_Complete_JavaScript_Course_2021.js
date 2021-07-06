@@ -1417,6 +1417,108 @@ let jsCourse = {
 
 //#endregion
     
+//#region Primitives vs. Objects (Primitive vs. Reference Types) 
+
+    let age = 30;
+    let oldAge = age;
+    age = 31
+    console.log(age);       // 31
+    console.log(oldAge);    // 30
+
+    // Each primitive value will simply be saved into its own piece of memory in the stack.
+
+    const me = {
+        name: 'Jonas',
+        age: 30
+    }
+
+    const friend = me;
+    friend.age = 27;
+    console.log(me.age);        // 27
+    console.log(friend.age);    // 27
+
+
+// JavaScripts primitive data types: number, string, Boolean, undefined, null, symbol and BigInt.
+// Then everything else are basically objects. 
+// So objects created with the object literal, arrays and even functions are all objects.
+
+// When we're talking about memory and memory management, it's usual to call primitives, 
+// primitive types and objects reference types because of the different way in which they are stored in memory.
+
+// It is a misconception that all variables declared with const are immutable.
+// In fact, that is only true for primitive values, but not for reference values.
+
+    // Primitive types
+    let lastName = 'Williams';
+    let oldLastName = lastName;
+    lastName = 'Davis';
+    console.log(lastName, oldLastName);
+
+    // Reference types
+    const jessica = {
+        firstName: 'Jessica',
+        lastName: 'Williams',
+        age: 27
+    };
+
+    const marriedJessica = jessica;
+    marriedJessica.lastName = 'Davis';
+    console.log('Before marriage: ', jessica);
+    console.log('After marriage: ', marriedJessica);
+
+// what if we actually really wanted to copy the object so that 
+// we could then change one of them without changing the other?
+
+    const mary = {
+        firstName: 'Mary',
+        lastName: 'Williams',
+        age: 27
+    };
+
+
+    const marriedMary = Object.assign({}, mary);
+    // this will create a completely new object where all the properties are copied
+
+    marriedMary.lastName = 'Davis';
+    console.log('Before marriage: ', mary);
+    console.log('After marriage: ', marriedMary);
+
+// This is how all the properties are copied from one object to the other.
+// Behind the scenes a new object is created in the heap and marriedMary is now pointing to that object.
+
+// However, there is still a problem because using this technique of object.assign only works on the first level.
+// Or in other words, if we have an object inside the object, then this inner object will actually still be the same.
+// So, it will still point to the same place in memory. 
+// And that's why we say that this object.assign only creates a shallow copy and not a deep clone which is what we would like to have.
+// So, again, a shallow copy will only copy the properties in the first level while a deep clone would copy everything.
+
+    const mary = {
+        firstName: 'Mary',
+        lastName: 'Williams',
+        age: 27,
+        family: ['Alice', 'Bob']
+    };
+
+
+    const marriedMary = Object.assign({}, mary);
+    // this will create a completely new object where all the properties are copied
+
+    marriedMary.lastName = 'Davis';
+    marriedMary.family.push('John');
+    marriedMary.family.push('Jane');
+
+    console.log('Before marriage: ', mary);         // Before marriage:  {firstName: "Mary", lastName: "Williams", age: 27, family: Array(4)}
+    console.log('After marriage: ', marriedMary);   // After marriage:  {firstName: "Mary", lastName: "Davis", age: 27, family: Array(4)}
+
+// We see that both the objects now have a family with four members.
+// The family object is a deeply nested object. Therefore, object.assign did not really, behind the scenes, copy it to the new object.
+
+
+//#endregion
+
+
+
+
 
 //#endregion
 
