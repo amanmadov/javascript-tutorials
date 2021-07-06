@@ -11,14 +11,15 @@ let jsCourse = {
 }
 
 
-
-
 //#region Part 1
 
-    let name = 'Nury';
-// important: name is a reversed keywoard in JS but can be used. Never use it. 
+//#region Data Types 
 
-// Constants should be written all uppercase
+
+    let name = 'Nury';
+    // important: name is a reversed keywoard in JS but can be used. Never use it. 
+
+    // Constants should be written all uppercase
     const PI = 3.14;
 
 /* 
@@ -176,6 +177,10 @@ let jsCourse = {
     console.log(2 + 3 + 4 + '5'); // 95 
     console.log('10' - '4' - '3' - '2' + '5'); // 15 
 
+//#endregion
+
+//#region Truthy and Falsy Values 
+
 
 /*
 
@@ -217,7 +222,6 @@ let jsCourse = {
     }
 
 
-
     let age = 18;
     if (age === 18) {
         console.log("You are an adult.") // Strict equality operator
@@ -247,10 +251,11 @@ let jsCourse = {
 
 //#endregion
 
+//#endregion
 
 //#region Part 2
 
-// Using Strict Mode
+//#region Using Strict Mode 
 
 /*
 
@@ -277,11 +282,9 @@ let jsCourse = {
     const private; 
 
 
+//#endregion
 
-
-
-// Functions
-
+//#region Functions 
 
     function logger(str) {
         console.log(str);
@@ -354,12 +357,11 @@ let jsCourse = {
 // There is another fundamental difference between the "arrow function" and more "traditional functions".
 // important: It's the fact that arrow functions do not get a so-called this keyword.
 
-
 // VS Code Tip: Select a word in vs code and Ctrl + D will select all instances of that word
 
+//#endregion
 
-
-// Arrays
+//#region Arrays 
 
     const cities = ["London", "Paris", "Rome"];
     const years = new Array(1991,1995,2001);
@@ -399,9 +401,9 @@ let jsCourse = {
     console.log(cities.includes("Paris"));  // Returns true
     console.log(cities.includes("Berlin")); // Returns false
 
-
-
-// Objects 
+//#endregion
+ 
+//#region Objects 
 
     // Array seeming like an object
     const mesutArray = [
@@ -416,7 +418,6 @@ let jsCourse = {
 // Values can only be reached with index pointers like mesutArray[1]
 // In order to solve this problem objects are created. 
 // important: Objects are simple key value pairs.
-
 
     const mesut = {
         firstName: "Mesut", 
@@ -450,8 +451,6 @@ let jsCourse = {
         console.log("Not what we expected");
     }
 
-
-
     const mesut = {
         firstName: "Mesut", 
         lastName: "Ozil", 
@@ -483,10 +482,7 @@ let jsCourse = {
         }
     };
 
-
     console.log(mesut.getAge())  // important: We dont need to pass an argument this way
-
-
 
     const myObj = {
         objName: "Book", 
@@ -495,7 +491,6 @@ let jsCourse = {
             console.log(this);  // logs {objName: "Book", Price: 10, getInfo: ƒ }
         }
     };
-
 
     const myObj = {
         objName: "Book", 
@@ -506,15 +501,15 @@ let jsCourse = {
         }
     };
 
-
     myObj.getInfo()     // important: Bu metod çağırılmadan myObj.info property oluşmaz.
     "Fiyatı 10 TL."
 
     myObj.info          // important: Ancak yukarıdaki metod çalıştıktan sonra bu şekilde çağrılabilir.
     "Fiyatı 10 TL."
 
+//#endregion
 
-// For loops
+//#region For loops 
 
     // array
     const mesut = [
@@ -537,6 +532,10 @@ let jsCourse = {
     }
 
 
+//#endregion
+
+//#region Some Notes 
+
 // www.codewars.com for coding challenges
 
 /*
@@ -547,9 +546,9 @@ let jsCourse = {
 
 */
 
+//#endregion
 
-
-// DOM and Javascript
+//#region DOM and Javascript 
 
 
 // Web APIs 
@@ -778,16 +777,15 @@ let jsCourse = {
     player2.classList.toggle('active');
 
 
+//#endregion
 
 //#endregion
 
-
 //#region Part 3
 
+//#region Diving deeper 
 
 /*
-
-    Diving deeper
 
     JavaScript is a high-level, prototype-based, object-oriented, multi-paradigm, interpreted or just-in-time compiled, dynamic, 
     single-threaded, garbage-collected programming language with first-class functions and a non-blocking event loop concurrency model.
@@ -855,6 +853,7 @@ let jsCourse = {
 
 */
 
+//#endregion
 
 /*
 
@@ -1167,7 +1166,7 @@ let jsCourse = {
 
 //#endregion
 
-//#region  This Keyword 
+//#region This Keyword 
 
 /*
 
@@ -1306,7 +1305,7 @@ let jsCourse = {
 
     jonas.greet(); // Hey Matilda
 
-// Because var creates properties on the global window.
+// important: because var creates properties on the global window.
 
 /*
 
@@ -1316,37 +1315,109 @@ let jsCourse = {
     then you never have to think about which type of function you should use.
     Just use a normal function expression, so that you can prevent this kind of mistakes from happening.
     So this mistake that we saw here with Hey Matilda is easy to prevent by simply not using var.
-    But even then, Hey undefined is still a buck. It's still not correct.
+    But even then, Hey undefined is still a bug. It's still not correct.
     And so that would have easily been avoided by just using a regular function. 
 
 */
+
+// And now, one final example of a pitfall of this keyword is when we have a function inside of a method.
+// And that is a pretty common thing to happen. And so let's now take a look at an example of that.
 
     const jonas = {
         year: 1991,
         firstName: "Jonas",
         calcAge: function () {
             console.log(2021 - this.year);
+            const isMillenial = function(){
+                console.log(this);
+                console.log(this.year >= 1981 && this.year <= 1996);
+            }
+
+            isMillenial();
         },
         greet: function (){
             console.log("Hey " + this.firstName);
         }
     }
 
-    jonas.greet(); // Hey Jonas
+    jonas.calcAge(); // TypeError: Cannot read property 'year' of undefined at isMillenial
+    // It's a clear rule that a regular function call has the this keyword set to undefined.
+
+// Now there are two solutions to this problem.  
+// The first solution is to use an extra variable that we usually call self.
+
+    const jonas = {
+        year: 1991,
+        firstName: "Jonas",
+        calcAge: function () {
+            console.log(2021 - this.year);
+            const self = this;
+            const isMillenial = function(){
+                console.log(self);
+                console.log(self.year >= 1981 && self.year <= 1996);
+            }
+
+            isMillenial();
+        },
+        greet: function (){
+            console.log("Hey " + this.firstName);
+        }
+    }
+
+    jonas.calcAge(); // true
+
+// So this was kind of the pre ES6 solution, but you might still find this solution in some older code bases.
+// However, now in ES6 we have a more modern and better solution. And that solution is to use an arrow function.
+
+    const jonas = {
+        year: 1991,
+        firstName: "Jonas",
+        calcAge: () => {
+            console.log(2021 - this.year);
+            const isMillenial = function(){
+                console.log(this);
+                console.log(this.year >= 1981 && this.year <= 1996);
+            }
+
+            isMillenial();
+        },
+        greet: function (){
+            console.log("Hey " + this.firstName);
+        }
+    }
+
+    jonas.calcAge(); // true
+
+// And that's because a regular function gets its own this keyword.
+// But the arrow function will not, it will simply use this keyword of its parent scope.
+
+// Arguments keyword
+
+    const addExpr = function (a,b) {
+        console.log(arguments);
+        return a + b;
+    }
+
+    addExpr(2,5); // Arguments(2) [2, 5]
+    addExpr(2,5,4); // Arguments(3) [2, 5, 4] and this is completely legal
 
 
-// And now, one final example of a pitfall of this keyword is when we have a function inside of a method.
-// And that is a pretty common thing to happen. And so let's now take a look at an example of that.
+    var addArrow = (a, b) => {
+        console.log(arguments);
+        return a + b;
+    }
 
+    addArrow(2,3,4); // Uncaught ReferenceError: arguments is not defined
 
+// important: so this was simply just to show you that the arguments keyword exists, but that it only exists in regular functions.
 
+// The arguments keyword is not that important in modern JavaScript anymore, because now we have a more modern way of dealing with multiple parameters.
+// But still it's important that you are aware that this arguments keywords exists.
 
 
 //#endregion
     
 
-
-    
 //#endregion
 
 
