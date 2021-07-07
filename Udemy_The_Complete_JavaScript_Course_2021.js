@@ -1517,14 +1517,77 @@ let jsCourse = {
 //#endregion
 
 
+//#endregion
 
+//#region Section 9: Data Structures, Modern Operators and Strings
 
+//#region Destructuring Arrays 
+
+    'use strict';
+    const arr = [1,2,3];
+    let a = arr[0];
+    let b = arr[1];
+    let c = arr[2];
+
+    const[x,y,z] = arr;
+    console.log(x,y,z); // 1 2 3
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    };
+
+    // Getting first and the second
+    const [first, second] = restaurant.categories;
+    console.log(first, second); // Italian Pizzeria
+
+    // Getting first and the third
+    const [first, , third] = restaurant.categories;
+    console.log(first, third); // Italian Vegetarian
+
+    // Getting main and secondary
+    const [main, , secondary] = restaurant.categories;
+    console.log(main, secondary); // Italian Vegetarian
+
+    // Switching variables
+    [main, secondary] = [secondary, main]
+    console.log(main, secondary); // Vegetarian Italian
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+        order(starterIndex, mainIndex) {
+            return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+          },
+    };
+
+    console.log(restaurant.order(2,0)); // (2) ["Garlic Bread", "Pizza"]
+
+    // Receiving two return values from a function
+    const[starter, mainCourse] = restaurant.order(2,0);
+    console.log(starter, mainCourse); // Garlic Bread Pizza
+
+    // Nested destructuring
+    const nested = [2, 4, [5, 6]];
+    const[i, , j] = nested;
+    console.log(i,j); // 2, [5,6]
+
+    // Destructuring inside destructuring
+    const[a, , [b, c]] = nested;
+    console.log(a,b,c); // 2 5 6
+
+    // Default Values
+    const[p = 1, q = 1, r = 1]  = [8,9];
+    console.log(p,q,r); // 8 9 1
 
 //#endregion
 
 
-
-
-
-
-
+//#endregion
