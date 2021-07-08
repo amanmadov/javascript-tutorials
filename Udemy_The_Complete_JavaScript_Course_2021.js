@@ -1692,9 +1692,87 @@ let jsCourse = {
         address: 'Via del Sole, 21',
         starterIndex: 2,
     });
-    
+
 
 //#endregion
+
+//#region The Spread Operator 
+
+    const arr = [7 ,8 ,9];
+    const badArr = [3 ,4, 5, 6, arr[0], arr[1], arr[2]];
+    console.log(badArr); // (7) [3, 4, 5, 6, 7, 8, 9]
+
+    // with ES6 
+    const newArr = [3 ,4, 5, 6, ...arr];
+    console.log(newArr); // (7) [3, 4, 5, 6, 7, 8, 9]
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+        orderPasta(ing1, ing2, ing3) {
+            console.log(
+              `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+            );
+          },
+    }
+
+    const newMenu = [...restaurant.mainMenu, 'Gnocci']
+    console.log(newMenu);
+
+    // Copying an array
+    const menu1 = [...restaurant.mainMenu]
+    console.log(menu1);
+
+    // Joining two arrays
+    const menu2 = [...restaurant.mainMenu, ...restaurant.starterMenu]
+    console.log(menu2);
+
+    // the spread operator works on all iterables
+    // Iterables: arrays, strings, maps, sets but not objects
+
+    const str = 'Jonas';
+    const letters = [...str, ' ', 'S.'];
+    console.log(letters);
+
+    // real world example
+    const ingredients = [
+        propmpt("Lets make pasta. Ingredient 1?"),
+        propmpt("Ingredient 2?"),
+        propmpt("Ingredient 3?")
+    ];
+
+    console.log(ingredients);
+
+    restaurant.orderPasta(ingredients[0],ingredients[1],ingredients[2]);
+    restaurant.orderPasta(...ingredients);
+
+    // objects
+    const newRestaurant = {
+        foundIn: 1991,
+        ...restaurant,
+        founder: 'Guiseppe'
+    };
+
+    console.log(newRestaurant);
+
+    const restaurantCopy = {...restaurant};
+    restaurantCopy.name = 'Ristorante Roma';
+    console.log(restaurantCopy.name);   // Ristorante Roma
+    console.log(restaurant.name);       // Classico Italiano
+
+//#endregion
+
+
+
+
+
+
+
+
 
 
 
