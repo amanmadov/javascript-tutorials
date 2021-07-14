@@ -2019,4 +2019,45 @@ let jsCourse = {
 
 //#endregion
 
+//#region Looping Arrays: The for-of Loop 
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto']
+    }
+
+    const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+    for (const item of menu) console.log(item);
+    // Focaccia
+    // Bruschetta
+    // Garlic Bread
+    // Caprese Salad
+    // Pizza
+    // Pasta
+    // Risotto
+
+    // if we want both index and the element
+    for (const item of menu.entries()) console.log(item);
+    // [0, "Focaccia"]
+    // [1, "Bruschetta"]
+    // [2, "Garlic Bread"]
+    // [3, "Caprese Salad"]
+    // [4, "Pizza"]
+    // [5, "Pasta"]
+    // [6, "Risotto"]
+
+
+    for (const [i, el] of menu.entries()) {
+        console.log(`${i + 1}: ${el}`);
+    }
+
+//#endregion
+
+
+
+
+
 //#endregion
