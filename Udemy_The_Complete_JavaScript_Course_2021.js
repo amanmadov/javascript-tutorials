@@ -1930,6 +1930,35 @@ let jsCourse = {
 
 //#endregion
 
+//#region The Nullish Coalescing Operator 
 
+// Nullish coalescing operator is an operator that was introduced in ES2020.
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+        orderPizza(...ingredients) {
+            console.log(ingredients);
+        },
+    }
+
+    const guestsCorrect = restaurant.numGuests ?? 10;
+    console.log(guests2); // 10
+
+    restaurant.numGuests = 0;
+    const guests = restaurant.numGuests || 10;
+    console.log(guests); // 10
+
+    const guestsCorrect = restaurant.numGuests ?? 10;
+    console.log(guests2); // 0
+
+// The nullish coalescing operator works with the concept of nullish values instead of falsy values.
+// And nullish values are null and undefined. It does not include a zero or the empty string.
+
+//#endregion
 
 //#endregion
