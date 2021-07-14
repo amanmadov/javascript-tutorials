@@ -1843,10 +1843,92 @@ let jsCourse = {
 
 //#endregion
 
+//#region Short Circuiting 
+
+// OR operator 
+
+// in the case of the OR operator, short circuiting means that if the first value is a truthy value, it will immediately return that first value.
+// So if the first operand is already true then JavaScript doesn't even have to look at the other values because the result of the expression will already be true anyway.
+
+    console.log(3 || 'Jonas'); // 3
+    console.log('' || 'Jonas'); // Jonas
+    console.log(true || 0); // true
+    console.log(undefined || null); // null
+    console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto']
+    }
+
+    const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+    console.log(guests1); // 10
+
+    restaurant.numGuests = 23;
+    const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+    console.log(guests1); // 23
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto']
+    }
+
+    const guests2 = restaurant.numGuests || 10;
+    console.log(guests2); // 10
+
+    restaurant.numGuests = 23;
+    const guests2 = restaurant.numGuests || 10;
+    console.log(guests2); // 23
+
+    restaurant.numGuests = 0;
+    const guests2 = restaurant.numGuests || 10;
+    console.log(guests2); // 10
+    // important: zero is a falsy value therefore 10 will be the result of the operation and assigned to guests2.
 
 
+// AND operator
 
+// when it comes to short circuit evaluation, the AND operator works in the exact opposite way of the OR operator.
+// And so what this means is that the AND operator short circuits, when the first value is falsy.
+// And then immediately returns that falsy value without even evaluating the second operand.
 
+    console.log(0 && 'Jonas'); // 0
+    console.log(7 && 'Jonas'); // Jonas
+
+// So when it is truthy, it means that the evaluation continues and then simply the last value is returned. 
+// So the AND operator is only true if all the operands are true.
+
+    console.log('Hello' && 23 && null && 'Jonas'); // null
+
+// Practical Example
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+        orderPizza(...ingredients) {
+            console.log(ingredients);
+        },
+
+    }
+
+    if (restaurant.orderPizza) {
+        restaurant.orderPizza('mushrooms', 'spinach'); // (2) ["mushrooms", "spinach"]
+    }
+
+    // same as above
+    restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach'); // (2) ["mushrooms", "spinach"]
+
+//#endregion
 
 
 
