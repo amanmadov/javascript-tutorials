@@ -2397,5 +2397,62 @@ let jsCourse = {
 
 //#endregion
 
+//#region Maps: Fundamentals 
+
+// One another JavaScript data structure is maps. And maps are a lot more useful than sets.
+// A map is a data structure that we can use to map values to keys.
+
+    const rest = new Map();
+    rest.set('name', 'Classico Italiano');
+    rest.set(1, 'Firenze, Italy');
+
+    // calling the set method also returns the set 
+    console.log(rest.set(2, 'Lisbon, Portugal'));   // Map(3) {"name" => "Classico Italiano", 1 => "Firenze, Italy", 2 => "Lisbon, Portugal"}
+
+    // we can change sets one after another
+    rest
+    .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+    .set('open', 11)
+    .set('close', 23)
+    .set(true, 'We are open :D')
+    .set(false, 'We are closed :(');
+
+    console.log(rest.get('name'));  // Classico Italiano
+    console.log(rest.get(true));    // We are open :D
+    console.log(rest.get(1));       // Firenze, Italy
+
+    // So basically, here we are asking if the current time is between 23 and 11.
+    let time = 21;
+    console.log(rest.get(time > rest.get('open') && time < rest.get('close'))); // We are open :D
+
+    let time = 8;
+    console.log(rest.get(time > rest.get('open') && time < rest.get('close'))); // We are closed :(
+
+    // checking if map contains certain key
+    console.log(rest.has('categories'));
+
+// Now comparing this to objects, we can also delete properties from objects using something called the Delete Operator.
+// But, that's a really slow process. And usually, it's not encouraged to do that here.
+
+    rest.delete(2);
+
+    // maps has a clear() method to clear all the elements of a map
+    // rest.clear();
+
+    console.log(rest.size); // 7
+
+    // rest.set([1, 2], 'Test');
+    // console.log(rest.get([1, 2])); // undefined
+
+    const arr = [1, 2];
+    rest.set(arr, 'Test');
+    console.log(rest.get(arr)); // Test
+
+    rest.set(document.querySelector('h1'), 'Heading');
+    console.log(rest);
+
+//#endregion
+
+
 
 //#endregion
