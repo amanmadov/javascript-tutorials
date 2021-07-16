@@ -2349,4 +2349,53 @@ let jsCourse = {
 
 //#endregion
 
+//#region Sets 
+
+// Sets are similar to arrays. So there are no key value pairs, it's just a bunch of values grouped together.
+// And just like arrays, sets are also iterables. A set is very different from an array.
+// First, because its elements are unique. And second, because the order of elements in the set is irrelevant.
+
+    const ordersSet = new Set([
+        'Pasta',
+        'Pizza',
+        'Pizza',
+        'Risotto',
+        'Pasta',
+        'Pizza',
+    ]);
+
+    console.log(ordersSet);                 // Set(3) {"Pasta", "Pizza", "Risotto"}
+    console.log(new Set('Jonas'));          // Set(5) {"J", "o", "n", "a", "s"}
+    console.log(ordersSet.size);            // 3
+    console.log(ordersSet.has('Pizza'));    // true
+    console.log(ordersSet.has('Bread'));    // false
+    ordersSet.add('Garlic Bread');          // Set(4) {"Pasta", "Pizza", "Risotto", "Garlic Bread"}
+    ordersSet.add('Garlic Bread');
+    ordersSet.delete('Risotto');            // Set(3) {"Pasta", "Pizza", "Garlic Bread"}
+
+    console.log(ordersSet[0]);              // undefined. Because in sets there are actually no indexes
+
+    // ordersSet.clear();                   // deletes all elements in the set
+
+    console.log(ordersSet);
+    for (const order of ordersSet) console.log(order);
+
+    // the main use case of sets is actually to remove duplicate values of arrays.
+
+    // Example
+    const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+    const staffUnique = [...new Set(staff)];
+    console.log(staffUnique);
+
+    console.log(new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size); // 3
+
+    // to check how many different letters there are in a string
+    console.log(new Set('jonasschmedtmann').size); // 11
+
+// Sets have this very useful property of being unique. And it's also very easy to interact with sets by using all of their straightforward methods.
+// However, they are not as important as arrays. So keep sets in mind when you need to work with unique values. But besides that, you can just continue using arrays.
+
+//#endregion
+
+
 //#endregion
