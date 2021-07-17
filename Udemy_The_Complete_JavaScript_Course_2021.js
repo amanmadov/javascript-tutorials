@@ -2958,6 +2958,32 @@ let jsCourse = {
 
 //#endregion
 
+//#region Functions Returning Functions 
+
+    const greet = function (greeting) {
+        return function (name) {
+            console.log(`${greeting} ${name}`);
+        };
+    };
+
+    const greeterHey = greet('Hey');
+
+    greeterHey('Jonas');        // Hey Jonas
+    greeterHey('Steven');       // Hey Steven
+    greet('Hello')('Jonas');    // Hello Jonas
+
+// This example might look a bit weird and unnecessary for you Like what's the point of having functions returning other functions?
+// Well, this will actually become extremely useful in some situations.
+// And especially if we're using a really important programming paradigm called functional programming.
+
+    // Challenge. Using arrow functions
+    const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+    greetArr('Hi')('Jonas');
+    
+//#endregion
+
+
+
 //#endregion
 
 
