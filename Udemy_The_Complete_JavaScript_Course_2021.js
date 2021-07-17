@@ -2892,6 +2892,27 @@ let jsCourse = {
 
 //#endregion
 
+//#region First-Class and Higher-Order Functions 
+
+/*
+
+    JavaScript is a language that has first class functions which in technical terms means that functions are so-called first class citizens. 
+    In practice, that means functions are simply treated as values. Now, why does JavaScript work this way? 
+    Well, it's simply because functions are really just another type of objects in JavaScript.
+    And since objects are values, functions are values too. 
+    And since functions are values, there is a bunch of interesting things that we can do with them like storing them in variables or object properties.
+    We can also pass functions as arguments to other functions.
+    Now to make it even more interesting, we can also return a function from another function. That sounds kind of crazy, but it can be very useful.
+    Finally, remember that functions are objects. And many types of objects in JavaScript have methods, right?
+    Like array methods, for example. And actually there are also function methods. Methods that we can call on functions like bind() method.
+    Now the fact that JavaScript has first-class functions makes it possible for us to use and write higher order functions.
+    So a higher order function is either a function that receives another function as an argument, or a function that returns a new function.
+
+*/
+
+//#endregion
+
+
 
 //#endregion
 
