@@ -2840,6 +2840,58 @@ let jsCourse = {
 
 //#endregion
 
+//#region How Passing Arguments Works: Values vs. Reference 
+
+    const flight = 'LH234';
+    const jonas = {
+        name: 'Jonas Schmedtmann',
+        passport: 24739479284,
+    };
+
+    const checkIn = function (flightNum, passenger) {
+        flightNum = 'LH999';
+        passenger.name = 'Mr. ' + passenger.name;
+        if (passenger.passport === 24739479284) {
+            console.log('Checked in');
+        } else {
+            console.log('Wrong passport!');
+        }
+    };
+
+    checkIn(flight, jonas); // Checked in
+    console.log(flight);    // LH234
+    console.log(jonas);     // {name: "Mr. Jonas Schmedtmann", passport: 24739479284}
+
+    // Is the same as doing...
+    // const flightNum = flight;    // primitive type. thats why only the value is copied
+    // const passenger = jonas;     // reference type. thats why a memory address is copied
+
+    const newPassport = function (person) {
+        person.passport = Math.trunc(Math.random() * 100000000000);
+    };
+
+    newPassport(jonas);
+    checkIn(flight, jonas); // Wrong passport!
+
+/*
+
+    There are two terms that are used all the time when dealing with functions, which is passing by value, and passing by reference,
+    and many experienced programmers that are new to JavaScript have some confusion between these terms and how it works in JavaScript.
+    JavaScript does not have passing by reference, only passing by value, even though it looks like it's passing by reference. 
+    There are languages like C++, where you can pass a reference to any value, instead of the value itself.
+    This works even with primitives, you could pass a reference to the value of five, and then the original value,
+    outside of the function, would be changed. And this is called pass by reference. 
+    But once again, JavaScript does not have pass by reference.
+    So if you already know some programming, but are new to JavaScript, be sure to understand this.
+    And I know it's confusing, because as we just learned, for objects, we do in fact pass in a reference.
+    So the memory address of the object. However, that reference itself is still a value.
+    It's simply a value that contains a memory address.
+    So basically we pass a reference to the function, but we do not pass by reference, and this is an important distinction.
+
+*/
+
+//#endregion
+
 
 //#endregion
 
