@@ -3195,7 +3195,41 @@ let jsCourse = {
 
 //#endregion
 
+//#region Immediately Invoked Function Expressions (IIFE) 
 
+    const runOnce = function () {
+        console.log('This will never run again');
+    };
+
+    runOnce();
+
+    // IIFE
+    (function () {
+        console.log('This will never run again');
+        const isPrivate = 23;
+    })();
+
+    console.log(isPrivate); // Uncaught referenceError: isPrivate is not defined
+
+    // IIFE's are invented because functions create scope and variables inside that scope become private
+    // We can also say that this data inside function scope is encapsulated. 
+    // And data privacy or data encapsulation is extremely important.
+
+    (() => console.log('This will ALSO never run again'))();
+
+    // creating a block
+    {
+        const isPrivate = 23;
+        var notPrivate = 46;
+    }
+
+    console.log(isPrivate);     // Uncaught referenceError: isPrivate is not defined
+    console.log(notPrivate);    // 46
+
+    // important: in modern javascript we can create scopes using bloks as shown above. that's why IIFE patterns are not used anymore.
+
+//#endregion
+  
 
 //#endregion
 
