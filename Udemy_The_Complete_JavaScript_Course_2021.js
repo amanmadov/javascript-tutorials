@@ -3006,7 +3006,7 @@ let jsCourse = {
 
     const book = lufthansa.book;
     book(23, 'Sarah Williams'); // Cannot read property 'airline' of undefined at book
-    // because in regular function calls this kwyword points to undefined 
+    // because in regular function calls this keyword points to undefined 
 
     // Call method
     book.call(eurowings, 23, 'Sarah Williams');
@@ -3031,6 +3031,89 @@ let jsCourse = {
     book.call(swiss, ...flightData);
 
 //#endregion
+
+//#region The bind Method 
+
+// Just like the call method, bind also allows us to manually set this keywords for any function call.
+// Now, the difference is that bind does not immediately call the function.
+// Instead it returns a new function where this keyword is bound.
+
+    const lufthansa = {
+        airline: 'Lufthansa',
+        iataCode: 'LH',
+        bookings: [],
+        book(flightNum, name) {
+            console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+            this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+        },
+    };
+
+    const eurowings = {
+        airline: 'Eurowings',
+        iataCode: 'EW',
+        bookings: [],
+    };
+
+    const book = lufthansa.book;
+
+    //book.call(eurowings, 23, 'Sarah Williams');
+
+    const bookEW = book.bind(eurowings);
+    const bookLH = book.bind(lufthansa);
+    const bookLX = book.bind(swiss);
+
+    bookEW(23, 'Steven Williams');
+
+    const bookEW23 = book.bind(eurowings, 23);
+
+    bookEW23('Jonas Schmedtmann');
+    bookEW23('Martha Cooper');
+
+    // With Event Listeners
+    lufthansa.planes = 300;
+
+    lufthansa.buyPlane = function () {
+        console.log(this);
+        this.planes++;
+        console.log(this.planes);
+    };
+
+    // lufthansa.buyPlane(); // undefined
+    // document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane); // NaN
+
+    // important: because bind method returns a new function we should use bind method in this case
+    document
+    .querySelector('.buy')
+    .addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); 
+
+    // Partial application
+    const addTax = (rate, value) => value + value * rate;
+    console.log(addTax(0.1, 200));
+
+    // we can pass null for this
+    const addVAT = addTax.bind(null, 0.23);
+    // this function is same as below
+    // addVAT = value => value + value * 0.23;
+
+    console.log(addVAT(100));   // 123
+    console.log(addVAT(23));    // 28.29
+
+    // here we created more specific function using more general function
+
+    // challenge without using bind method
+    const addTaxRate = function (rate) {
+        return function (value) {
+            return value + value * rate;
+        };
+    };
+
+    const addVAT2 = addTaxRate(0.23);
+    console.log(addVAT2(100));  // 123
+    console.log(addVAT2(23));   // 28.29
+
+//#endregion
+
+
 
 //#endregion
 
