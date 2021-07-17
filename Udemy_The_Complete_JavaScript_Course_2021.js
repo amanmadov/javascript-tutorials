@@ -2912,7 +2912,51 @@ let jsCourse = {
 
 //#endregion
 
+//#region Functions Accepting Callback Functions 
 
+    const oneWord = function (str) {
+        return str.replace(/ /g, '').toLowerCase();
+    };
+
+    const upperFirstWord = function (str) {
+        const [first, ...others] = str.split(' ');
+        return [first.toUpperCase(), ...others].join(' ');
+    };
+
+    // Higher-order function
+    const transformer = function (str, fn) {
+        console.log(`Original string: ${str}`);
+        console.log(`Transformed string: ${fn(str)}`);
+        console.log(`Transformed by: ${fn.name}`);
+    };
+
+    transformer('JavaScript is the best!', upperFirstWord); 
+    transformer('JavaScript is the best!', oneWord);
+
+    // important: name property of a function gives back the name of that function
+    // in this example upperFirstWord and oneWord functions are called callback functions.
+
+    // JS uses callbacks all the time
+    const high5 = function () {
+        console.log('👋');
+    };
+
+    document.body.addEventListener('click', high5);
+    ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+/*
+    Why are callback functions so much used in JavaScript and why are they so helpful?
+    Well, the first big advantage of this is that it makes it easy to split up or code into more reusable and interconnected parts. 
+    But there is a second and way more important advantage, which is the fact that callback functions allow us to create abstraction.
+    Basically what abstraction means is that we hide the detail of some code implementation because we don't really care about all that detail.
+    And this allows us to think about problems at a higher more abstract level.
+    And now with this idea of abstraction and higher levels and lower levels of abstraction, above our transformer function is called a higher order function.
+    Because this function here operates at a higher level of abstraction, leaving the low level details to this low level functions.
+
+*/
+
+
+//#endregion
 
 //#endregion
 
