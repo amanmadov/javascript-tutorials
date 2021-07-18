@@ -11,10 +11,12 @@ let jsCourse = {
 }
 
 
-//#region Part 1
+
+//#region Section 1-8 JS Basics 
+
+//#region Part 1 
 
 //#region Data Types 
-
 
     let name = 'Nury';
     // important: name is a reversed keywoard in JS but can be used. Never use it. 
@@ -37,22 +39,21 @@ let jsCourse = {
 */
 
 // 1. Number: Floating point number. Used for decimals and integers. 
-      let myNum = 23; // actually its 23.0 even if we dont see it
+    let myNum = 23; // actually its 23.0 even if we dont see it
 
-// important: In other programming languages there are different data types for integers 
-// and decimals but in javascript there are all same.
+// important: In other programming languages there are different data types for integers and decimals but in javascript there are all same.
 
 
 // 2. String: Sequence of characters
-      let myName = 'Nury';
+    let myName = 'Nury';
 
 
 // 3. Boolean: Logical type that can only be true or false  
-      let isCompleted = true;
+    let isCompleted = true;
 
 
 // 4. Undefined: Value taken by a variable that is not yet defined. ('empty value')
-      let children;
+    let children;
 
 // 5. Null: Empty value. Similar to undefined. 
 
@@ -181,7 +182,6 @@ let jsCourse = {
 
 //#region Truthy and Falsy Values 
 
-
 /*
 
     Falsy values in Javascript
@@ -233,14 +233,11 @@ let jsCourse = {
 // On the other hand, there's also the loose equality operator, which is only two equals, 
 // and the loose equality operator actually does type coercion.
 
-
     console.log('18' == 18); // true
     console.log('18' === 18); // false
 
 // important: so as a general rule for clean code, avoid the loose equality operator as much as you can.
 // when comparing values, always use strict equality with the three equal signs.
-
-
 
 // The Conditional (Ternary) Operator
 
@@ -298,7 +295,6 @@ let jsCourse = {
         return juice;
     }
 
-
     logger(fruitProcessor(2,3));
 
 
@@ -310,7 +306,7 @@ let jsCourse = {
     const age = calcAge(1989);
 
 // Function expression
-                         // Anonymous function
+                     // Anonymous function
     const calculateAge = function(birthYear) {
         return 2021 - birthYear;
     }
@@ -330,11 +326,10 @@ let jsCourse = {
     that was added to JavaScript in ES6 and that's the "arrow function". 
     And an arrow function is simply a special form of function expression that is shorter and therefore faster to write.
 
-
 */
 
     const calcAge = birthYear => 2021 - birthYear;
-    // no return keyword no brackets just simple clean code
+// no return keyword no brackets just simple clean code
 
     const yearsLeftUntilRetirement = birthYear => {
         const age = 2021 - birthYear;
@@ -379,7 +374,7 @@ let jsCourse = {
 // Adding elements to an array
 
     const cities = ["London", "Paris", "Rome"];
-    
+
     const arrayLength = cities.push("Madrid")       // Adds element to the last index. Returns new array length.  
     // ["London", "Paris", "Rome", "Madrid"]
 
@@ -402,10 +397,10 @@ let jsCourse = {
     console.log(cities.includes("Berlin")); // Returns false
 
 //#endregion
- 
+
 //#region Objects 
 
-    // Array seeming like an object
+// Array seeming like an object
     const mesutArray = [
         "Mesut",    // FirstName
         "Ozil",     // LastName
@@ -438,7 +433,7 @@ let jsCourse = {
     console.log(mesut['last' + n]);  // This still works. But console.log(mesut.'last' + n) does not.
 
     let interestedIn = prompt("What do you want to know about mesut? Choose firstName, lastName or job")
-    
+
     console.log(mesut[interestedIn]) // Works for interestedIn = "firstName"
     console.log(mesut[interestedIn]) // Does not work for interestedIn = "location". Undefined
 
@@ -511,7 +506,7 @@ let jsCourse = {
 
 //#region For loops 
 
-    // array
+// array
     const mesut = [
         "Mesut", 
         "Ozil", 
@@ -531,7 +526,6 @@ let jsCourse = {
         types.push(typeof mesut[index]);
     }
 
-
 //#endregion
 
 //#region Some Notes 
@@ -550,19 +544,18 @@ let jsCourse = {
 
 //#region DOM and Javascript 
 
-
 // Web APIs 
 
-/* 
-    <section>
-        <p class="message">Hello</p>
-    </section>
-*/ 
+    /* 
+        <section>
+            <p class="message">Hello</p>
+        </section>
+    */ 
 
     var txt = document.querySelector('.message').textContent;
     document.querySelector('.message').textContent = "Hi";
 
-// <input class="guess" type="text"></input> 
+    // <input class="guess" type="text"></input> 
 
     var value = document.querySelector('.guess').value;
     document.querySelector('.guess').value = "23";
@@ -591,7 +584,7 @@ let jsCourse = {
 // function () { console.log("Hello, click event is triggered.")} is the event handler
 // domElement.addEventListener(event,eventHandlerFunction);
 
-// Generating random number between 0-20
+    // Generating random number between 0-20
     const randNum = Math.trunc(Math.random() * 20) + 1;
 
     let score = 20; // this is a state variable 
@@ -645,7 +638,7 @@ let jsCourse = {
 // document.querySelector('.modal') has to be used with dot before class name
 // For classList.remove method we dont need to use dot prefix before class name
 
-// Adding a class
+    // Adding a class
     modal.classList.add('newClass'); 
 
 /*
@@ -707,7 +700,6 @@ let jsCourse = {
 */
 
 
-
 // important: "e" is the most popular argument passed
     document.addEventListener('keydown', function(e) {
         console.log(e);
@@ -751,7 +743,7 @@ let jsCourse = {
 
 */
 
-// If escape button is clicked
+    // If escape button is clicked
     document.addEventListener('keydown', function(e) {
         if(e.key === 'Escape')
             modal.classList.add('hidden'); 
@@ -770,7 +762,7 @@ let jsCourse = {
     document.querySelector('#score').textContent = initialScore; // JS automatically converts 0 to "0"
 
 
-// toggle will add the class if it is not there and if it is there, it will remove it.
+    // toggle will add the class if it is not there and if it is there, it will remove it.
     const player1 = document.querySelector('#player1');
     const player2 = document.querySelector('#player2');
     player1.classList.toggle('active');
@@ -849,14 +841,6 @@ let jsCourse = {
     So hopefully it makes sense now that we say that Java script code runs inside the call stack.
     And actually it is more accurate to say that code runs inside of execution contexts that are in the stack.
 
-
-
-*/
-
-//#endregion
-
-/*
-
     Scopes in Javascipt
 
     There are three different types of scope in JavaScript:
@@ -865,6 +849,8 @@ let jsCourse = {
     3. Block Scope
 
 */
+
+//#endregion
 
 //#region 1. Global Scope 
 
@@ -930,7 +916,6 @@ let jsCourse = {
 // And that's why ES5 variables declared with "var", only care about functions, but not about blocks.
 // Finally, also starting in ES6, all functions are now also block scoped, at least in strict mode, which you should always be using anyway.
 
-
 //#endregion
 
 //#region The Scope Chain 
@@ -961,7 +946,6 @@ let jsCourse = {
 // Second Scope: job (but can access age, millenial, myName)
 // Block Scope: decade, (but can access age, millenial, myName)
 
-
 // Every scope always has access to all the variables from all its outer scopes. 
 // So from all its parent scopes. And by the way, all this also applies to function arguments.
 
@@ -971,8 +955,6 @@ let jsCourse = {
 // A certain scope will never, ever have access to the variables of an inner scope.
 
 // important: "var" is function scoped, "let" and "const" are block scoped. 
-
-
 
 //#endregion
 
@@ -998,8 +980,6 @@ let jsCourse = {
         console.log(d + c + b + a);  // ReferenceError. Cant access c and b.
     }
 
-
-
 // The scope chain is all about the order in which functions are written in the code.
 // But what's really important to note here is that the scope chain has nothing to do with the order in which functions were called.
 // Or in other words, the scope chain has nothing to do with the order of the execution contexts in the call stack.
@@ -1008,7 +988,6 @@ let jsCourse = {
 // Or "Where can we access a certain variable, "and where not?" That's what scoping is all about.
 // Only "let" and "const" variables are block scoped. 
 // Variables declared with "var" automatically end up in the closest function scope.
-
 
     var you = 'awesome';
 
@@ -1023,8 +1002,6 @@ let jsCourse = {
     }
 
     sayHi(); //"TypeError: add is not a function
-
-
 
     var name = 'Mesut';
     function greet() {
@@ -1097,32 +1074,27 @@ let jsCourse = {
     console.log(name); // undefined
     var name = 'Mesut'
 
-
     add(2,3); // 5
 
     function add(a,b) {
         return a + b;
     }
 
-
     add1(2,3); // Uncaught ReferenceError: Cannot access 'add1' before initialization
     const add1 = function (a,b) {
         return a + b;
     }
 
-
     add2(2,3); // Uncaught ReferenceError: Cannot access 'add2' before initialization
     const add2 = (a,b) => a + b;
-
 
     add3(2,3); // Uncaught TypeError: add3 is not a function
     var add3 = function (a,b) {
         return a + b;
     }
 
-    // important: This is because add3 becomes "undefined" in TDZ
-    // important: The only function that you can use before declaring it, is the add function declaration.
-
+// important: This is because add3 becomes "undefined" in TDZ
+// important: The only function that you can use before declaring it, is the add function declaration.
 
     if (!numProducts) {
         deleteShoppingCart();
@@ -1133,14 +1105,12 @@ let jsCourse = {
         console.log("All products are deleted");
     }
 
-    // Above code will execute deleteShoppingCart function because numProducts is undefined 
-    // Undefined is a falsy value so be careful with handling the variables declared using "var"
-
+// Above code will execute deleteShoppingCart function because numProducts is undefined 
+// Undefined is a falsy value so be careful with handling the variables declared using "var"
 
 //#endregion
 
 //#region Best practises
-
 
 /*
 
@@ -1149,7 +1119,7 @@ let jsCourse = {
     - Just don't use "var" to declare variables. 
     - Use "const" most of the time to declare variables and "let" if you really need to change the variable later.
     - Also in order to write clean code, you should declare your variables at the top of each scope.
-      That will just make your code at least look a little bit better.
+    That will just make your code at least look a little bit better.
     - Finally, always declare all your functions first and use them only after the declaration.
 
 */
@@ -1161,8 +1131,7 @@ let jsCourse = {
     console.log(y === window.y); // false
     console.log(z === window.z); // false
 
-    // important: The variables declared with "var" will create a property on the global window object.
-
+// important: The variables declared with "var" will create a property on the global window object.
 
 //#endregion
 
@@ -1226,14 +1195,14 @@ let jsCourse = {
     f1() === globalThis; // true
 
 
-    // In strict mode, however, if the value of this is not set when entering an execution context, 
-    // it remains as undefined, as shown in the following example:
+// In strict mode, however, if the value of this is not set when entering an execution context, 
+// it remains as undefined, as shown in the following example:
 
     function f2() {
-      'use strict'; // see strict mode
-      return this;
+        'use strict'; // see strict mode
+        return this;
     }
-    
+
     f2() === undefined; // true
 
 
@@ -1243,7 +1212,6 @@ let jsCourse = {
 // As a result, they incorrectly returned the window object.
 
 // To set the value of this to a particular value when calling a function use call(), or apply().
-
 
     const jonas = {
         year: 1991,
@@ -1290,7 +1258,7 @@ let jsCourse = {
 
     console.log("Hey " + this.firstName); // Hey undefined
 
- // But what if our code was like below
+// But what if our code was like below
 
     var firstName = "Matilda"; 
 
@@ -1414,9 +1382,8 @@ let jsCourse = {
 // The arguments keyword is not that important in modern JavaScript anymore, because now we have a more modern way of dealing with multiple parameters.
 // But still it's important that you are aware that this arguments keywords exists.
 
-
 //#endregion
-    
+
 //#region Primitives vs. Objects (Primitive vs. Reference Types) 
 
     let age = 30;
@@ -1425,7 +1392,7 @@ let jsCourse = {
     console.log(age);       // 31
     console.log(oldAge);    // 30
 
-    // Each primitive value will simply be saved into its own piece of memory in the stack.
+// Each primitive value will simply be saved into its own piece of memory in the stack.
 
     const me = {
         name: 'Jonas',
@@ -1437,7 +1404,6 @@ let jsCourse = {
     console.log(me.age);        // 27
     console.log(friend.age);    // 27
 
-
 // JavaScripts primitive data types: number, string, Boolean, undefined, null, symbol and BigInt.
 // Then everything else are basically objects. 
 // So objects created with the object literal, arrays and even functions are all objects.
@@ -1448,13 +1414,13 @@ let jsCourse = {
 // It is a misconception that all variables declared with const are immutable.
 // In fact, that is only true for primitive values, but not for reference values.
 
-    // Primitive types
+// Primitive types
     let lastName = 'Williams';
     let oldLastName = lastName;
     lastName = 'Davis';
     console.log(lastName, oldLastName);
 
-    // Reference types
+// Reference types
     const jessica = {
         firstName: 'Jessica',
         lastName: 'Williams',
@@ -1513,9 +1479,9 @@ let jsCourse = {
 // We see that both the objects now have a family with four members.
 // The family object is a deeply nested object. Therefore, object.assign did not really, behind the scenes, copy it to the new object.
 
-
 //#endregion
 
+//#endregion
 
 //#endregion
 
