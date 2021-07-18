@@ -3230,6 +3230,86 @@ let jsCourse = {
 
 //#endregion
   
+//#region Closures 
+
+    const secureBooking = function () {
+        let passengerCount = 0;
+        return function () {
+            passengerCount++;
+            console.log(`${passengerCount} passengers`);
+        };
+    };
+
+    const booker = secureBooking();
+
+    booker(); // 1 passengers
+    booker(); // 2 passengers
+    booker(); // 3 passengers
+
+// How is this even possible?
+// How can the Booker function update the passengerCount variable that's defined in a secureBooking function that actually has already finished executing?
+// This function has already finished its execution. It is gone. So its execution context is no longer on the stack but still this inner function here,
+// which is the Booker function, is still able to access the passengerCount variable that's inside of the Booker function that should no longer exist. 
+// What makes this possible is a closure, how strange this actually is.
+
+// Booker function somehow continues to have access to the variables that were present at the time that the function was created.
+// And in particular, this passengerCount variable here. And so that's exactly what the closure does.
+// So we can say that a closure makes a function remember all the variables that existed at the function's birthplace essentially.
+
+// So we can imagine taht the secureBooking as being the birthplace of this function.
+// And so Booker function remembers everything at its birthplace, by the time it was created.
+// And this cannot simply be explained with the scope chain alone. So we need to also understand the closure.
+
+// Any function always has access to the variable environment of the execution context in which the function was created.
+// Now, in the case of Booker, this function was born in the execution context of secureBooking, which was popped off the stack previously.
+// So, therefore the Booker function will get access to this variable environment, which contains the passengerCount variable.
+// And this is how the function will be able to read and manipulate the passengerCount variable. And this connection that we call closure.
+
+// important: So a function always has access to the variable environment of the execution context in which it was created, even after that execution context is gone.
+
+// The scope chain is actually preserved through the closure, even when a scope has already been destroyed because its execution context is gone.
+// This means that even though the execution context has actually been destroyed, the variable environment somehow keeps living somewhere in the engine.
+
+// The most formal definition of closure is that a closure is the closed over variable environment of the execution context in which a function was created
+// even after that execution context is gone, or in other words, even after the function to which the execution context belongs has returned.
+// A closure gives a function access to all the variables of its parent function. 
+// So the function in which it is defined even after that parent function has returned.
+// So the function keeps a reference to its outer scope even after that outer scope is gone, which basically preserves the scope chain throughout time.
+
+// Analogy
+// Let's say analogy is that a closure makes sure that a function does never lose connection to the variables that existed at the function's birthplace.
+// It remembers the variables, even after the birthplace is gone. 
+
+// It's like a person who doesn't lose connection to their hometown.
+// In this analogy, the person is the function and the hometown is the function's parents scope, 
+// and the function then doesn't lose the connection to the variables stored in this parent's scope.  
+// Finally, some people like to think of this attached variable environment as a backpack.
+// So in this analogy, a function has a backpack, which it carries around wherever it goes. 
+// And this backpack contains all the variables that were present in the environment in which the function was created. 
+// Then whenever a variable can't be found in the function scope, JavaScript will look into the backpack and take the missing variable from there.
+
+    // we can looak at the variable environment(backpack) of a function like below
+    console.dir(booker);
+
+    /*
+    
+    ƒ anonymous()
+    arguments: null
+    caller: null
+    length: 0
+    name: ""
+    prototype: {constructor: ƒ}
+    __proto__: ƒ ()
+    [[FunctionLocation]]: VM359:3
+    [[Scopes]]: Scopes[3]
+        0: Closure (secureBooking)
+            passengerCount: 3
+        1: Script {_clientSettings: {…}, secureBooking: ƒ, booker: ƒ}
+        2: Global {window: Window, self: Window, document: document, name: "", location: Location, …}
+
+    */
+
+//#endregion
 
 //#endregion
 
