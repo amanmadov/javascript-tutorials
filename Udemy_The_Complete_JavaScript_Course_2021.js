@@ -6,7 +6,7 @@ let jsCourse = {
 
     courseName : "The Complete JavaScript Course 2021: From Zero to Expert",
         author : "Jonas Schmedttman",
-           url : "https://softtech.udemy.com/course/the-complete-javascript-course"
+           url : "https://www.udemy.com/course/the-complete-javascript-course/"
 
 }
 
@@ -3310,6 +3310,62 @@ let jsCourse = {
     */
 
 //#endregion
+
+//#region More Closure Examples 
+
+    // Example 1
+    let f;
+    const g = function () {
+        const a = 23;
+        f = function () {
+            console.log(a * 2);
+        };
+    };
+
+    g();
+    f(); // 46
+    console.dir(f);
+    
+// At this point of the execution, the variable environment of g is no longer exists.
+// But f here closed over that variable environment and therefore it is able to access the a variable.
+
+    const h = function () {
+        const b = 777;
+        f = function () {
+            console.log(b * 2);
+        };
+    };
+
+    // Re-assigning f function
+    h();
+    f(); // 1554
+    console.dir(f);
+
+// And so this proves that the f function was reassigned here also closed over the variable environment of h.
+// And so that's how it can access then the b variable here which has set to 777.
+// After the reassignment ld closure disappears. So we can not reach out the variable a.
+
+    // Example 2
+    const boardPassengers = function (n, wait) {
+        const perGroup = n / 3;
+        setTimeout(function () {
+            console.log(`We are now boarding all ${n} passengers`);
+            console.log(`There are 3 groups, each with ${perGroup} passengers`);
+        }, wait * 1000);
+        console.log(`Will start boarding in ${wait} seconds`);
+    };
+
+    const perGroup = 1000;      // closure even has priority over the scope chain.
+    boardPassengers(180, 3);
+
+// Keep in mind that this callback function here was executed completely independently from the boardPassengers function.
+// But still the callback function was able to use all the variables that were in the variable environment in which it was created.
+// And one more time, this is a clear sign of a closure being created.
+// important: the closure does in fact have priority over the scope chain.
+
+//#endregion
+
+
 
 //#endregion
 
