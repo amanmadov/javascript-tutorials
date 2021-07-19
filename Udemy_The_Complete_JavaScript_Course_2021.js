@@ -3671,6 +3671,39 @@ let jsCourse = {
 
 //#endregion
 
+//#region Data Transformations: map, filter, reduce 
+
+// In JavaScript, there are three big and important array methods that we use all the time to perform data transformations.
+// So basically, these are methods that we use to create new arrays based on transforming data from other arrays.
+// And in recent years, these tools have become really popular and you'll see them everywhere you look in Modern JavaScript.
+// And these tools are; map, filter and reduce.
+
+// Map
+// First the map method is yet another method that we can use to loop over arrays.
+// Map is actually similar to the forEach method that we studied before but with the difference that map creates a brand new array based on the original array.
+// Map method takes an array, loops over that array and in each alteration, it applies a covic function that we specify on our code to the current array element.
+// So in this example we say that each element shall be multiplied by two.
+// And with this covic in place, the map method multiplies every single element by two and puts it into a new array.
+// We say that it maps the values of the original array to a new array and that's why this method is called map.
+// And it is extremely useful.
+// Usually way more useful than in forEach method because forEach simply allows us to do some work with each array element.
+// But map on the other hand, builds us a brand new array containing the results of applying an operation to the original array,
+
+// Filter
+// which as the name says, is used to filter for elements in the original array which satisfy a certain condition.
+// So in this example we are only looking for elements greater than two.
+// So all the elements that pass the test that we specified will make it into a new filtered array.
+// Or in other words elements for which the condition is true will be included in a new array that the filter method returns.
+// All other elements will get filtered out so they will not be included in the new array.
+
+// Reduce
+// Reduce method is used to boil down all the elements of the original array into one single value.
+// And an example of this can be to add all the elements of an array together.
+// Whole process now reduced the original array to one single value, the sum of all the elements but it can of course be many other operations. 
+// Now it's this value that then actually gets returned from the reduce method in the end. So there is no new array in this case but only the reduced value.
+
+
+//#endregion
 
 
 //#endregion
