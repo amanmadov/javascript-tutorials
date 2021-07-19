@@ -3495,6 +3495,47 @@ let jsCourse = {
 
 //#endregion
 
+//#region forEach With Maps and Sets 
+
+    // Map
+
+    const currencies = new Map([
+        ['USD', 'United States dollar'],
+        ['EUR', 'Euro'],
+        ['GBP', 'Pound sterling'],
+    ]);
+
+    currencies.forEach(function (value, key, map) {
+        console.log(`${key}: ${value}`);
+    });
+
+    // We can call forEach also on a map. Now this callback function also has three parameters.
+    // So when the forEach method calls it, it will call this function with three arguments.
+    // So the first one will be the current value, the second one is the key, and the third one is the entire map that is being looped over.
+
+    // Set
+    
+    const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+
+    console.log(currenciesUnique); // Set(3) {"USD", "GBP", "EUR"}
+
+    currenciesUnique.forEach(function (value, _, map) {
+        console.log(`${value}: ${value}`);
+    });
+
+    // important:
+    // Well, a set doesn't have keys. And it doesn't have indexes either.
+    // And so there is no value that would make sense for the key.
+    // So if we use key in this loop this key makes no sense at all.
+    // And so the people who designed this forEach method for sets, they could have simply omitted the second argument, right?
+    // Well, if they did that, then this forEach would have been different from the others.
+    // And so that would then create confusion in developers, and therefore it was decided to keep the same signature.
+    // So basically to keep the same three parameters in this callback function and simply to set the second one to the first one.
+
+    // important: "_" this underscore parameter is called throwaway variable in JavaScript means a variable that is completely unnecessary.
+
+//#endregion
+
 
 //#endregion
 
