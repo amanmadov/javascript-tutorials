@@ -3400,7 +3400,7 @@ let jsCourse = {
     console.log(arr.splice(2)); // (3) ["c", "d", "e"];
     console.log(arr);           // (2) ["a", "b"];
 
-    // Splice actually does mutate the original array, it takes part of the array and returns it 
+    // important: Splice actually does mutate the original array, it takes part of the array and returns it 
     // and then the original array itself loses this part that was extracted.
     // Now in practice, most of the time the value that the splice method returns, doesn't even interest us.
     // All we are usually interested in is to just delete one or more elements from an array using splice.
@@ -3421,7 +3421,7 @@ let jsCourse = {
     // REVERSE Method
 
     // The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
-    // But now what's important to note here is the fact that the reverse method does actually mutate the original array.
+    // important: But now what's important to note here is the fact that the reverse method does actually mutate the original array.
 
     arr = ['a', 'b', 'c', 'd', 'e'];
     const arr2 = ['j', 'i', 'h', 'g', 'f'];
@@ -3439,7 +3439,7 @@ let jsCourse = {
     // same as above but using spread operator
     console.log([...arr, ...arr2]);     // (10) ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
 
-    // both approaches given above do not mutate the original array
+    // important: both approaches given above do not mutate the original array
 
 
     // JOIN Method
@@ -3449,6 +3449,49 @@ let jsCourse = {
     // If the array has only one item, then that item will be returned without using the separator.
 
     console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
+
+//#endregion
+
+//#region Looping Arrays: forEach 
+
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+    for (const [i, movement] of movements.entries()) {
+        if (movement > 0) {
+            console.log(`Movement ${i + 1}: You deposited ${movement}`);
+        } else {
+            console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+        }
+    }
+
+    console.log('---- FOREACH ----');
+
+    movements.forEach(function (mov, i, arr) {
+        if (mov > 0) {
+            console.log(`Movement ${i + 1}: You deposited ${mov}`);
+        } else {
+            console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+        }
+    });
+
+    // What forEach method does is to loop over the array and in each iteration it will execute this callback function.
+
+    // Execution order
+    // 0: function(200)
+    // 1: function(450)
+    // 2: function(400)
+    // ...
+
+    // We need entries() method to access the current index value in "for of" loop
+    // But forEach passes the current element, the index and the entire array (that we are looping) to a callback function it is executing.
+    // And we can easily specify them in the parameter list of the callback function. 
+
+    // important: Now when should we use forEach and when should we use the "for of" loop?
+    // Well one fundamental difference between the two of them is that we cannot break out of a forEach loop.
+    // So the continue and break statements do not work in a forEach loop at all.
+    // So instead, forEach will always loop over the entire array and there is nothing that we can do about it.
+    // So if we really need to break out of a loop then we have to keep using the "for of" loop, but other than that it really comes down to your personal preference.
+
 
 //#endregion
 
