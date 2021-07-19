@@ -3361,6 +3361,100 @@ let jsCourse = {
 
 //#endregion
 
+//#region Section 11: Working With Arrays 
+
+//#region Simple Array Methods 
+
+    let arr = ['a', 'b', 'c', 'd', 'e'];
+
+    // SLICE Method
+
+    // With the slice method, we can extract part of any array without changing the original array.
+    // So essentially, we can take a slice of an array. And so that's why it's called slice.
+
+    console.log(arr.slice(2));      // (3) ["c", "d", "e"];
+    console.log(arr.slice(2, 4));   // (2) ["c", "d"];
+
+    // starts to copy from the end. last two elements
+    console.log(arr.slice(-2));     // (2) ["d", "e"];
+
+    // so minus one is always just the last element of any array
+    console.log(arr.slice(-1));     // (1) ["e"];
+
+    // starting from index 1, it extracts everything except the last two elements
+    console.log(arr.slice(1, -2));  // (2) ["b", "c"];
+
+    // we can also use the slice method to simply create a shallow copy of any array
+    console.log(arr.slice());       // (5) ["a", "b", "c", "d", "e"];
+
+    // spread operator does the same. its up to you to chose which
+    console.log([...arr]);          // (5) ["a", "b", "c", "d", "e"];
+
+
+    // SPLICE Method
+
+    // Splice method works in almost the same way as slice.
+    // But the fundamental difference is that it does actually change the original array.
+
+    let arr = ['a', 'b', 'c', 'd', 'e'];
+    console.log(arr.splice(2)); // (3) ["c", "d", "e"];
+    console.log(arr);           // (2) ["a", "b"];
+
+    // Splice actually does mutate the original array, it takes part of the array and returns it 
+    // and then the original array itself loses this part that was extracted.
+    // Now in practice, most of the time the value that the splice method returns, doesn't even interest us.
+    // All we are usually interested in is to just delete one or more elements from an array using splice.
+    // And one pretty common use case is to simply remove the last element of an array.
+
+    let arr = ['a', 'b', 'c', 'd', 'e'];
+    arr.splice(-1); 
+    console.log(arr); // (4) ["a", "b", "c", "d"];
+
+    // The second parameter in splice method is called delete count. 
+    // So it's actually not the begin parameter.
+    // It works a little bit different than in the slice method.
+
+    arr.splice(1, 2);
+    console.log(arr); // (2) ["a", "d"];
+
+
+    // REVERSE Method
+
+    // The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+    // But now what's important to note here is the fact that the reverse method does actually mutate the original array.
+
+    arr = ['a', 'b', 'c', 'd', 'e'];
+    const arr2 = ['j', 'i', 'h', 'g', 'f'];
+    console.log(arr2.reverse());    // (5) ["f", "g", "h", "i", "j"]
+    console.log(arr2);              // (5) ["f", "g", "h", "i", "j"]
+
+
+    // CONCAT Method
+
+    // The concat() method is used to merge two or more arrays. 
+    // This method does not change the existing arrays, but instead returns a new array.
+
+    const letters = arr.concat(arr2);
+    console.log(letters);               // (10) ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+    // same as above but using spread operator
+    console.log([...arr, ...arr2]);     // (10) ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+
+    // both approaches given above do not mutate the original array
+
+
+    // JOIN Method
+
+    // The join() method creates and returns a new string by concatenating all of the elements in an array 
+    // (or an array-like object), separated by commas or a specified separator string. 
+    // If the array has only one item, then that item will be returned without using the separator.
+
+    console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
+
+//#endregion
+
+
+//#endregion
+
 
 
 
