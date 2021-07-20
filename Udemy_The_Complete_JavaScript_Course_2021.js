@@ -3705,6 +3705,46 @@ let jsCourse = {
 
 //#endregion
 
+//#region The map Method 
+
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+    const eurToUsd = 1.1;
+
+    const movementsUSD = movements.map(function (mov) {
+        return mov * eurToUsd;
+    });
+
+    console.log(movements);     // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+    console.log(movementsUSD);  // (8) [220.00000000000003, 495.00000000000006, -440.00000000000006, 3300.0000000000005, -715.0000000000001, -143, 77, 1430.0000000000002]
+    
+    // using arrow function
+    const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+    console.log(movements);
+    console.log(movementsUSD);
+
+    const movementsUSDfor = [];
+    for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+    console.log(movementsUSDfor);
+
+    // This two approaches are completely different philosophies
+    // In a map method we use a function to solve this problem of a creating new array
+    // But with "for of" loop we manually loop through an array and create a new array 
+    // Map method is much more of a functional programming approach
+    // In a modern javascript programming functional programming is mostly preferred. 
+
+    // A map method can also access to a current element, an index and entire array 
+    const movementsDescriptions = movements.map((mov, i) =>`Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+
+    console.log(movementsDescriptions);
+
+    // The "side effect" with forEach is that the original array is being changed. 
+    // "No side effect" with map means that, in idiomatic usage, the original array elements are not changed; 
+    // the new array is a one-to-one mapping of each element in the original array -- the mapping transform being your provided function.
+    // Source: https://stackoverflow.com/questions/3034392/what-use-does-the-javascript-foreach-method-have-that-map-cant-do
+
+//#endregion
+
 
 //#endregion
 
