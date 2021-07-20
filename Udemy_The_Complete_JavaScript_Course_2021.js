@@ -3771,7 +3771,46 @@ let jsCourse = {
 
 //#endregion
 
+//#region The reduce Method 
 
+// We use the reduce method to boil down all the elements in an array to one single value.
+
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+    console.log(movements);
+    // accumulator -> SNOWBALL
+    const balance = movements.reduce(function (acc, cur, i, arr) {
+        console.log(`Iteration ${i}: ${acc}`);
+        return acc + cur;
+    }, 0);
+
+// The reduce function also gets a callback function, but this one is a little bit different from the other ones, like the one in map or for each.
+// So in these other callbacks, the first parameter is always the current element of the array. Let's call it current. 
+// The second one is the current index and the third one is the entire array.
+// But here in the callback function of the reduce method, the first parameter is actually something called the accumulator.
+
+// And this accumulator is essentially like a snowball that keeps accumulating the value that we ultimately want to return.
+// So in the case of adding all the elements or all the numbers of an array together, that will be the sum.
+
+// Callback function is the first argument of the reduce method, but the reduce method actually has a second parameter, and that is the initial value of the accumulator.
+
+    // using arrow function
+    const balance = movements.reduce((acc, cur) => acc + cur, 0);
+    console.log(balance);
+
+    // getting sum using for of loop
+    let balance2 = 0;
+    for (const mov of movements) balance2 += mov;
+    console.log(balance2);
+
+    // Maximum value
+    const max = movements.reduce((acc, mov) => {
+        if (acc > mov) return acc;
+        else return mov;
+    }, movements[0]);
+
+    console.log(max);
+
+//#endregion
 
 //#endregion
 
