@@ -3618,7 +3618,7 @@ let jsCourse = {
 
 //#endregion
   
-//#region // Coding Challenge #1 
+//#region Coding Challenge #1 
 
 /* 
 
@@ -3850,6 +3850,35 @@ let jsCourse = {
 
 //#endregion
 
+//#region The Magic of Chaining Methods 
+
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
+    const eurToUsd = 1.1;
+    console.log(movements);
+
+    // PIPELINE
+    const totalDepositsUSD = movements
+    .filter(mov => mov > 0)
+    .map((mov, i, arr) => {
+        // console.log(arr); // for debugging purpose
+        return mov * eurToUsd;
+    })
+
+    // .map(mov => mov * eurToUsd)
+    .reduce((acc, mov) => acc + mov, 0);
+    console.log(totalDepositsUSD);
+
+    // So we can only chain a method after another one, if the first one returns an array.
+    // We can inspect the current array at any stage of the pipeline using the third parameter of the callback function.
+    // Being able to access the current array is one of the great use cases in terms of debugging.
+    // Because this array has to be the result of the previous operation.
+    
+    // It is a bad practice in JavaScript to chain methods that mutate the underlying original array.
+    // And an example of that is the splice method. You should not chain a method like the splice or the reverse method.
+    // For a small application like this one, it's not a big deal and it's not going to cause problems,
+    // but in a large scale application, it's usually always a good practice to avoid mutating arrays.
+
+//#endregion
 
 
 //#endregion
