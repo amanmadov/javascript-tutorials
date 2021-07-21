@@ -3908,6 +3908,31 @@ let jsCourse = {
 
 //#endregion
 
+//#region The find Method 
+
+// As the name says, we can use the Find method to retrieve one element of an array based on a condition.
+// Just like the other array methods we've been talking about the find method also accepts a callback function and a condition.
+// Unlike the Filter method, the Find method will not return a new array. 
+// It returns the first element in the array that satisfies given condition.
+
+// The Find method is a bit similar to the Filter method, but there are two fundamental differences.
+// First Filter returns all the elements that match the condition while the Find method only returns the first one.
+// And second and even more important, the Filter method returns a new array while Find only returns the element itself and not an array.
+
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
+    const firstWithdrawal = movements.find(mov => mov < 0);
+
+    console.log(movements);
+    console.log(firstWithdrawal);
+    console.log(accounts);
+
+    const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+
+    console.log(account);
+
+//#endregion
+
+
 
 //#endregion
 
