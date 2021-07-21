@@ -3975,14 +3975,41 @@ let jsCourse = {
 
 //#endregion
 
+//#region Some and Every 
 
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+    console.log(movements);
+
+    // we can use the includes method to test if an array includes a certain value.
+    // Includes returns true if any value in the array is exactly equal to the given value.
+    // It only tests for equality but what if we wanted to test for a condition instead?
+    // That's where the some method comes into play.
+
+    // EQUALITY
+    console.log(movements.includes(-130)); // true
+
+    // SOME: CONDITION
+    console.log(movements.some(mov => mov === -130));   // true
+    const anyDeposits = movements.some(mov => mov > 0); // true
+    console.log(anyDeposits);
+
+    // EVERY
+    // The every method is pretty similar to the some method but the difference between them is that 
+    // every only returns true if all of the elements in the array satisfy the condition that we pass in.
+
+    console.log(movements.every(mov => mov > 0)); // false
+    console.log([2,3,4,5].every(mov => mov > 0)); // true
+
+    // Separate callback
+    const deposit = mov => mov > 0;
+    console.log(movements.some(deposit));   // true
+    console.log(movements.every(deposit));  // false
+    console.log(movements.filter(deposit)); // (5) [200, 450, 3000, 70, 1300]
 
 //#endregion
 
 
-
-
-
+//#endregion
 
 
 
