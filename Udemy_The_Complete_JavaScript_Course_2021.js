@@ -4076,6 +4076,44 @@ let jsCourse = {
 
 //#endregion
 
+//#region Sorting Arrays 
+
+    // Strings
+    const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+    console.log(owners.sort()); // (4) ["Adam", "Jonas", "Martha", "Zach"]
+    console.log(owners);        // (4) ["Adam", "Jonas", "Martha", "Zach"]
+
+    // Numbers
+    // The sort method does the sorting based on strings.
+    const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+    console.log(movements);         // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+    console.log(movements.sort());  // (8) [-130, -400, -650, 1300, 200, 3000, 450, 70]
+
+    // return < 0, A, B (keep order)
+    // return > 0, B, A (switch order)
+
+    // Ascending
+
+    // movements.sort((a, b) => {
+    //   if (a > b) return 1;
+    //   if (a < b) return -1;
+    // });
+
+    movements.sort((a, b) => a - b);
+    console.log(movements); // (8) [-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+    // Descending
+
+    // movements.sort((a, b) => {
+    //   if (a > b) return -1;
+    //   if (a < b) return 1;
+    // });
+
+    movements.sort((a, b) => b - a);
+    console.log(movements); // (8) [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+//#endregion
+
 
 //#endregion
 
