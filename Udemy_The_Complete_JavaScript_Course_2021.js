@@ -3932,6 +3932,49 @@ let jsCourse = {
 
 //#endregion
 
+//#region The findIndex Method 
+
+// The findIndex method works almost the same way as find.
+// But as the name says, findIndex returns the index of the found element and not the element itself.
+// Both the find and findIndex methods were added to JavaScript in ES6.
+
+// MDN
+// The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. 
+// Otherwise, it returns -1, indicating that no element passed the test.
+
+    const array1 = [5, 12, 8, 130, 44];
+
+    const isLargeNumber = (element) => element > 13;
+
+    console.log(array1.findIndex(isLargeNumber));
+    // expected output: 3s
+
+// The findIndex() method executes the callbackFn function once for every index in the array until it finds the one where callbackFn returns a truthy value.
+// If such an element is found, findIndex() immediately returns the element's index. 
+// If callbackFn never returns a truthy value (or the array's length is 0), findIndex() returns -1.
+
+    function isPrime(num) {
+        for (let i = 2; num > i; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return num > 1;
+    }
+        
+    console.log([4, 6, 8, 9, 12].findIndex(isPrime)); // -1, not found
+    console.log([4, 6, 7, 9, 12].findIndex(isPrime)); // 2 (array[2] is 7)
+
+// The following example finds the index of a fruit using an arrow function:
+
+    const fruits = ["apple", "banana", "cantaloupe", "blueberries", "grapefruit"];
+    const index = fruits.findIndex(fruit => fruit === "blueberries");
+
+    console.log(index); // 3
+    console.log(fruits[index]); // blueberries
+
+//#endregion
+
 
 
 //#endregion
