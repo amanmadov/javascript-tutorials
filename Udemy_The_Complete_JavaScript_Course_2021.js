@@ -4114,6 +4114,60 @@ let jsCourse = {
 
 //#endregion
 
+//#region More Ways of Creating and Filling Arrays 
+
+    // creating arrays manually
+    const arr = [1, 2, 3, 4, 5, 6, 7];
+    console.log(new Array(1, 2, 3, 4, 5, 6, 7)); // (7) [1, 2, 3, 4, 5, 6, 7]
+
+    // Empty arrays + fill method
+    const x = new Array(7);
+    console.log(x); // (7) [empty × 7]
+    
+    console.log(x.map(() => 5)); // (7) [empty × 7]
+
+    // There is one method that we can call on the empty array to fill it and that is the fill() method.
+
+    x.fill(1);
+    console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
+
+    // like slice method we can define start and end index parameters on fill method.
+
+    x.fill(1, 3);
+    console.log(x); // (7) [empty x 3, 1, 1, 1, 1]
+
+    x.fill(1, 3, 5);
+    console.log(x); // (7) [empty x 3, 1, 1, empty x 2]
+
+    arr.fill(23, 2, 6);
+    console.log(arr); // (7) [1, 2, 23, 23, 23, 23, 7]
+
+    // Array.from
+    // Array.from function takes object with the length property.
+    // And then the second argument is a mapping function.
+    // So it is exactly like the callback function that we pass into the map() method.
+
+    const y = Array.from({ length: 7 }, () => 1);
+    console.log(y); // (7) [1, 1, 1, 1, 1, 1, 1]
+
+    const z = Array.from({ length: 7 }, (_, i) => i + 1);
+    console.log(z); // (7) [1, 2, 3, 4, 5, 6, 7]
+
+    // we can not directly call map method on nodelist instead we have to first create array from the nodelist and then call map on that array
+    labelBalance.addEventListener('click', function () {
+        const movementsUI = Array.from(
+            document.querySelectorAll('.movements__value'),
+            el => Number(el.textContent.replace('€', ''))
+        );
+        console.log(movementsUI);
+        const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+    });
+
+    // The Array.from() function was a great addition to JavaScript in ES6.
+
+//#endregion
+
+
 
 //#endregion
 
