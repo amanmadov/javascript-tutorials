@@ -4167,7 +4167,81 @@ let jsCourse = {
 
 //#endregion
 
+//#region Summary. Which Array Method to Use?
 
+/*
+
+    1. To mutate original array:
+        a) Add to original
+            .push()
+            .unshift()
+
+        b) Remove from original
+            .pop()
+            .shift()
+            .splice()
+
+        c) Others:
+            .reverse()
+            .sort()
+            .fill()
+
+
+    2. A new Array:
+        a) computed from original:
+            .map()
+
+        b) Filtered using condition
+            .filter()
+
+        c) Position of original
+            .slice()
+
+        d) Adding original to other
+            .concat()
+
+        e) Flattening the original
+            .flat()
+            .flatMap()
+
+
+    3. An array index
+        a) Based on value
+            .indexOf()
+
+        b) based on a test condition
+            .findIndex()
+
+
+    4. An array element
+        a) Based on a test condition
+            .find()
+
+
+    5. Check if array includes
+        a) Based on a value
+            .includes()
+
+        b) Based on a test condition
+            .some()
+            .every()
+
+
+    6. A new string
+        a) Based on a seperator string
+            .join()
+
+
+    7. To transform to value
+        a) Based on a accumulator
+            .reduce()
+
+        b) To just loop an array
+            .forEach()
+
+    */
+
+//#endregion
 
 //#endregion
 
