@@ -4645,13 +4645,71 @@ let jsCourse = {
 
 //#endregion
 
+//#endregion
 
+//#region Section 12: Numbers, Dates, Intl and Timers 
+
+//#region Converting and Checking Numbers 
+
+    // In JavaScript, all numbers are presented internally as floating point numbers.
+    // Always as decimals, no matter if we actually write them as integers or as decimals.
+
+    console.log(23 === 23.0); // true
+
+    // Base 10 - 0 to 9. 1/10 = 0.1. 3/10 = 3.3333333
+    // Binary base 2 - 0 1
+
+    // Also, numbers are represented internally in a 64 base 2 format.
+    // So that means that numbers are always stored in a binary format.
+
+    console.log(0.1 + 0.2);             // 0.30000000000000004
+    console.log(0.1 + 0.2 === 0.3);     // false
+
+    // important: Just be aware that you cannot do like really precise scientific or financial calculations 
+    // in JavaScript because eventually, you will run into a problem like this.
+
+    // Conversion
+    console.log(Number('23'));  // 23
+    console.log(+'23');         // 23
+    // Same as above because when JavaScript sees the plus operator, it will do type coercion.
+
+    // Parsing
+    console.log(Number.parseInt('30px', 10));       // 30
+    console.log(Number.parseInt('e23', 10));        // NaN
+    console.log(Number.parseInt('  2.5rem  '));     // 2
+    console.log(Number.parseFloat('  2.5rem  '));   // 2.5
+    console.log(parseFloat('  2.5rem  '));          // 2.5
+
+    // The parseInt function actually accepts a second argument, which is the so-called radix.
+    // And the radix is the base of the numeral system that we are using. We are simply using base 10 numbers.
+    // Both parseInt() and parseFloat() functions are so-called global functions. So we do not need to call them on Number.
+    // Number is a namespace for these functions.
+
+    // Check if value is NaN
+    console.log(Number.isNaN(20));      // false
+    console.log(Number.isNaN('20'));    // false 
+    console.log(Number.isNaN(+'20X'));  // true
+    console.log(Number.isNaN(23 / 0));  // false
+
+    // isNaN() is actually not a perfect way for checking if a value is a number because it doesn't work with infinity.
+    // But there is a better method called isFinite(). isFinite() method is indeed the best way of checking if a value is a number.
+
+    // Checking if value is number
+    console.log(Number.isFinite(20));       // true
+    console.log(Number.isFinite('20'));     // false
+    console.log(Number.isFinite(+'20X'));   // false
+    console.log(Number.isFinite(23 / 0));   // false
+
+    // If you are sure that you just need to check for an integer, then you can use isInteger() method as well.
+
+    console.log(Number.isInteger(23));      // true 
+    console.log(Number.isInteger(23.0));    // true
+    console.log(Number.isInteger(23 / 0));  // false
 
 //#endregion
 
 
-
-
+//#endregion
 
 
 
