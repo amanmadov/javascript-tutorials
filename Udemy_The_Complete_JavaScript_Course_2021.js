@@ -4777,7 +4777,59 @@ let jsCourse = {
 
 //#endregion
 
+//#region Working with BigInt 
 
+    // BigInt is a special type of integers that was introduced in ES2020.
+
+    console.log(2 ** 53 - 1); // 9007199254740991
+
+    // important: This is essentially the biggest number that JavaScript can safely represent.
+    // This number is so important that it's even stored into the Number namespace as MAX_SAFE_INTEGER.
+
+    console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+
+    console.log(2 ** 53 + 1); // 9007199254740992
+    console.log(2 ** 53 + 2); // 9007199254740994
+    console.log(2 ** 53 + 3); // 9007199254740996
+    console.log(2 ** 53 + 4); // 9007199254740996
+
+    // Starting from ES2020 a new primitive was added to JavaScript, which is called BigInt.
+    // BigInt stands for big integer. And it can be used to store numbers as large as we want.
+
+    console.log(4838430248342043823408394839483204n); // 4838430248342043823408394839483204n
+    console.log(BigInt(48384302)); // 48384302n
+
+    // Operations
+    console.log(10000n + 10000n); // 20000n
+    console.log(36286372637263726376237263726372632n * 10000000n); // 362863726372637263762372637263726320000000n
+
+    console.log(Math.sqrt(16n)); // Uncaught TypeError: Cannot convert a BigInt value to a number
+    // important: Math operations that we talked about earlier are not gonna work with bigint.
+
+    const huge = 20289830237283728378237n;
+    const num = 23;
+    // console.log(huge * num); // Error
+    console.log(huge * BigInt(num));
+
+    // important: what is not possible is to mix BigInt with regular numbers.
+
+    // Exceptions
+    console.log(20n > 15);      // true
+    console.log(20n === 20);    // false
+    console.log(typeof 20n);    // bigint
+    console.log(20n == '20');   // true
+    console.log(huge + ' is REALLY big!!!'); // 20289830237283728378237 is REALLY big!!!
+
+    // Divisions
+    console.log(11n / 3n);  // 3n
+    console.log(10 / 3);    // 3.33
+
+    // important: With BigInt division operations will simply return the closest BigInt.
+
+    // So this bigInt primitive type adds some new capabilities to the JavaScript language.
+    // When we really need to work with huge numbers.
+
+//#endregion
 
 //#endregion
 
