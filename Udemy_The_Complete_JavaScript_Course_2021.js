@@ -4831,6 +4831,69 @@ let jsCourse = {
 
 //#endregion
 
+//#region Creating Dates 
+
+    // Create a date
+    const now = new Date();
+    console.log(now);                                   // Sat Jul 24 2021 18:44:21 GMT+0300 (GMT+03:00)
+    console.log(new Date('Aug 02 2020 18:05:41'));      // Sun Aug 02 2020 18:05:41 GMT+0300 (GMT+03:00)
+    console.log(new Date('December 24, 2015'));         // Thu Dec 24 2015 00:00:00 GMT+0200 (GMT+03:00)
+
+    const account1 = {
+        owner: 'Jonas Schmedtmann',
+        movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+        interestRate: 1.2, // %
+        pin: 1111,
+      
+        movementsDates: [
+          '2019-11-18T21:31:17.178Z',
+          '2019-12-23T07:42:02.383Z',
+          '2020-01-28T09:15:04.904Z',
+          '2020-04-01T10:17:24.185Z',
+          '2020-05-08T14:11:59.604Z',
+          '2020-07-26T17:01:17.194Z',
+          '2020-07-28T23:36:17.929Z',
+          '2020-08-01T10:51:36.790Z',
+        ],
+        currency: 'EUR',
+        locale: 'pt-PT', // de-DE
+    };
+
+    console.log(new Date(account1.movementsDates[0]));  // Tue Nov 19 2019 00:31:17 GMT+0300 (GMT+03:00)
+    console.log(new Date(2037, 10, 19, 15, 23, 5));     // Thu Nov 19 2037 15:23:05 GMT+0300 (GMT+03:00)
+
+    console.log(new Date(2037, 10, 31));                // Tue Dec 01 2037 00:00:00 GMT+0300 (GMT+03:00)
+    // important: JavaScript actually autocorrects the day. 
+    // There is no November 31st, javascript corrected that for us.
+
+    // Unix time
+    console.log(new Date(0));                           // Thu Jan 01 1970 02:00:00 GMT+0200 (GMT+03:00)
+    console.log(new Date(3 * 24 * 60 * 60 * 1000));     // Sun Jan 04 1970 02:00:00 GMT+0200 (GMT+03:00)
+
+    // Working with dates
+    const future = new Date(2037, 10, 19, 15, 23);  
+    console.log(future); // Thu Nov 19 2037 15:23:00 GMT+0300 (GMT+03:00)  
+    console.log(future.getFullYear()); // 2037
+
+    // important: There's also getYear() method in JavaScripot, but never use that. Always use getFullYear() instead.
+
+    console.log(future.getMonth());         // 10
+    console.log(future.getDate());          // 19
+    console.log(future.getDay());           // 4
+    console.log(future.getHours());         // 15
+    console.log(future.getMinutes());       // 23
+    console.log(future.getSeconds());       // 0
+    console.log(future.toISOString());      // 2037-11-19T12:23:00.000Z
+    console.log(future.getTime());          // 2142246180000
+    console.log(new Date(2142256980000));   // Thu Nov 19 2037 18:23:00 GMT+0300 (GMT+03:00)
+    console.log(Date.now());                // 1627142159875
+
+    // Finally, there are also the set versions of all of these methods.
+    future.setFullYear(2040);
+    console.log(future);                    // Mon Nov 19 2040 15:23:00 GMT+0300 (GMT+03:00)
+
+//#endregion
+
 //#endregion
 
 
