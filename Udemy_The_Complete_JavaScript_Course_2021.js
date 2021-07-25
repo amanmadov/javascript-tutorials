@@ -4908,8 +4908,59 @@ let jsCourse = {
 
 //#endregion
 
+//#region Internationalizing Numbers (Intl) 
+
+    const num = 3884764.23;
+
+    const options = {
+        style: 'currency',
+        unit: 'celsius',
+        currency: 'EUR',
+        // useGrouping: false,
+    };
+
+    console.log('US:      ', new Intl.NumberFormat('en-US', options).format(num));  // US:       €3,884,764.23
+    console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));  // Germany:  3.884.764,23 €
+    console.log('Syria:   ', new Intl.NumberFormat('ar-SY', options).format(num));  // Syria:    ٣٬٨٨٤٬٧٦٤٫٢٣ €
+
+    console.log(navigator.language,new Intl.NumberFormat(navigator.language, options).format(num)); // en-US €3,884,764.23
+
+    const now = new Date();
+    console.log(new Intl.DateTimeFormat('en-US').format(now)); // 7/25/2021
+    console.log(new Intl.DateTimeFormat('en-GB').format(now)); // 25/07/2021
+    console.log(new Intl.DateTimeFormat('tr-TR').format(now)); // 25.07.2021
+
+    const options1 = {
+        hour: 'numeric',
+        minute: 'numeric',
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+    }
+
+    console.log(new Intl.DateTimeFormat('en-US', options1).format(now)); // 7/25/2021, 6:46 PM
+
+    const options2 = {
+        hour: 'numeric',
+        minute: 'numeric',
+        day: 'numeric',
+        month: 'long',   // '2-digit', 'numeric'
+        year: 'numeric', // '2-digit'
+        weekday: 'long'  // 'short'
+    }
+
+    console.log(new Intl.DateTimeFormat('en-US', options2).format(now)); // Sunday, July 25, 2021, 6:49 PM
+
+    // getting language out of users browser
+    const locale = navigator.language;
+    console.log(locale); // en-US
+    console.log(new Intl.DateTimeFormat(locale, options2).format(now)); // Sunday, July 25, 2021, 6:52 PM
+
+    // MDN Documentation Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
+
 //#endregion
 
+//#endregion
 
 
 
