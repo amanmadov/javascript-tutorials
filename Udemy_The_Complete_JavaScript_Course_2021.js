@@ -4912,15 +4912,38 @@ let jsCourse = {
 
     const num = 3884764.23;
 
-    const options = {
+    const options1 = {
+        style: 'unit', // 'percent', 'currency'
+        unit: 'mile-per-hour' // 'celsius'
+    };
+
+    console.log('US:      ', new Intl.NumberFormat('en-US', options1).format(num));  // US:       3,884,764.23 mph
+    console.log('Germany: ', new Intl.NumberFormat('de-DE', options1).format(num));  // Germany:  3.884.764,23 €
+    console.log('Syria:   ', new Intl.NumberFormat('ar-SY', options1).format(num));  // Syria:    ٣٬٨٨٤٬٧٦٤٫٢٣ €
+
+    const options2 = {
         style: 'currency',
         unit: 'celsius',
         currency: 'EUR',
         // useGrouping: false,
     };
 
-    console.log('US:      ', new Intl.NumberFormat('en-US', options).format(num));  // US:       €3,884,764.23
-    console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));  // Germany:  3.884.764,23 €
+    console.log('US:      ', new Intl.NumberFormat('en-US', options2).format(num));  // US:       €3,884,764.23
+    console.log('Germany: ', new Intl.NumberFormat('de-DE', options2).format(num));  // Germany:  3.884.764,23 €
+    console.log('Syria:   ', new Intl.NumberFormat('ar-SY', options2).format(num));  // Syria:    ٣٬٨٨٤٬٧٦٤٫٢٣ €
+
+    // getting locale out of users browser
+    console.log(navigator.language,new Intl.NumberFormat(navigator.language, options).format(num)); // en-US €3,884,764.23
+
+    // important: currency prop must be defined manually 
+    // if useGrouping is set to true then numbers will be displayed without seperators
+
+    // MDN Documentation Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
+
+//#endregion
+
+//#region Internationalizing Dates (Intl) 
+
     console.log('Syria:   ', new Intl.NumberFormat('ar-SY', options).format(num));  // Syria:    ٣٬٨٨٤٬٧٦٤٫٢٣ €
 
     console.log(navigator.language,new Intl.NumberFormat(navigator.language, options).format(num)); // en-US €3,884,764.23
@@ -4959,6 +4982,8 @@ let jsCourse = {
     // MDN Documentation Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
 
 //#endregion
+
+
 
 //#endregion
 
