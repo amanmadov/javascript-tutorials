@@ -4983,7 +4983,34 @@ let jsCourse = {
 
 //#endregion
 
+//#region Timers 
 
+    // setTimeout
+    // setTimeout function simply schedules a function to run after a certain amount of time.
+
+    const ingredients = ['olives', 'spinach'];
+
+    const pizzaTimer = setTimeout(
+        (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
+        3000,
+        ...ingredients
+    );
+
+    // important: all the arguments that we pass to the setTimeout function after the delay parameter will be arguments to the callback function.
+
+    // canceling timeout function for certain conditions
+    console.log('Waiting...');
+    if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+    // setInterval
+    // The setInterval() method calls a function or evaluates an expression at specified intervals (in milliseconds).
+    
+    setInterval(function () {
+        const now = new Date();
+        console.log(now);
+    }, 1000);
+
+//#endregion
 
 //#endregion
 
