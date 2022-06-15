@@ -41,7 +41,8 @@ let jsCourse = {
 // 1. Number: Floating point number. Used for decimals and integers. 
     let myNum = 23; // actually its 23.0 even if we dont see it
 
-// important: In other programming languages there are different data types for integers and decimals but in javascript there are all same.
+// important: In other programming languages there are different data types for integers and decimals 
+//            but in javascript there are all same.
 
 
 // 2. String: Sequence of characters
@@ -63,9 +64,11 @@ let jsCourse = {
 
 // 7. BigInt: Came with ES2020. Larger Integers than the Number can hold. 
 
+
+
 // important: Javascript has a feature called dynamic typing. 
-// We dont have to manually define the data type of variable in javascript. 
-// Instead data types are determined automatically.
+//            We dont have to manually define the data type of variable in javascript. 
+//            Instead data types are determined automatically.
 
     let age = 10; // age will automatically be defined as Number
 
@@ -77,17 +80,18 @@ let jsCourse = {
     let num = '0'; 
     console.log(typeof num); // String
 
-    year = 2021;
+    let year = 2021;
     console.log(typeof year); // Number
-
-    console.log(typeof null); // object
 
     let year;
     console.log(year); // undefined
     console.log(typeof year); // undefined
 
-// This is bug in javascript and it has never corrected for legacy reasons. This should be undefined. 
-// important: Be carefull about this bug.
+    console.log(typeof null); // object
+
+// important: This is a bug in javascript and it has never corrected for legacy reasons. 
+//            This should be undefined. Be carefull about this bug.
+
 
     let age = 30;
     age = 31;       // This is called mutating a varibale in javascript world. Reassigning.
@@ -116,10 +120,12 @@ let jsCourse = {
     let me = `Hello, I'm ${myName} and I'm ${new Date().getFullYear() - birthYear} years old.`;
 
     console.log('This is first line \n\
-    This is second line'); // important: This is a bug in javascript.
+    This is second line'); 
+    // important: This is a bug in javascript.
 
     console.log(`This is first line 
-    This is second line`);  // This is a proper way of doing it. This syntax is commonly used in creating dynamic HTML tags.
+    This is second line`);  
+    // This is a proper way of doing it. This syntax is commonly used in creating dynamic HTML tags.
 
 
 /*
@@ -153,13 +159,16 @@ let jsCourse = {
     console.log('I am ' + 23 + ' years old.'); // I am 23 years old.
 
 // And it works this way because of type of coercion. 
-// So in javascript, the plus operator that we used here triggers a coercion to strings.
-// And so whenever there is an operation between a string and the number, the number will be converted to a string.
+
+// important: So in javascript, the plus operator that we used here triggers a coercion to strings.
+//            And so whenever there is an operation between a string and the number, 
+//            the number will be converted to a string.
 
     console.log('23' - '10' - 3); // 10
 
 // And so what this means is that the minus operator actually triggers the opposite conversion.
 // So in this case, strings are converted to numbers and not the other way around.
+
 // So instead if we use the plus, what do you think is going to happen? 
 
     console.log('23' + '10' + 3); // 23103
@@ -193,7 +202,7 @@ let jsCourse = {
     They're not exactly false initially, but they will become when converted to a boolean. 
     So, that's the definition of falsy values.
 
-    Everything else are our so-called truthy values. So, values that will be converted to true. 
+    Everything else are so-called truthy values, values that will be converted to true. 
     For example, any number that is not zero or any string that is not an empty string 
     will be converted to true when we attempt to convert them to a boolean.
 
@@ -228,16 +237,18 @@ let jsCourse = {
     }
 
 
-// So the difference between double and triple equal is that the three equals is called the "strict equality" operator.
-// It's strict, because it does not perform type coercion. And so it only returns to when both values are exactly the same.
-// On the other hand, there's also the loose equality operator, which is only two equals, 
-// and the loose equality operator actually does type coercion.
+// important: Difference between double and triple equal is that 
+//            the three equals is called the "strict equality" operator.
+//            It's strict, because it does not perform type coercion. 
+//            And so it only returns to when both values are exactly the same.
+//            On the other hand, there's also the loose equality operator, which is only two equals, 
+//            and the loose equality operator actually does type coercion.
 
     console.log('18' == 18); // true
     console.log('18' === 18); // false
 
 // important: so as a general rule for clean code, avoid the loose equality operator as much as you can.
-// when comparing values, always use strict equality with the three equal signs.
+//            when comparing values, always use strict equality with the three equal signs.
 
 // The Conditional (Ternary) Operator
 
@@ -259,7 +270,7 @@ let jsCourse = {
     Strict mode statement has to be the very first statement in the script.
     So if we have any code before this then strict mode will not be activated. 
     We can also activate strict mode, only for a specific function or a specific block.
-    But I don't really see the point in doing that and so I always just use it at the beginning of each script.
+    But there is no point in doing that and so always use it at the beginning of each script.
     So always just put strict mode in the beginning of your scripts and like that write more secure code. 
     And when secure, I mean that strict mode makes it easier for us developers to avoid accidental errors.
     So basically it helps us introduce the bugs into our code and that's because of 2 reasons. 
@@ -306,25 +317,26 @@ let jsCourse = {
     const age = calcAge(1989);
 
 // Function expression
-                     // Anonymous function
+                         // Anonymous function
     const calculateAge = function(birthYear) {
         return 2021 - birthYear;
     }
 
     calculateAge(1989);
 
-// important: in JavaScript, functions are actually just values. So just as a number or a string or a boolean value.
-// So a function is not a type, okay? It's not like a string or number type but it's also a value.
+// important: In JavaScript, functions are actually just values. So just as a number or a string or a boolean value.
+//            Function is not a type, okay? It's not like a string or number type but it's also a value.
 
 /* 
 
     Now, besides these technical differences, you might be wondering what is the big deal?
     So what's the big difference between "function declarations" and "function expressions"?
-    Well, the main practical difference is that we can actually call "function declarations" before they are defined in the code.
+    Well, the main practical difference is that we can actually call "function declarations" 
+    before they are defined in the code.
 
-    So we learned about "function declarations" and "function expressions" but there is actually a third type of function 
-    that was added to JavaScript in ES6 and that's the "arrow function". 
-    And an arrow function is simply a special form of function expression that is shorter and therefore faster to write.
+    So we learned about "function declarations" and "function expressions" but there is actually 
+    a third type of function that was added to JavaScript in ES6 and that's the "arrow function". 
+    An arrow function is simply a special form of function expression that is shorter and faster to write.
 
 */
 
@@ -349,8 +361,10 @@ let jsCourse = {
 
     logger(yearsLeftUntilRetirement("Bob", 1980));
 
-// There is another fundamental difference between the "arrow function" and more "traditional functions".
-// important: It's the fact that arrow functions do not get a so-called this keyword.
+// important: There is another fundamental difference between the 
+//            "arrow function" and more "traditional functions". 
+//            It's the fact that arrow functions do not get a so-called this keyword.
+
 
 // VS Code Tip: Select a word in vs code and Ctrl + D will select all instances of that word
 
@@ -368,25 +382,25 @@ let jsCourse = {
     cities = ["Berlin", "Toronto"]; // important: This is illegal. Entire array can not be changed
 
     const nums = [1,2,3];
-    nums + 5; // important: Concatentaion as string. Produces "1,2,35" output
+    nums + 5; // important: This is legal. Concatentaion as string. Produces "1,2,35" output
     nums - 5; // NaN
 
 // Adding elements to an array
 
     const cities = ["London", "Paris", "Rome"];
 
-    const arrayLength = cities.push("Madrid")       // Adds element to the last index. Returns new array length.  
-    // ["London", "Paris", "Rome", "Madrid"]
+    const arrLength = cities.push("Madrid")       // Adds element to the last index. Returns new array length.  
+    // cities array becomes: ["London", "Paris", "Rome", "Madrid"]
 
-    const arrayLength = cities.unshift("Barcelona") // Adds element to the first index. Returns new array length. 
-    // ["Barcelona", "London", "Paris", "Rome", "Madrid"]
+    arrLength = cities.unshift("Barcelona") // Adds element to the first index. Returns new array length. 
+    // cities array becomes: ["Barcelona", "London", "Paris", "Rome", "Madrid"]
 
     // Removing elements from an array
     const poppedCity = cities.pop("Madrid")         // Removes element from the last index. Returns popped element "Madrid"
-    // ["Barcelona", "London", "Paris", "Rome"]
+    // cities array becomes: ["Barcelona", "London", "Paris", "Rome"]
 
     const shiftedCity = cities.shift("Barcelona")   // Removes element from the first index. Returns removed element "Barcelona"
-    // ["London", "Paris", "Rome"]
+    // cities array becomes: ["London", "Paris", "Rome"]
 
 
     let cities = ["London", "Paris", "Rome"];
@@ -472,7 +486,7 @@ let jsCourse = {
         job: "Player",   
         friends: ["Crisitiano Ronaldo","Sergio Ramos","Karim Benzema"],
         hasLicense: true,
-        getAge: function() {
+        getAge: function() { // No parameter
             return 2021 - this.birthYear;
         }
     };
@@ -491,16 +505,18 @@ let jsCourse = {
         objName: "Book", 
         price: 10, 
         getInfo:function() {
-            this.info = "Fiyatı " + this.price + " TL."; 
+            this.info = "Book price is " + this.price + " USD."; 
             return this.info;
         }
     };
 
-    myObj.getInfo()     // important: Bu metod çağırılmadan myObj.info property oluşmaz.
-    "Fiyatı 10 TL."
+    myObj.getInfo()     
+    "Book price is 10 USD."
+    // important: myObj.info property is created only if this method is called.
 
-    myObj.info          // important: Ancak yukarıdaki metod çalıştıktan sonra bu şekilde çağrılabilir.
-    "Fiyatı 10 TL."
+    myObj.info          
+    "Book price is 10 USD."
+    // important: Can only be called after myObj.getInfo() method is called
 
 //#endregion
 
