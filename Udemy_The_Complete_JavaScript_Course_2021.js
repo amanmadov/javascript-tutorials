@@ -589,15 +589,15 @@ let jsCourse = {
 // There are multiple ways for listening events in javascript. addEventListener is the most used one. 
 
 // arg1: Type of the event is passed to addEventListener method
-// arg2: Event handler function should be called when an event happens
+// arg2: Event handler function that will be called when an event happens
 
-    document.querySelector('.btn').addEventListener
-    ('click', function () {
+    document.querySelector('.btn').addEventListener('click', function () {
         console.log("Hello, click event is triggered.")
     })
 
 // click is the event that is listened
 // function () { console.log("Hello, click event is triggered.")} is the event handler
+
 // domElement.addEventListener(event,eventHandlerFunction);
 
     // Generating random number between 0-20
@@ -607,13 +607,14 @@ let jsCourse = {
 
 // This score is so called application state 
 
-// in css background-color but in javascript backgroundColor
+// property names change in js, in css background-color but in javascript backgroundColor
 // same rule applies to all other properties that has multiple words
 
     document.querySelector('body').style.backgroundColor = 'green';
 
-// important: every css property has to be set with string in javascript (20 is not allowed)
-    document.querySelector('number').style.width = '20px';
+// important: every css property has to be set with string in javascript
+    document.querySelector('number').style.width = 20;      // illegal 
+    document.querySelector('number').style.width = '20px';  // legal
 
 // important: javascript applies styles as an inline style. It does not simply change css file
 
@@ -648,7 +649,7 @@ let jsCourse = {
 
 // important: classList is a property to manage classes
 
-// important: We can remove multiple classes with remove method of classList property like below
+// important: We can remove multiple classes with remove method of classList property
     modal.classList.remove('hidden','modal'); 
 
 // document.querySelector('.modal') has to be used with dot before class name
@@ -943,18 +944,18 @@ let jsCourse = {
         if (age >= 33) {
             const decade = 3;
             var millenial = true;
-            
         }
 
         function second() {
             const job = 'player';
-            console.log(`${myName} is a ${age} years old ${job}`);
+            console.log(`${myName} is a ${age} years old and he is a ${job}`);
         }
 
         second();
     }
 
     first();
+    // Mesut is a 33 years old and he is a player
 
 
 // Global Scope: myName
@@ -976,7 +977,7 @@ let jsCourse = {
 
 //#region Scope Chain vs Call Stack 
 
-// There is one more thing that we need to talk about, which is the difference between the scope chain and to call stack.
+// There is one more thing that we need to talk about, which is the difference between the scope chain and the call stack.
 
     const a = 'Mesut';
     first();
@@ -1002,7 +1003,6 @@ let jsCourse = {
 
 // So to summerize scoping asks the question, "Where do variables live?"
 // Or "Where can we access a certain variable, "and where not?" That's what scoping is all about.
-// Only "let" and "const" variables are block scoped. 
 // Variables declared with "var" automatically end up in the closest function scope.
 
     var you = 'awesome';
@@ -1110,11 +1110,12 @@ let jsCourse = {
     }
 
 // important: This is because add3 becomes "undefined" in TDZ
-// important: The only function that you can use before declaring it, is the add function declaration.
+// important: The only function that you can use before declaring it, is the function declaration.
 
     if (!numProducts) {
         deleteShoppingCart();
     }
+    console.log(numProducts); // undefined
 
     var numProducts = 10;
     function deleteShoppingCart(params) {
