@@ -1225,6 +1225,7 @@ let jsCourse = {
 
 // Note: In the second example, this should be undefined, 
 // because f2 was called directly and not as a method or property of an object (e.g. window.f2()). 
+
 // This feature wasnt implemented in some browsers when they first started to support strict mode. 
 // As a result, they incorrectly returned the window object.
 
@@ -1294,7 +1295,7 @@ let jsCourse = {
 
 /*
 
-    So from above example, the big takeaway is that as a best practice you should never ever use an arrow function as a method.
+    important: So from above example, the big takeaway is that as a best practice you should never ever use an arrow function as a method.
     And in my opinion, that's even true if you're not even using the this keyword in a particular method.
     Because if you have this rule of never using an arrow function as a method, 
     then you never have to think about which type of function you should use.
@@ -1602,22 +1603,26 @@ let jsCourse = {
     };
 
     const {name, openingHours, categories} = restaurant;
-    console.log(name, openingHours, categories); // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
+    console.log(name, openingHours, categories); 
+    // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
 
     // variables with different names
     const {name: restaurantName, openingHours: hours, categories: tags} = restaurant;
-    console.log(restaurantName, hours, tags); // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
+    console.log(restaurantName, hours, tags); 
+    // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
 
     // If property does not exist use default values
     const{menu = [], starterMenu: starters = []} = restaurant;
     console.log(menu, starters);
+    // [] (4) ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
+
 
     // Mutating variables
     let a = 111;
     let b = 999;
     const obj = {a: 23, b: 7, c: 14};
-    // cant do const{a, b} = obj; because a and b are already declared 
-    // cant do let {a, b} = obj; because it creates new variables called a and b
+    // important: cant do const{a, b} = obj; because a and b are already declared 
+    // important: cant do let {a, b} = obj; because it creates new variables called a and b
 
     ({a, b} = obj);     // this is the way to mutate a and b
     console.log(a,b);   // 23 7
@@ -1664,6 +1669,7 @@ let jsCourse = {
         },
     };
 
+    // can be called with different parameter order
     restaurant.orderDelivery({
         time: '22:30',
         address: 'Via del Sole, 21',
@@ -1671,6 +1677,7 @@ let jsCourse = {
         starterIndex: 2,
     });
 
+    // can also be called like below 
     restaurant.orderDelivery({
         address: 'Via del Sole, 21',
         starterIndex: 2,
@@ -1705,14 +1712,17 @@ let jsCourse = {
 
     const newMenu = [...restaurant.mainMenu, 'Gnocci']
     console.log(newMenu);
+    // (4) ['Pizza', 'Pasta', 'Risotto', 'Gnocci']
 
     // Copying an array
     const menu1 = [...restaurant.mainMenu]
     console.log(menu1);
+    // (3) ['Pizza', 'Pasta', 'Risotto']
 
     // Joining two arrays
     const menu2 = [...restaurant.mainMenu, ...restaurant.starterMenu]
     console.log(menu2);
+    // (7) ['Pizza', 'Pasta', 'Risotto', 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
 
     // the spread operator works on all iterables
     // Iterables: arrays, strings, maps, sets but not objects
@@ -1720,6 +1730,7 @@ let jsCourse = {
     const str = 'Jonas';
     const letters = [...str, ' ', 'S.'];
     console.log(letters);
+    // (7) ['J', 'o', 'n', 'a', 's', ' ', 'S.']
 
     // real world example
     const ingredients = [
@@ -1741,6 +1752,13 @@ let jsCourse = {
     };
 
     console.log(newRestaurant);
+    // {
+    //     foundIn: 1991, 
+    //     name: 'Classico Italiano', location: 'Via Angelo Tavanti 23, Firenze, Italy', 
+    //     categories: Array(4), 
+    //     starterMenu: Array(4), 
+    //     …
+    // }
 
     const restaurantCopy = {...restaurant};
     restaurantCopy.name = 'Ristorante Roma';
@@ -1760,18 +1778,7 @@ let jsCourse = {
     const [a, b, ...others] = [1, 2, 3, 4, 5];
     console.log(a, b, others); // 1 2 [3, 4, 5]
 
-    const restaurant = {
-        name: 'Classico Italiano',
-        location: 'Via Angelo Tavanti 23, Firenze, Italy',
-        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
-        orderPizza(mainIngredient, ...otherIngredients) {
-            console.log(mainIngredient);
-            console.log(otherIngredients);
-          },
-    };
+    const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
     const openingHours = {
         [weekdays[3]]: {
@@ -1788,15 +1795,36 @@ let jsCourse = {
         },
       };
 
+    console.log(openingHours);
+    // {thu: {…}, fri: {…}, sat: {…}}
+
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+        // ES6 enhanced object literals
+        openingHours,
+
+        orderPizza(mainIngredient, ...otherIngredients) {
+            console.log(mainIngredient);
+            console.log(otherIngredients);
+          },
+    };
 
     const [pizza, ,risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-    console.log(pizza,risotto,otherFood); // Pizza Risotto (4) ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
+    console.log(pizza,risotto,otherFood); 
+    // Pizza Risotto (4) ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
 
     // important: the rest pattern always must be the last in the destructuring assignment
 
     // objects
     const {sat, ...weekdays} = restaurant.openingHours;
     console.log(weekdays);
+
+
 
     // 2. Functions
 
@@ -1805,7 +1833,7 @@ let jsCourse = {
         for (let i = 0; i < numbers.length; i++) { 
             sum += numbers[i]; 
         } 
-        console. log(sum); 
+        console.log(sum); 
     };
 
     add(2,3);
@@ -1818,10 +1846,12 @@ let jsCourse = {
     restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
     restaurant.orderPizza('mushrooms');
 
-// So, the spread and rests syntax both look exactly the same but they work in opposite ways depending on where they are used.
-// So the spread operator is used where we would otherwise write values, separated by a comma.
-// On the other hand the rest pattern is basically used where we would otherwise write variable names separated by commas.
-// So, again the rest pattern can be used where we would write variable names, separated by commas and not values separated by commas.
+    // The spread and rests syntax both look exactly the same 
+    // but they work in opposite ways depending on where they are used.
+    // The spread operator is used where we would otherwise write values, separated by a comma.
+    // On the other hand the rest pattern is basically used where we would otherwise write variable names separated by commas.
+    // So, again the rest pattern can be used where we would write variable names, 
+    // separated by commas and not values separated by commas.
 
 
 //#endregion
@@ -1830,8 +1860,10 @@ let jsCourse = {
 
 // OR operator 
 
-// in the case of the OR operator, short circuiting means that if the first value is a truthy value, it will immediately return that first value.
-// So if the first operand is already true then JavaScript doesn't even have to look at the other values because the result of the expression will already be true anyway.
+// Short circuiting means that if the first value is a truthy value, 
+// it will immediately return that first value.
+// So if the first operand is already true then JavaScript doesn't even have to look at the other values 
+// because the result of the expression will already be true anyway.
 
     console.log(3 || 'Jonas'); // 3
     console.log('' || 'Jonas'); // Jonas
@@ -1949,24 +1981,115 @@ let jsCourse = {
 /* 
 
     We're building a football betting app (soccer for my American friends 😅)!
-    Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
-    1. Create one player array for each team (variables 'players1' and 'players2')
-    2. The first player in any player array is the goalkeeper and the others are field players. 
-       For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10 field players
-    3. Create an array 'allPlayers' containing all players of both teams (22 players)
-    4. During the game, Bayern Munich (team 1) used 3 substitute players. 
-       So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-    5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
-    6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, 
-       along with the number of goals that were scored in total (number of player names passed in)
-    7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
+    Suppose we get data from a web service about a certain game (below). 
+
+    In this challenge we're gonna work with the data. So here are your tasks:
+        1.  Create one player array for each team (variables 'players1' and 'players2')
+        2.  The first player in any player array is the goalkeeper and the others are field players. 
+            For Bayern Munich (team 1) create one variable ('gk') with the goalkeeper's name, 
+            and one array ('fieldPlayers') with all the remaining 10 field players
+        3.  Create an array 'allPlayers' containing all players of both teams (22 players)
+        4.  During the game, Bayern Munich (team 1) used 3 substitute players. 
+            So create a new array ('players1Final') containing all the original team1 players 
+            plus 'Thiago', 'Coutinho' and 'Perisic'
+        5.  Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
+        6.  Write a function ('printGoals') that receives an arbitrary number of player names 
+            (NOT an array) and prints each of them to the console, along with the number of goals 
+            that were scored in total (number of player names passed in)
+        7.  The team with the lower odd is more likely to win. 
+            Print to the console which team is more likely to win, 
+            WITHOUT using an if/else statement or the ternary operator.
     
-    TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
+    TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. 
+    Then, call the function again with players from game.scored
     GOOD LUCK 😀
+
+    // This is a test data returned from an external api. Use this data to complete tasks
+    const game = {
+                    team1: 'Bayern Munich',
+                    team2: 'Borrussia Dortmund',
+                    players: [
+                        [
+                        'Neuer',
+                        'Pavard',
+                        'Martinez',
+                        'Alaba',
+                        'Davies',
+                        'Kimmich',
+                        'Goretzka',
+                        'Coman',
+                        'Muller',
+                        'Gnarby',
+                        'Lewandowski',
+                        ],
+                        [
+                        'Burki',
+                        'Schulz',
+                        'Hummels',
+                        'Akanji',
+                        'Hakimi',
+                        'Weigl',
+                        'Witsel',
+                        'Hazard',
+                        'Brandt',
+                        'Sancho',
+                        'Gotze',
+                        ],
+                    ],
+                    score: '4:0',
+                    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+                    date: 'Nov 9th, 2037',
+                    odds: {
+                        team1: 1.33,
+                        x: 3.25,
+                        team2: 6.5,
+                    },
+                };
 
 */
 
 // Solutions:
+
+const game = {
+                    team1: 'Bayern Munich',
+                    team2: 'Borrussia Dortmund',
+                    players: [
+                        [
+                        'Neuer',
+                        'Pavard',
+                        'Martinez',
+                        'Alaba',
+                        'Davies',
+                        'Kimmich',
+                        'Goretzka',
+                        'Coman',
+                        'Muller',
+                        'Gnarby',
+                        'Lewandowski',
+                        ],
+                        [
+                        'Burki',
+                        'Schulz',
+                        'Hummels',
+                        'Akanji',
+                        'Hakimi',
+                        'Weigl',
+                        'Witsel',
+                        'Hazard',
+                        'Brandt',
+                        'Sancho',
+                        'Gotze',
+                        ],
+                    ],
+                    score: '4:0',
+                    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+                    date: 'Nov 9th, 2037',
+                    odds: {
+                        team1: 1.33,
+                        x: 3.25,
+                        team2: 6.5,
+                    },
+             };
 
     // 1.
     const [players1, players2] = game.players;
