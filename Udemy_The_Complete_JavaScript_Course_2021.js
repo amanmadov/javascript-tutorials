@@ -2524,8 +2524,12 @@ const game = {
     // to check how many different letters there are in a string
     console.log(new Set('jonasschmedtmann').size); // 11
 
-// Sets have this very useful property of being unique. And it's also very easy to interact with sets by using all of their straightforward methods.
-// However, they are not as important as arrays. So keep sets in mind when you need to work with unique values. But besides that, you can just continue using arrays.
+    // Sets have this very useful property of being unique. 
+    // And it's also very easy to interact with sets by using all of their straightforward methods.
+    // However, they are not as important as arrays. 
+    // So keep sets in mind when you need to work with unique values. 
+    // But besides that, you can just continue using arrays.
+
 
 //#endregion
 
@@ -2539,7 +2543,8 @@ const game = {
     rest.set(1, 'Firenze, Italy');
 
     // calling the set method also returns the set 
-    console.log(rest.set(2, 'Lisbon, Portugal'));   // Map(3) {"name" => "Classico Italiano", 1 => "Firenze, Italy", 2 => "Lisbon, Portugal"}
+    console.log(rest.set(2, 'Lisbon, Portugal'));   
+    // Map(3) {"name" => "Classico Italiano", 1 => "Firenze, Italy", 2 => "Lisbon, Portugal"}
 
     // we can change sets one after another
     rest
@@ -2563,8 +2568,8 @@ const game = {
     // checking if map contains certain key
     console.log(rest.has('categories'));
 
-// Now comparing this to objects, we can also delete properties from objects using something called the Delete Operator.
-// But, that's a really slow process. And usually, it's not encouraged to do that here.
+    // Now comparing this to objects, we can also delete properties from objects using something called the Delete Operator.
+    // But, that's a really slow process. And usually, it's not encouraged to do that here.
 
     rest.delete(2);
 
@@ -2660,14 +2665,22 @@ const game = {
 
 /* 
 
-    Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. 
-    The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+    Let's continue with our football betting app! This time, 
+    we have a map with a log of the events that happened during the game. 
+    The values are the events themselves, and the keys are the minutes 
+    in which each event happened (a football game has 90 minutes plus some extra time).
 
     1. Create an array 'events' of the different game events that happened (no duplicates)
-    2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
-    3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
-    4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
-        [FIRST HALF] 17: ⚽️ GOAL
+
+    2. After the game has finished, it was found that the yellow card from minute 64 was unfair. 
+       So remove this event from the game events log.
+
+    3. Print the following string to the console: 
+       "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+
+    4. Loop over the events and log them to the console, 
+       marking whether it's in the first half or second half (after 45 min) of the game, like this:
+       [FIRST HALF] 17: ⚽️ GOAL
 
     GOOD LUCK 😀
 
@@ -2737,8 +2750,10 @@ const game = {
     // Checking if seat is in the middle. B and E are middle seats
     const checkMiddleSeat = function (seat) {
         const s = seat.slice(-1);
-        if (s === 'B' || s === 'E') console.log('You got the middle seat 😬');
-        else console.log('You got lucky 😎');
+        if (s === 'B' || s === 'E') 
+            console.log('You got the middle seat 😬');
+        else 
+            console.log('You got lucky 😎');
     };
 
     checkMiddleSeat('11B'); // You got the middle seat 😬
@@ -2760,8 +2775,7 @@ const game = {
     // Fix capitalization in name
     const passenger = 'jOnAS'; // Jonas
     const passengerLower = passenger.toLowerCase();
-    const passengerCorrect =
-    passengerLower[0].toUpperCase() + passengerLower.slice(1);
+    const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
     console.log(passengerCorrect); // Jonas
 
     // Comparing emails
@@ -2849,7 +2863,8 @@ const game = {
 
     // Repeat
     const message2 = 'Bad weather... All Departues Delayed... ';
-    console.log(message2.repeat(2));    // Bad weather... All Departues Delayed... Bad weather... All Departues Delayed... 
+    console.log(message2.repeat(2));    
+    // Bad weather... All Departues Delayed... Bad weather... All Departues Delayed... 
 
     const planesInLine = function (n) {
         console.log(`There are ${n} planes in line ${'🛩'.repeat(n)}`);
@@ -2866,7 +2881,8 @@ const game = {
 /* 
 
     Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
-    The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+    The input will come from a textarea inserted into the DOM (see code below), 
+    and conversion will happen when the button is pressed.
 
     THIS TEST DATA (pasted to textarea)
     underscore_case
@@ -3007,18 +3023,23 @@ const game = {
 
 /*
 
-    There are two terms that are used all the time when dealing with functions, which is passing by value, and passing by reference,
-    and many experienced programmers that are new to JavaScript have some confusion between these terms and how it works in JavaScript.
-    JavaScript does not have passing by reference, only passing by value, even though it looks like it's passing by reference. 
-    There are languages like C++, where you can pass a reference to any value, instead of the value itself.
-    This works even with primitives, you could pass a reference to the value of five, and then the original value,
+    There are two terms that are used all the time when dealing with functions, 
+    which is passing by value, and passing by reference,
+    and many experienced programmers that are new to JavaScript 
+    have some confusion between these terms and how it works in JavaScript.
+    JavaScript does not have passing by reference, only passing by value, 
+    even though it looks like it's passing by reference. 
+    There are languages like C++, where you can pass a reference to any value, 
+    instead of the value itself. This works even with primitives, 
+    you could pass a reference to the value of five, and then the original value,
     outside of the function, would be changed. And this is called pass by reference. 
     But once again, JavaScript does not have pass by reference.
     So if you already know some programming, but are new to JavaScript, be sure to understand this.
-    And I know it's confusing, because as we just learned, for objects, we do in fact pass in a reference.
+    I know it's confusing, because as we just learned, for objects, we do in fact pass in a reference.
     So the memory address of the object. However, that reference itself is still a value.
     It's simply a value that contains a memory address.
-    So basically we pass a reference to the function, but we do not pass by reference, and this is an important distinction.
+    So basically we pass a reference to the function, but we do not pass by reference, 
+    and this is an important distinction.
 
 */
 
@@ -3028,17 +3049,25 @@ const game = {
 
 /*
 
-    JavaScript is a language that has first class functions which in technical terms means that functions are so-called first class citizens. 
-    In practice, that means functions are simply treated as values. Now, why does JavaScript work this way? 
+    JavaScript is a language that has first class functions which in technical terms means 
+    that functions are so-called first class citizens. 
+    In practice, that means functions are simply treated as values. 
+    Now, why does JavaScript work this way? 
     Well, it's simply because functions are really just another type of objects in JavaScript.
     And since objects are values, functions are values too. 
-    And since functions are values, there is a bunch of interesting things that we can do with them like storing them in variables or object properties.
+    And since functions are values, there is a bunch of interesting things that we can do with them 
+    like storing them in variables or object properties.
     We can also pass functions as arguments to other functions.
-    Now to make it even more interesting, we can also return a function from another function. That sounds kind of crazy, but it can be very useful.
-    Finally, remember that functions are objects. And many types of objects in JavaScript have methods, right?
-    Like array methods, for example. And actually there are also function methods. Methods that we can call on functions like bind() method.
-    Now the fact that JavaScript has first-class functions makes it possible for us to use and write higher order functions.
-    So a higher order function is either a function that receives another function as an argument, or a function that returns a new function.
+    Now to make it even more interesting, we can also return a function from another function. 
+    That sounds kind of crazy, but it can be very useful.
+    Finally, remember that functions are objects. 
+    And many types of objects in JavaScript have methods, right?
+    Like array methods, for example. And actually there are also function methods. 
+    Methods that we can call on functions like bind() method.
+    Now the fact that JavaScript has first-class functions makes it possible 
+    for us to use and write higher order functions.
+    So a higher order function is either a function that receives another function as an argument, 
+    or a function that returns a new function.
 
 */
 
@@ -3063,7 +3092,14 @@ const game = {
     };
 
     transformer('JavaScript is the best!', upperFirstWord); 
+    // Original string: JavaScript is the best!
+    // Transformed string: JAVASCRIPT is the best!
+    // Transformed by: upperFirstWord
+
     transformer('JavaScript is the best!', oneWord);
+    // Original string: JavaScript is the best!
+    // Transformed string: javascriptisthebest!
+    // Transformed by: oneWord
 
     // important: name property of a function gives back the name of that function
     // in this example upperFirstWord and oneWord functions are called callback functions.
@@ -3078,12 +3114,17 @@ const game = {
 
 /*
     Why are callback functions so much used in JavaScript and why are they so helpful?
-    Well, the first big advantage of this is that it makes it easy to split up or code into more reusable and interconnected parts. 
-    But there is a second and way more important advantage, which is the fact that callback functions allow us to create abstraction.
-    Basically what abstraction means is that we hide the detail of some code implementation because we don't really care about all that detail.
+    First big advantage of this is that it makes it easy 
+    to split up or code into more reusable and interconnected parts. 
+    But there is a second and way more important advantage, 
+    which is the fact that callback functions allow us to create abstraction.
+    Basically what abstraction means is that we hide the detail of some code implementation 
+    because we don't really care about all that detail.
     And this allows us to think about problems at a higher more abstract level.
-    And now with this idea of abstraction and higher levels and lower levels of abstraction, above our transformer function is called a higher order function.
-    Because this function here operates at a higher level of abstraction, leaving the low level details to this low level functions.
+    And now with this idea of abstraction and higher levels and lower levels of abstraction, 
+    above our transformer function is called a higher order function.
+    Because this function here operates at a higher level of abstraction, 
+    leaving the low level details to this low level functions.
 
 */
 
