@@ -3145,9 +3145,10 @@ const game = {
     greeterHey('Steven');       // Hey Steven
     greet('Hello')('Jonas');    // Hello Jonas
 
-// This example might look a bit weird and unnecessary for you Like what's the point of having functions returning other functions?
-// Well, this will actually become extremely useful in some situations.
-// And especially if we're using a really important programming paradigm called functional programming.
+    // This example might look a bit weird and unnecessary for you. 
+    // What's the point of having functions returning other functions?
+    // Well, this will actually become extremely useful in some situations.
+    // Especially if we're using a really important programming paradigm called functional programming.
 
     // Challenge. Using arrow functions
     const greetArr = greeting => name => console.log(`${greeting} ${name}`);
