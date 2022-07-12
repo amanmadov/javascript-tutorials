@@ -3398,11 +3398,16 @@ const game = {
 
 //#region Immediately Invoked Function Expressions (IIFE) 
 
+    // This is a regular function that can be called anytime 
     const runOnce = function () {
         console.log('This will never run again');
     };
 
     runOnce();
+
+    // IIFEs are functions that are used only to execute them once
+    // We trick javascript by wrapping anonymous function with () thus making it expression
+    // This is how it becomes expression and we execute that expression => (function)()
 
     // IIFE
     (function () {
@@ -3415,9 +3420,12 @@ const game = {
     // IIFE's are invented because functions create scope and variables inside that scope become private
     // We can also say that this data inside function scope is encapsulated. 
     // And data privacy or data encapsulation is extremely important.
+    // So this is not really a feature, of the JavaScript language.
+    // It's more of a pattern, that some developers came up with.
 
     (() => console.log('This will ALSO never run again'))();
 
+    // Variables declared with 'let' or 'const' create their own scope inside a block
     // creating a block
     {
         const isPrivate = 23;
@@ -3427,7 +3435,8 @@ const game = {
     console.log(isPrivate);     // Uncaught referenceError: isPrivate is not defined
     console.log(notPrivate);    // 46
 
-    // important: in modern javascript we can create scopes using bloks as shown above. that's why IIFE patterns are not used anymore.
+    // important: in modern javascript we can create scopes using bloks as shown above. 
+    // that's why IIFE patterns are not used anymore.
 
 //#endregion
   
