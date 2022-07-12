@@ -2956,18 +2956,22 @@ const game = {
     'use strict';
     const bookings = [];
 
-    // ES5 way
-    // const createBooking = function (flightNum, numPassengers, price) {
-    //     numPassengers = numPassengers || 1;
-    //     price = price || 199;
-    //     const booking = {
-    //         flightNum,
-    //         numPassengers,
-    //         price,
-    //     };
-    //     console.log(booking);
-    //     bookings.push(booking);
-    // };
+    /*
+
+    ES5 way
+    const createBooking = function (flightNum, numPassengers, price) {
+        numPassengers = numPassengers || 1;
+        price = price || 199;
+        const booking = {
+            flightNum,
+            numPassengers,
+            price,
+        };
+        console.log(booking);
+        bookings.push(booking);
+    };
+    
+    */
 
     // ES6 way
     const createBooking = function (flightNum, numPassengers = 1, price = 199 * numPassengers) {
@@ -3180,11 +3184,13 @@ const game = {
 
     const book = lufthansa.book;
     book(23, 'Sarah Williams'); // Cannot read property 'airline' of undefined at book
-    // because in regular function calls this keyword points to undefined 
+    // because in regular function calls 'this' keyword points to undefined 
 
     // Call method
     book.call(eurowings, 23, 'Sarah Williams');
+    // here 'this' keyword points to eurowings
     console.log(eurowings);
+    
 
     book.call(lufthansa, 239, 'Mary Cooper');
     console.log(lufthansa);
@@ -3197,6 +3203,10 @@ const game = {
     book.call(swiss, 583, 'Mary Cooper');
 
     // Apply method
+    // Apply method does the exact same thing
+    // The only difference is that apply does not receive a list of arguments
+    // after the 'this' keyword, it takes an array as an argument
+
     const flightData = [583, 'George Cooper'];
     book.apply(swiss, flightData);
     console.log(swiss);
@@ -3208,9 +3218,9 @@ const game = {
 
 //#region The bind Method 
 
-// Just like the call method, bind also allows us to manually set this keywords for any function call.
-// Now, the difference is that bind does not immediately call the function.
-// Instead it returns a new function where this keyword is bound.
+    // Just like the call method, bind also allows us to manually set this keywords for any function call.
+    // important: Now, the difference is that bind does not immediately call the function.
+    // Instead it returns a new function where this keyword is bound.
 
     const lufthansa = {
         airline: 'Lufthansa',
@@ -3243,6 +3253,10 @@ const game = {
     bookEW23('Jonas Schmedtmann');
     bookEW23('Martha Cooper');
 
+    // important: There are also other situations in which we can use the bind method
+    // and where it is very useful. One example of that is when we use objects 
+    // together with event listeners.
+
     // With Event Listeners
     lufthansa.planes = 300;
 
@@ -3253,19 +3267,32 @@ const game = {
     };
 
     // lufthansa.buyPlane(); // undefined
-    // document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane); // NaN
+    
+    document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane); // NaN
+    // Here 'this' keyword is pointing <button class="buy">Buy<button>
 
-    // important: because bind method returns a new function we should use bind method in this case
+    // important: In an event handler function, 'this' keyword always 
+    // points to the element on which that handler is attached to.
+
+    // important: because bind method returns a new function we should use bind method like below
     document
     .querySelector('.buy')
     .addEventListener('click', lufthansa.buyPlane.bind(lufthansa)); 
+    // important: we cant use call method because it calls method, but we only need to return it
 
-    // Partial application
+
+    // Partial application vs General application
+
+    // General application
     const addTax = (rate, value) => value + value * rate;
     console.log(addTax(0.1, 200));
 
-    // we can pass null for this
+    // Partial application
+    // Partial applications are functions with preset arguments
+    
     const addVAT = addTax.bind(null, 0.23);
+    // important: since we dont use any object inside function, we can pass null for 'this'
+
     // this function is same as below
     // addVAT = value => value + value * 0.23;
 
