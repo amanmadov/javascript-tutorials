@@ -3551,11 +3551,13 @@ const game = {
     };
 
     g();
+    // At this point of the execution, the variable environment of g is no longer exists.
+
     f(); // 46
+    // But f here closed over that variable environment and therefore it is able to access the a variable.
+
     console.dir(f);
-    
-// At this point of the execution, the variable environment of g is no longer exists.
-// But f here closed over that variable environment and therefore it is able to access the a variable.
+
 
     const h = function () {
         const b = 777;
@@ -3569,9 +3571,9 @@ const game = {
     f(); // 1554
     console.dir(f);
 
-// And so this proves that the f function was reassigned here also closed over the variable environment of h.
-// And so that's how it can access then the b variable here which has set to 777.
-// After the reassignment ld closure disappears. So we can not reach out the variable a.
+    // This proves that the f function was reassigned and closed over the variable environment of h.
+    // That's how it can access the b variable which was set to 777.
+    // After the reassignment old closure disappears. So we can not reach out the variable a.
 
     // Example 2
     const boardPassengers = function (n, wait) {
@@ -3585,11 +3587,21 @@ const game = {
 
     const perGroup = 1000;      // closure even has priority over the scope chain.
     boardPassengers(180, 3);
+    console.log('The variable environment of the boardPassengers function is destroyed here.')
 
-// Keep in mind that this callback function here was executed completely independently from the boardPassengers function.
-// But still the callback function was able to use all the variables that were in the variable environment in which it was created.
-// And one more time, this is a clear sign of a closure being created.
-// important: the closure does in fact have priority over the scope chain.
+    // Logs Execution Order:
+        // Will start boarding in 3 seconds
+        // The variable environment of the boardPassengers function is destroyed here.
+        // We are now boarding all 180 passengers
+        // There are 3 groups, each with 60 passengers
+
+
+    // Keep in mind that this callback function was executed completely independently from the boardPassengers function.
+    // But still the callback function was able to use all the variables 
+    // that were in the variable environment in which it was created.
+    // And one more time, this is a clear sign of a closure being created.
+
+    // important: the closure does in fact have priority over the scope chain.
 
 //#endregion
 
