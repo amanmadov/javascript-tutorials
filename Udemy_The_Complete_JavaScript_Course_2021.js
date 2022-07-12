@@ -3637,6 +3637,9 @@ const game = {
     // And at this point the variable environment of IIFE is long gone. (so does the 'const header' variable)
     // But still, each time when the page is clicked color of the h1 element changes randomly
     // This works because of the closure
+    
+    // Again, even though the environment in which this function here was created is already gone,
+    // it is still able to access the variables that were created in that variable by the time the function was born.
 
 //#endregion
 
