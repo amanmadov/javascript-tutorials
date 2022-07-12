@@ -3610,10 +3610,12 @@ const game = {
 /* 
 
     This is more of a thinking challenge than a coding challenge 🤓
-    Take the IIFE below and at the end of the function, attach an event listener that changes the color of the selected h1 element ('header') to blue, 
+    Take the IIFE below and at the end of the function, attach an event listener 
+    that changes the color of the selected h1 element ('header') to blue, 
     each time the BODY element is clicked. Do NOT select the h1 element again!
-    And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. 
-    Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
+    And now explain to YOURSELF WHY this worked! Take all the time you need. 
+    Think about WHEN exactly the callback function is executed, 
+    and what that means for the variables involved in this example.
 
     GOOD LUCK 😀
 
@@ -3625,10 +3627,15 @@ const game = {
         const header = document.querySelector('h1');
         header.style.color = 'red';
         document.querySelector('body').addEventListener('click', function () {
-            header.style.color = 'blue';
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            header.style.color = "#" + randomColor;
+            console.log('Header color changed to randomly...');
         });
     })();
 
+    // When IIFE is executed h1 element on the page becomes red
+    // And at this point the variable environment of IIFE is long gone. (so does the 'const header' variable)
+    // But still, each time when the page is clicked color of the h1 element changes randomly
     // This works because of the closure
 
 //#endregion
