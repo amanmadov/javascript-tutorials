@@ -1724,7 +1724,7 @@ let jsCourse = {
     console.log(menu2);
     // (7) ['Pizza', 'Pasta', 'Risotto', 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
 
-    // the spread operator works on all iterables
+    // important: the spread operator works on all iterables
     // Iterables: arrays, strings, maps, sets but not objects
 
     const str = 'Jonas';
@@ -1849,7 +1849,7 @@ let jsCourse = {
     // The spread and rests syntax both look exactly the same 
     // but they work in opposite ways depending on where they are used.
     // The spread operator is used where we would otherwise write values, separated by a comma.
-    // On the other hand the rest pattern is basically used where we would otherwise write variable names separated by commas.
+    // But the rest pattern is basically used where we write variable names separated by commas.
     // So, again the rest pattern can be used where we would write variable names, 
     // separated by commas and not values separated by commas.
 
@@ -1858,12 +1858,11 @@ let jsCourse = {
 
 //#region Short Circuiting 
 
-// OR operator 
+    // OR operator 
 
-// Short circuiting means that if the first value is a truthy value, 
-// it will immediately return that first value.
-// So if the first operand is already true then JavaScript doesn't even have to look at the other values 
-// because the result of the expression will already be true anyway.
+    // Short circuiting means if the first value is a truthy value, it will immediately return that first value.
+    // So if the first operand is already true then JavaScript doesn't even have to look at the other values 
+    // because the result of the expression will already be true anyway.
 
     console.log(3 || 'Jonas'); // 3
     console.log('' || 'Jonas'); // Jonas
@@ -1904,24 +1903,25 @@ let jsCourse = {
     restaurant.numGuests = 0;
     const guests2 = restaurant.numGuests || 10;
     console.log(guests2); // 10
+
     // important: zero is a falsy value therefore 10 will be the result of the operation and assigned to guests2.
 
 
-// AND operator
+    // AND operator
 
-// when it comes to short circuit evaluation, the AND operator works in the exact opposite way of the OR operator.
-// And so what this means is that the AND operator short circuits, when the first value is falsy.
-// And then immediately returns that falsy value without even evaluating the second operand.
+    // The AND operator works in the exact opposite way of the OR operator.
+    // AND operator short circuits, when the first value is falsy.
+    // It immediately returns that falsy value without even evaluating the second operand.
 
     console.log(0 && 'Jonas'); // 0
     console.log(7 && 'Jonas'); // Jonas
 
-// So when it is truthy, it means that the evaluation continues and then simply the last value is returned. 
-// So the AND operator is only true if all the operands are true.
+    // So when it is truthy, it means that the evaluation continues and then simply the last value is returned. 
+    // AND operator is only true if all the operands are true.
 
     console.log('Hello' && 23 && null && 'Jonas'); // null
 
-// Practical Example
+    // Practical Example
 
     const restaurant = {
         name: 'Classico Italiano',
@@ -1947,7 +1947,7 @@ let jsCourse = {
 
 //#region The Nullish Coalescing Operator 
 
-// Nullish coalescing operator is an operator that was introduced in ES2020.
+    // Nullish coalescing operator is an operator that was introduced in ES2020.
 
     const restaurant = {
         name: 'Classico Italiano',
@@ -1962,23 +1962,23 @@ let jsCourse = {
     }
 
     const guestsCorrect = restaurant.numGuests ?? 10;
-    console.log(guests2); // 10
+    console.log(guestsCorrect); // 10
 
     restaurant.numGuests = 0;
     const guests = restaurant.numGuests || 10;
     console.log(guests); // 10
 
     const guestsCorrect = restaurant.numGuests ?? 10;
-    console.log(guests2); // 0
+    console.log(guestsCorrect); // 0
 
-// The nullish coalescing operator works with the concept of nullish values instead of falsy values.
-// And nullish values are null and undefined. It does not include a zero or the empty string.
+    // The nullish coalescing operator works with the concept of nullish values instead of falsy values.
+    // And nullish values are null and undefined. It does not include a zero or the empty string.
 
 //#endregion
 
 //#region Footbal Game Coding Challenge 1
 
-/* 
+    /* 
 
     We're building a football betting app (soccer for my American friends 😅)!
     Suppose we get data from a web service about a certain game (below). 
@@ -2046,11 +2046,11 @@ let jsCourse = {
                     },
                 };
 
-*/
+    */
 
-// Solutions:
+    // Solutions:
 
-const game = {
+    const game = {
                     team1: 'Bayern Munich',
                     team2: 'Borrussia Dortmund',
                     players: [
@@ -2089,7 +2089,7 @@ const game = {
                         x: 3.25,
                         team2: 6.5,
                     },
-             };
+                };
 
     // 1.
     const [players1, players2] = game.players;
@@ -2218,7 +2218,8 @@ const game = {
 
         orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
             console.log(
-            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} 
+            will be delivered to ${address} at ${time}`
             );
         },
 
@@ -2269,7 +2270,8 @@ const game = {
 
         orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
             console.log(
-            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} 
+            will be delivered to ${address} at ${time}`
             );
         },
 
@@ -2483,9 +2485,12 @@ const game = {
 
 //#region Sets 
 
-// Sets are similar to arrays. So there are no key value pairs, it's just a bunch of values grouped together.
-// And just like arrays, sets are also iterables. A set is very different from an array.
-// First, because its elements are unique. And second, because the order of elements in the set is irrelevant.
+    // Sets are similar to arrays. 
+    // There are no key value pairs, it's just a bunch of values grouped together.
+    // Just like arrays, sets are also iterables. 
+    // A set is very different from an array.
+    // First, because its elements are unique. 
+    // And second, because the order of elements in the set is irrelevant.
 
     const ordersSet = new Set([
         'Pasta',
@@ -2512,7 +2517,7 @@ const game = {
     console.log(ordersSet);
     for (const order of ordersSet) console.log(order);
 
-    // the main use case of sets is actually to remove duplicate values of arrays.
+    // important: the main use case of sets is actually to remove duplicate values of arrays.
 
     // Example
     const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
@@ -2527,7 +2532,8 @@ const game = {
     // Sets have this very useful property of being unique. 
     // And it's also very easy to interact with sets by using all of their straightforward methods.
     // However, they are not as important as arrays. 
-    // So keep sets in mind when you need to work with unique values. 
+
+    // important: So keep sets in mind when you need to work with unique values. 
     // But besides that, you can just continue using arrays.
 
 
@@ -2535,18 +2541,24 @@ const game = {
 
 //#region Maps: Fundamentals 
 
-// One another JavaScript data structure is maps. And maps are a lot more useful than sets.
-// A map is a data structure that we can use to map values to keys.
+    // One another JavaScript data structure is maps. 
+    // Maps are a lot more useful than sets.
+
+    // The Map object holds key-value pairs and remembers the original insertion order of the keys. 
+    // Any value (both objects and primitive values) may be used as either a key or a value.
+
+    // A map is a data structure that we can use to map values to keys.
+    // The set() method adds or updates an element with a specified key and a value to a Map object.
 
     const rest = new Map();
     rest.set('name', 'Classico Italiano');
     rest.set(1, 'Firenze, Italy');
 
-    // calling the set method also returns the set 
+    // calling the set method also returns the map object 
     console.log(rest.set(2, 'Lisbon, Portugal'));   
     // Map(3) {"name" => "Classico Italiano", 1 => "Firenze, Italy", 2 => "Lisbon, Portugal"}
 
-    // we can change sets one after another
+    // Since the set() method returns back the same Map object, we can chain the method call like below:
     rest
     .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
     .set('open', 11)
@@ -2606,7 +2618,13 @@ const game = {
 
     /*
 
-    Map(7) {"question" => "What is the best programming language in the world?", 1 => "C", 2 => "Java", 3 => "JavaScript", "correct" => 3, …}
+    Map(7) {
+            "question" => "What is the best programming language in the world?", 
+            1 => "C", 
+            2 => "Java", 
+            3 => "JavaScript", 
+            "correct" => 3, 
+            …}
     [[Entries]]
     0: {"question" => "What is the best programming language in the world?"}
     1: {1 => "C"}
@@ -2663,7 +2681,7 @@ const game = {
 
 //#region Footbal Game Coding Challenge 3 
 
-/* 
+    /* 
 
     Let's continue with our football betting app! This time, 
     we have a map with a log of the events that happened during the game. 
@@ -2684,7 +2702,7 @@ const game = {
 
     GOOD LUCK 😀
 
-*/
+    */
 
     const gameEvents = new Map([
         [17, '⚽️ GOAL'],
@@ -2700,7 +2718,7 @@ const game = {
         [92, '🔶 Yellow card'],
     ]);
   
-// Solutions: 
+    // Solutions: 
 
     // 1.
     const events = [...new Set(gameEvents.values())];
@@ -2878,7 +2896,7 @@ const game = {
 
 //#region Coding Challenge 4 
 
-/* 
+    /* 
 
     Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
     The input will come from a textarea inserted into the DOM (see code below), 
@@ -2907,9 +2925,9 @@ const game = {
     Afterwards, test with your own test data!
     GOOD LUCK 😀
 
-*/
+    */
 
-// Solution:
+    // Solution:
 
     document.body.append(document.createElement('textarea'));
     document.body.append(document.createElement('button'));
@@ -3653,6 +3671,11 @@ const game = {
 
     // SLICE Method
 
+    // Syntax
+    // slice()
+    // slice(start)
+    // slice(start, end)
+
     // With the slice method, we can extract part of any array without changing the original array.
     // Basically we take a slice of an array and that's why it's called slice.
 
@@ -3669,6 +3692,7 @@ const game = {
     console.log(arr.slice(1, -2));  // (2) ["b", "c"];
 
     // important: we can also use the slice method to simply create a shallow copy of any array
+    // it does not alter the original array
     console.log(arr.slice());       // (5) ["a", "b", "c", "d", "e"];
 
     // important: spread operator does the same. its up to you to chose which
@@ -3676,6 +3700,12 @@ const game = {
 
 
     // SPLICE Method
+
+    // Syntax
+    // splice(start)
+    // splice(start, deleteCount)
+    // splice(start, deleteCount, item1)
+    // splice(start, deleteCount, item1, item2, itemN)
 
     // Splice method works in almost the same way as slice.
     // But the fundamental difference is that it does actually change the original array.
@@ -3686,8 +3716,9 @@ const game = {
 
     // important: Splice actually does mutate the original array, it takes part of the array and returns it 
     // and then the original array itself loses this part that was extracted.
-    // Now in practice, most of the time the value that the splice method returns, doesn't even interest us.
-    // All we are usually interested in is to just delete one or more elements from an array using splice.
+
+    // In practice, most of the time the value that the splice method returns, doesn't even interest us.
+    // All we are usually interested in is to delete one or more elements from an array using splice.
     // And one pretty common use case is to simply remove the last element of an array.
 
     let arr = ['a', 'b', 'c', 'd', 'e'];
@@ -3760,24 +3791,29 @@ const game = {
         }
     });
 
-    // What forEach method does is to loop over the array and in each iteration it will execute this callback function.
+    /*
 
-    // Execution order
-    // 0: function(200)
-    // 1: function(450)
-    // 2: function(400)
-    // ...
+    What forEach method does is to loop over the array and in each iteration it will execute this callback function.
 
-    // We need entries() method to access the current index value in "for of" loop
-    // But forEach passes the current element, the index and the entire array (that we are looping) to a callback function it is executing.
-    // And we can easily specify them in the parameter list of the callback function. 
+    Execution order
+    0: function(200)
+    1: function(450)
+    2: function(400)
+    ...
 
-    // important: Now when should we use forEach and when should we use the "for of" loop?
-    // Well one fundamental difference between the two of them is that we cannot break out of a forEach loop.
-    // So the continue and break statements do not work in a forEach loop at all.
-    // So instead, forEach will always loop over the entire array and there is nothing that we can do about it.
-    // So if we really need to break out of a loop then we have to keep using the "for of" loop, but other than that it really comes down to your personal preference.
+    We need entries() method to access the current index value in "for of" loop
+    But forEach passes the current element, the index and the entire array 
+    (that we are looping) to a callback function it is executing.
+    And we can easily specify them in the parameter list of the callback function. 
 
+    important: When should we use "forEach" and when should we use the "for of" loop?
+    One fundamental difference between them is that we cannot break out of a forEach loop.
+    The 'continue' and 'break' statements do not work in a forEach loop at all.
+    forEach will always loop over the entire array and there is nothing that we can do about it.
+    If we really need to break out of a loop then we have to keep using the "for of" loop, 
+    but other than that it really comes down to your personal preference.
+    
+    */
 
 //#endregion
 
@@ -3796,8 +3832,8 @@ const game = {
     });
 
     // We can call forEach also on a map. Now this callback function also has three parameters.
-    // So when the forEach method calls it, it will call this function with three arguments.
-    // So the first one will be the current value, the second one is the key, and the third one is the entire map that is being looped over.
+    // When the forEach method calls it, it will call this function with three arguments.
+    // First one is the current value, the second one is the key, and third one is the entire map being looped over.
 
     // Set
 
@@ -3810,15 +3846,16 @@ const game = {
     });
 
     // important:
-    // Well, a set doesn't have keys. And it doesn't have indexes either.
-    // And so there is no value that would make sense for the key.
-    // So if we use key in this loop this key makes no sense at all.
-    // And so the people who designed this forEach method for sets, they could have simply omitted the second argument, right?
+    // Sets do not have keys. And they do not have indexes either.
+    // So there is no value that would make sense for the key.
+    // If we use key in this loop this key makes no sense at all.
+    // People who designed forEach method for sets, they could have simply omitted the second argument, right?
     // Well, if they did that, then this forEach would have been different from the others.
-    // And so that would then create confusion in developers, and therefore it was decided to keep the same signature.
-    // So basically to keep the same three parameters in this callback function and simply to set the second one to the first one.
+    // And that would then create confusion for developers, therefore it was decided to keep the same signature.
+    // Basically to keep the same three parameters in this callback function and simply to set the second one to the first one.
 
-    // important: "_" this underscore parameter is called throwaway variable in JavaScript means a variable that is completely unnecessary.
+    // important: "_" this underscore parameter is called throwaway variable in JavaScript 
+    // means a variable that is completely unnecessary.
 
 //#endregion
 
