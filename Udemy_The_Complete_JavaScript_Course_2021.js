@@ -3971,15 +3971,18 @@ let jsCourse = {
   
 //#region Coding Challenge #1 
 
-/* 
+    /* 
 
-    Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). 
+    Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, 
+    and stored the data into an array (one array for each). 
     For now, they are just interested in knowing whether a dog is an adult or a puppy. 
     A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
-    Create a function 'checkDogs', which accepts 2 arrays of dog's ages ('dogsJulia' and 'dogsKate'), and does the following things:
+    Create a function 'checkDogs', which accepts 2 arrays of dog's ages ('dogsJulia' and 'dogsKate'), 
+    and does the following things:
 
     1. Julia found out that the owners of the FIRST and the LAST TWO dogs actually have cats, not dogs! 
-       So create a shallow copy of Julia's array, and remove the cat ages from that copied array (because it's a bad practice to mutate function parameters)
+       So create a shallow copy of Julia's array, and remove the cat ages from that copied array 
+       (because it's a bad practice to mutate function parameters)
 
     2. Create an array with both Julia's (corrected) and Kate's data
 
@@ -3994,9 +3997,9 @@ let jsCourse = {
 
     GOOD LUCK 😀
 
-*/
+    */
 
-// Solution:
+    // Solution:
 
     const checkDogs = function (dogsJulia, dogsKate) {
 
@@ -4024,35 +4027,42 @@ let jsCourse = {
 
 //#region Data Transformations: map, filter, reduce 
 
-// In JavaScript, there are three big and important array methods that we use all the time to perform data transformations.
-// So basically, these are methods that we use to create new arrays based on transforming data from other arrays.
-// And in recent years, these tools have become really popular and you'll see them everywhere you look in Modern JavaScript.
-// And these tools are; map, filter and reduce.
+    /*
 
-// Map
-// First the map method is yet another method that we can use to loop over arrays.
-// Map is actually similar to the forEach method that we studied before but with the difference that map creates a brand new array based on the original array.
-// Map method takes an array, loops over that array and in each alteration, it applies a covic function that we specify on our code to the current array element.
-// So in this example we say that each element shall be multiplied by two.
-// And with this covic in place, the map method multiplies every single element by two and puts it into a new array.
-// We say that it maps the values of the original array to a new array and that's why this method is called map.
-// And it is extremely useful.
-// Usually way more useful than in forEach method because forEach simply allows us to do some work with each array element.
-// But map on the other hand, builds us a brand new array containing the results of applying an operation to the original array,
+    In javaScript, there are three important array methods that we use all the time to perform data transformations.
+    These are methods that we use to create new arrays based on transforming data from other arrays.
+    These methods have become really popular and you'll see them everywhere you look in Modern JavaScript.
+    These methods are: map, filter and reduce.
 
-// Filter
-// which as the name says, is used to filter for elements in the original array which satisfy a certain condition.
-// So in this example we are only looking for elements greater than two.
-// So all the elements that pass the test that we specified will make it into a new filtered array.
-// Or in other words elements for which the condition is true will be included in a new array that the filter method returns.
-// All other elements will get filtered out so they will not be included in the new array.
+    Map
+    First the map method, it is a method that we can use to loop over arrays.
+    Map is actually similar to the forEach method that we studied before but with 
+    the difference that map creates a brand new array based on the original array.
+    Map method takes an array, loops over that array and in each alteration, 
+    it applies a covic function that we specify on our code to the current array element.
+    So in this example we say that each element shall be multiplied by two.
+    And with this covic in place, the map method multiplies every single element by two and puts it into a new array.
+    It maps the values of the original array to a new array and that's why this method is called map.
+    And it is extremely useful.
+    Way more useful than forEach method because forEach simply allows us to do some work with each array element.
+    But map on the other hand, builds us a brand new array containing the results of applying an operation to the original array.
 
-// Reduce
-// Reduce method is used to boil down all the elements of the original array into one single value.
-// And an example of this can be to add all the elements of an array together.
-// Whole process now reduced the original array to one single value, the sum of all the elements but it can of course be many other operations. 
-// Now it's this value that then actually gets returned from the reduce method in the end. So there is no new array in this case but only the reduced value.
+    Filter
+    which as the name says, is used to filter elements in the original array which satisfy a certain condition.
+    So in this example we are only looking for elements greater than two.
+    All the elements that pass the test that we specified will make it into a new filtered array.
+    Or in other words, elements for which the condition is true will be included in a new array that the filter method returns.
+    All other elements will get filtered out so they will not be included in the new array.
 
+    Reduce
+    Reduce method is used to boil down all the elements of the original array into one single value.
+    And an example of this can be to add all the elements of an array together.
+    Whole process now reduced the original array to one single value, 
+    the sum of all the elements but it can of course be many other operations. 
+    Now it's this value that then actually gets returned from the reduce method in the end. 
+    So there is no new array in this case but only the reduced value.
+
+    */
 
 //#endregion
 
@@ -4066,7 +4076,7 @@ let jsCourse = {
     });
 
     console.log(movements);     // (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
-    console.log(movementsUSD);  // (8) [220.00000000000003, 495.00000000000006, -440.00000000000006, 3300.0000000000005, -715.0000000000001, -143, 77, 1430.0000000000002]
+    console.log(movementsUSD);  // (8) [220, 495, -440, 3300, -715, -143, 77, 1430]
     
     // using arrow function
     const movementsUSD = movements.map(mov => mov * eurToUsd);
@@ -4074,24 +4084,25 @@ let jsCourse = {
     console.log(movements);
     console.log(movementsUSD);
 
+    // alternative approach
     const movementsUSDfor = [];
     for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
     console.log(movementsUSDfor);
 
-    // This two approaches are completely different philosophies
+    // These two approaches are completely different philosophies
     // In a map method we use a function to solve this problem of a creating new array
     // But with "for of" loop we manually loop through an array and create a new array 
     // Map method is much more of a functional programming approach
-    // In a modern javascript programming functional programming is mostly preferred. 
+    // In a modern javascript functional programming is mostly preferred. 
 
     // A map method can also access to a current element, an index and entire array 
-    const movementsDescriptions = movements.map((mov, i) =>`Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+    const mDescriptions = movements.map((mov, i) =>`Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
 
     console.log(movementsDescriptions);
 
     // The "side effect" with forEach is that the original array is being changed. 
     // "No side effect" with map means that, in idiomatic usage, the original array elements are not changed; 
-    // the new array is a one-to-one mapping of each element in the original array -- the mapping transform being your provided function.
+    // the new array is a one-to-one mapping of each element in the original array 
     // Source: https://stackoverflow.com/questions/3034392/what-use-does-the-javascript-foreach-method-have-that-map-cant-do
 
 //#endregion
@@ -4104,16 +4115,16 @@ let jsCourse = {
         return mov > 0;
     });
 
-    console.log(movements);
-    console.log(deposits);
+    console.log(movements); // [200, 450, -400, 3000, -650, -130, 70, 1300]
+    console.log(deposits);  // [200, 450, 3000, 70, 1300]
 
     // Only the array elements, for which this condition is true will make it into the deposits array.
     // All the other ones will simply get filtered out. So they will not be included in this deposits array.
-
-    // And again even if we do not use the callback function also get access to the current index and the whole array.
+    // Even if we do not use the callback function we still get access to the current index and the whole array.
 
     const depositsFor = [];
 
+    // alternative approach
     for (const mov of movements) if (mov > 0) depositsFor.push(mov);
     console.log(depositsFor);
 
@@ -4124,7 +4135,7 @@ let jsCourse = {
 
 //#region The reduce Method 
 
-// We use the reduce method to boil down all the elements in an array to one single value.
+    // We use the reduce method to boil down all the elements in an array to one single value.
 
     const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
     console.log(movements);
@@ -4134,15 +4145,16 @@ let jsCourse = {
         return acc + cur;
     }, 0);
 
-// The reduce function also gets a callback function, but this one is a little bit different from the other ones, like the one in map or for each.
-// So in these other callbacks, the first parameter is always the current element of the array. Let's call it current. 
-// The second one is the current index and the third one is the entire array.
-// But here in the callback function of the reduce method, the first parameter is actually something called the accumulator.
+    // The reduce function also gets a callback function, but this one is a little bit different 
+    // from the other ones, like the one in map or for each.
+    // In other callbacks, the first parameter is always the current element of the array.
+    // The second one is the current index and the third one is the entire array.
+    // But in the callback function of the reduce method, the first parameter is something called the accumulator.
+    // Accumulator is like a snowball that keeps accumulating the value that we ultimately want to return.
+    // So in the case of adding all the elements or all the numbers of an array together, that will be the sum.
 
-// And this accumulator is essentially like a snowball that keeps accumulating the value that we ultimately want to return.
-// So in the case of adding all the elements or all the numbers of an array together, that will be the sum.
-
-// Callback function is the first argument of the reduce method, but the reduce method actually has a second parameter, and that is the initial value of the accumulator.
+    // Callback function is the first argument of the reduce method, 
+    // but the reduce method actually has a second parameter, and that is the initial value of the accumulator.
 
     // using arrow function
     const balance = movements.reduce((acc, cur) => acc + cur, 0);
@@ -4165,14 +4177,19 @@ let jsCourse = {
 
 //#region Coding Challenge #2 
 
-/* 
+    /* 
 
-    Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
-    Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+    Let's go back to Julia and Kate's study about dogs. 
+    This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
+    Create a function 'calcAverageHumanAge', 
+    which accepts an arrays of dog's ages ('ages'), 
+    and does the following things in order:
 
-    1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+    1. Calculate the dog age in human years using the following formula: 
+       if the dog is <= 2 years old, humanAge = 2 * dogAge. 
+       If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
     2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
-    3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+    3. Calculate the average human age of all adult dogs 
     4. Run the function for both test datasets
 
     TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
@@ -4180,9 +4197,9 @@ let jsCourse = {
 
     GOOD LUCK 😀
 
-*/
+    */
 
-// Solution:
+    // Solution:
 
     const calcAverageHumanAge = function (ages) {
         const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
@@ -4219,13 +4236,14 @@ let jsCourse = {
     .reduce((acc, mov) => acc + mov, 0);
     console.log(totalDepositsUSD);
 
-    // So we can only chain a method after another one, if the first one returns an array.
+    // We can only chain a method after another one, if the first one returns an array.
     // We can inspect the current array at any stage of the pipeline using the third parameter of the callback function.
     // Being able to access the current array is one of the great use cases in terms of debugging.
     // Because this array has to be the result of the previous operation.
     
     // It is a bad practice in JavaScript to chain methods that mutate the underlying original array.
-    // And an example of that is the splice method. You should not chain a method like the splice or the reverse method.
+    // And an example of that is the splice method. 
+    // You should not chain a method like the splice or the reverse method.
     // For a small application like this one, it's not a big deal and it's not going to cause problems,
     // but in a large scale application, it's usually always a good practice to avoid mutating arrays.
 
@@ -4233,17 +4251,18 @@ let jsCourse = {
 
 //#region Coding Challenge #3 
 
-/*
+    /*
 
-    Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+    Rewrite the 'calcAverageHumanAge' function from the previous challenge, 
+    but this time as an arrow function, and using chaining!
     TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
     TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
     GOOD LUCK 😀
 
-*/
+    */
 
-// Solution:
+    // Solution:
 
     const calcAverageHumanAge = ages =>
     ages
@@ -4261,48 +4280,54 @@ let jsCourse = {
 
 //#region The find Method 
 
-// As the name says, we can use the Find method to retrieve one element of an array based on a condition.
-// Just like the other array methods we've been talking about the find method also accepts a callback function and a condition.
-// Unlike the Filter method, the Find method will not return a new array. 
-// It returns the first element in the array that satisfies given condition.
+    // As the name says, we can use the Find method to retrieve one element of an array based on a condition.
+    // Just like the other array methods the find method also accepts a callback function and a condition.
+    // Unlike the Filter method, the Find method will not return a new array. 
+    // It returns the first element in the array that satisfies given condition.
 
-// The Find method is a bit similar to the Filter method, but there are two fundamental differences.
-// First Filter returns all the elements that match the condition while the Find method only returns the first one.
-// And second and even more important, the Filter method returns a new array while Find only returns the element itself and not an array.
+    // The Find method is a bit similar to the Filter method, but there are two fundamental differences.
+    // First Filter returns all the elements that match the condition while the Find method only returns the first one.
+    // Second and even more important difference is that, the Filter method returns a new array 
+    // while Find method only returns the element itself and not an array.
 
     const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
     const firstWithdrawal = movements.find(mov => mov < 0);
 
-    console.log(movements);
-    console.log(firstWithdrawal);
+    console.log(movements);         // [200, 450, -400, 3000, -650, -130, 70, 1300]
+    console.log(firstWithdrawal);   // -400
+
     console.log(accounts);
+    // (4) [{…}, {…}, {…}, {…}]
+    // 0: {owner: 'Jonas Schmedtmann', movements: Array(8), interestRate: 1.2, pin: 1111}
+    // 1: {owner: 'Jessica Davis', movements: Array(8), interestRate: 1.5, pin: 2222}
+    // 2: {owner: 'Steven Thomas Williams', movements: Array(8), interestRate: 0.7, pin: 3333}
+    // 3: {owner: 'Sarah Smith', movements: Array(5), interestRate: 1, pin: 4444}
 
     const account = accounts.find(acc => acc.owner === 'Jessica Davis');
-
     console.log(account);
 
 //#endregion
 
 //#region The findIndex Method 
 
-// The findIndex method works almost the same way as find.
-// But as the name says, findIndex returns the index of the found element and not the element itself.
-// Both the find and findIndex methods were added to JavaScript in ES6.
+    // The findIndex method works almost the same way as find.
+    // But as the name says, findIndex returns the index of the found element and not the element itself.
+    // Both the find and findIndex methods were added to JavaScript in ES6.
 
-// MDN
-// The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. 
-// Otherwise, it returns -1, indicating that no element passed the test.
+    // MDN
+    // The findIndex() method returns the index of the first element in the array 
+    // that satisfies the 'provided testing function'. 
+    // Otherwise, it returns -1, indicating that no element passed the test.
 
     const array1 = [5, 12, 8, 130, 44];
-
     const isLargeNumber = (element) => element > 13;
-
     console.log(array1.findIndex(isLargeNumber));
     // expected output: 3s
 
-// The findIndex() method executes the callbackFn function once for every index in the array until it finds the one where callbackFn returns a truthy value.
-// If such an element is found, findIndex() immediately returns the element's index. 
-// If callbackFn never returns a truthy value (or the array's length is 0), findIndex() returns -1.
+    // The findIndex() method executes the callbackFn function once for every index in the array 
+    // until it finds the one where callbackFn returns a truthy value.
+    // If such an element is found, findIndex() immediately returns the element's index. 
+    // If callbackFn never returns a truthy value (or the array's length is 0), findIndex() returns -1.
 
     function isPrime(num) {
         for (let i = 2; num > i; i++) {
@@ -4316,8 +4341,7 @@ let jsCourse = {
     console.log([4, 6, 8, 9, 12].findIndex(isPrime)); // -1, not found
     console.log([4, 6, 7, 9, 12].findIndex(isPrime)); // 2 (array[2] is 7)
 
-// The following example finds the index of a fruit using an arrow function:
-
+    // The following example finds the index of a fruit using an arrow function:
     const fruits = ["apple", "banana", "cantaloupe", "blueberries", "grapefruit"];
     const index = fruits.findIndex(fruit => fruit === "blueberries");
 
@@ -4331,10 +4355,10 @@ let jsCourse = {
     const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
     console.log(movements);
 
-    // we can use the includes method to test if an array includes a certain value.
-    // Includes returns true if any value in the array is exactly equal to the given value.
+    // we can use the 'includes' method to test if an array includes a certain value.
+    // 'Includes' returns true if any value in the array is exactly equal to the given value.
     // It only tests for equality but what if we wanted to test for a condition instead?
-    // That's where the some method comes into play.
+    // That's where the 'some' method comes into play.
 
     // EQUALITY
     console.log(movements.includes(-130)); // true
@@ -4345,8 +4369,8 @@ let jsCourse = {
     console.log(anyDeposits);
 
     // EVERY
-    // The every method is pretty similar to the some method but the difference between them is that 
-    // every only returns true if all of the elements in the array satisfy the condition that we pass in.
+    // The 'every' method is pretty similar to the 'some' method but the difference between them is that 
+    // 'every' only returns true if all of the elements in the array satisfy the condition that we pass in.
 
     console.log(movements.every(mov => mov > 0)); // false
     console.log([2,3,4,5].every(mov => mov > 0)); // true
@@ -4361,8 +4385,8 @@ let jsCourse = {
 
 //#region flat and flatMap 
 
-// flat and also flat map methods were introduced in ES2019.
-// So they are pretty recent, they will therefore not work in old browsers.
+    // flat and also flat map methods were introduced in ES2019.
+    // So they are pretty recent, they will therefore not work in old browsers.
 
     const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
     console.log(arr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
@@ -4422,7 +4446,7 @@ let jsCourse = {
 
     console.log(overalBalance2); // 17840
 
-    // Just notice that, flatMap only goes one level deep and we cannot change it.
+    // important: Just notice that, flatMap only goes one level deep and we cannot change it.
     // So if you do need to go deeper than just one level, you still need to use the flat method.
 
 //#endregion
@@ -4504,7 +4528,9 @@ let jsCourse = {
     const z = Array.from({ length: 7 }, (_, i) => i + 1);
     console.log(z); // (7) [1, 2, 3, 4, 5, 6, 7]
 
-    // we can not directly call map method on nodelist instead we have to first create array from the nodelist and then call map on that array
+    // we can not directly call map method on nodelist instead we have to first create array 
+    // from the nodelist and then call map on that array
+
     labelBalance.addEventListener('click', function () {
         const movementsUI = Array.from(
             document.querySelectorAll('.movements__value'),
@@ -4520,7 +4546,7 @@ let jsCourse = {
 
 //#region Summary. Which Array Method to Use?
 
-/*
+    /*
 
     1. To mutate original array:
         a) Add to original
@@ -4626,7 +4652,7 @@ let jsCourse = {
         
     const accounts = [account1, account2, account3, account4];
 
-// 1.
+    // 1.
     const bankDepositSum = accounts
     .flatMap(acc => acc.movements)
     .filter(mov => mov > 0)
@@ -4634,7 +4660,7 @@ let jsCourse = {
 
     console.log(bankDepositSum);
 
-// 2.
+    // 2.
     // const numDeposits1000 = accounts
     //   .flatMap(acc => acc.movements)
     //   .filter(mov => mov >= 1000).length;
@@ -4649,7 +4675,7 @@ let jsCourse = {
     console.log(++a);
     console.log(a);
 
-// 3.
+    // 3.
     const { deposits, withdrawals } = accounts
     .flatMap(acc => acc.movements)
     .reduce(
@@ -4663,7 +4689,7 @@ let jsCourse = {
     
     console.log(deposits, withdrawals);
 
-// 4.
+    // 4.
     // this is a nice title -> This Is a Nice Title
     const convertTitleCase = function (title) {
         const capitalize = str => str[0].toUpperCase() + str.slice(1);
@@ -4686,19 +4712,25 @@ let jsCourse = {
 /* 
 
     Julia and Kate are still studying dogs, and this time they are studying if dogs are eating too much or too little.
-    Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
-    Eating an okay amount means the dog's current food portion is within a range 10% above and 10% below the recommended portion (see hint).
+    Eating too much means the dog's current food portion is larger than the recommended portion, 
+    and eating too little is the opposite.
+    Eating an okay amount means the dog's current food portion is within a range 10% above and 10% below 
+    the recommended portion (see hint).
 
-    1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. 
+    1. Loop over the array containing dog objects, and for each dog, 
+       calculate the recommended food portion and add it to the object as a new property. 
        Do NOT create a new array, simply loop over the array. 
        Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
 
-    2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple owners, 
+    2. Find Sarah's dog and log to the console whether it's eating too much or too little. 
+       HINT: Some dogs have multiple owners, 
        so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
 
-    3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+    3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') 
+       and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
 
-    4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+    4. Log a string to the console for each array created in 3., 
+       like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
 
     5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
 
@@ -4706,25 +4738,27 @@ let jsCourse = {
 
     7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
 
-    8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+    8. Create a shallow copy of the dogs array and sort it by recommended food portion 
+       in an ascending order (keep in mind that the portions are inside the array's objects)
 
     HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
-    HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). 
+    HINT 2: Being within a range 10% above and below the recommended portion means: 
+            current > (recommended * 0.90) && current < (recommended * 1.10). 
             Basically, the current portion should be between 90% and 110% of the recommended portion.
 
     TEST DATA:
     const dogs = [
-        { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
-        { weight: 8, curFood: 200, owners: ['Matilda'] },
-        { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-        { weight: 32, curFood: 340, owners: ['Michael'] }
-    ];
+                    { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+                    { weight: 8, curFood: 200, owners: ['Matilda'] },
+                    { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+                    { weight: 32, curFood: 340, owners: ['Michael'] }
+                 ];
 
     GOOD LUCK 😀
 
 */
 
-// Solutions:
+    // Solutions:
 
     const dogs = [
         { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
@@ -4783,7 +4817,7 @@ let jsCourse = {
 
 //#region BANKIST APP 
 
-// Data
+    // Data
     const account1 = {
         owner: 'Jonas Schmedtmann',
         movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -4840,7 +4874,7 @@ let jsCourse = {
     const inputCloseUsername = document.querySelector('.form__input--user');
     const inputClosePin = document.querySelector('.form__input--pin');
   
-  // Functions
+    // Functions
   
     const displayMovements = function (movements, sort = false) {
         containerMovements.innerHTML = '';
@@ -4911,7 +4945,7 @@ let jsCourse = {
     };
   
 
-  // Event handlers
+    // Event handlers
     let currentAccount;
     
     btnLogin.addEventListener('click', function (e) {
