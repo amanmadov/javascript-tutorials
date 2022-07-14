@@ -3767,6 +3767,34 @@ let jsCourse = {
 
     console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
 
+    // At Method
+
+    // The at() method takes an integer value and returns the item at that index, 
+    // allowing for positive and negative integers. 
+    // Negative integers count back from the last item in the array.
+
+    const arr = ['a', 'b', 'c', 'd', 'e'];
+    console.log(arr[0]);    // a
+    console.log(arr.at(0)); // a
+
+    const array1 = [5, 12, 8, 130, 44];
+    let index = 2;
+
+    // What makes it useful is getting the last item 
+    console.log(arr[arr.length - 1]);
+    console.log(arr.slice(-1)[0]);
+    console.log(arr.at(-1));
+
+    console.log(`Using an index of ${index} the item returned is ${array1.at(index)}`);
+    // expected output: "Using an index of 2 the item returned is 8"
+
+    index = -2;
+    console.log(`Using an index of ${index} item returned is ${array1.at(index)}`);
+    // expected output: "Using an index of -2 item returned is 130"
+
+    console.log('Jonas'.at(-1));    // s
+
+
 //#endregion
 
 //#region Looping Arrays: forEach 
