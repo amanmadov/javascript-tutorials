@@ -5050,12 +5050,13 @@ let jsCourse = {
     console.log(0.1 + 0.2);             // 0.30000000000000004
     console.log(0.1 + 0.2 === 0.3);     // false
 
-    // important: Just be aware that you cannot do like really precise scientific or financial calculations 
+    // important: Just be aware that you cant do precise scientific or financial calculations 
     // in JavaScript because eventually, you will run into a problem like this.
 
     // Conversion
     console.log(Number('23'));  // 23
-    console.log(+'23');         // 23
+
+    console.log(+'23'); // 23
     // Same as above because when JavaScript sees the plus operator, it will do type coercion.
 
     // Parsing
@@ -5289,7 +5290,8 @@ let jsCourse = {
     const days1 = calcDaysPassed(new Date(2037, 3, 4), new Date(2037, 3, 14));
     console.log(days1); // 10
 
-    // If you need extra calculations like including time changes due to daylight saving changes, then you should use a date library like moment.js.
+    // If you need extra calculations like including time changes due to daylight saving changes, 
+    // then you should use a date library like moment.js.
 
 //#endregion
 
@@ -5399,8 +5401,8 @@ let jsCourse = {
 
 //#region BANKIST APP 
 
-// Data
-// DIFFERENT DATA! Contains movement dates, currency and locale
+    // Data
+    // DIFFERENT DATA! Contains movement dates, currency and locale
 
     const account1 = {
         owner: 'Jonas Schmedtmann',
@@ -5472,7 +5474,7 @@ let jsCourse = {
     const inputClosePin = document.querySelector('.form__input--pin');
   
 
-  // Functions
+    // Functions
   
     const formatMovementDate = function (date, locale) {
         const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
