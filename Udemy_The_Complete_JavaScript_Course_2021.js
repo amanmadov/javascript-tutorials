@@ -4095,10 +4095,14 @@ let jsCourse = {
     // Map method is much more of a functional programming approach
     // In a modern javascript functional programming is mostly preferred. 
 
-    // A map method can also access to a current element, an index and entire array 
-    const mDescriptions = movements.map((mov, i) =>`Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+    // important: A map method can also access to a current element, an index and entire array 
+    const arr = movements.map((mov, i) =>`Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+    console.log(arr);
 
-    console.log(movementsDescriptions);
+    // Syntax with Arrow function
+    map((element) => { /* ... */ })
+    map((element, index) => { /* ... */ })
+    map((element, index, array) => { /* ... */ })
 
     // The "side effect" with forEach is that the original array is being changed. 
     // "No side effect" with map means that, in idiomatic usage, the original array elements are not changed; 
@@ -4131,11 +4135,16 @@ let jsCourse = {
     const withdrawals = movements.filter(mov => mov < 0);
     console.log(withdrawals);
 
+    // Syntax with Arrow function
+    filter((element) => { /* ... */ } )
+    filter((element, index) => { /* ... */ } )
+    filter((element, index, array) => { /* ... */ } )
+
 //#endregion
 
 //#region The reduce Method 
 
-    // We use the reduce method to boil down all the elements in an array to one single value.
+    // We use the reduce method to boil down all the elements of an array into one single value.
 
     const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
     console.log(movements);
@@ -4172,6 +4181,15 @@ let jsCourse = {
     }, movements[0]);
 
     console.log(max);
+
+    // Syntax with Arrow function
+    reduce((previousValue, currentValue) => { /* ... */ } )
+    reduce((previousValue, currentValue, currentIndex) => { /* ... */ } )
+    reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ } )
+
+    reduce((previousValue, currentValue) => { /* ... */ } , initialValue)
+    reduce((previousValue, currentValue, currentIndex) => { /* ... */ } , initialValue)
+    reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ }, initialValue)
 
 //#endregion
 
@@ -4236,14 +4254,13 @@ let jsCourse = {
     .reduce((acc, mov) => acc + mov, 0);
     console.log(totalDepositsUSD);
 
-    // We can only chain a method after another one, if the first one returns an array.
+    // We can only chain a method after another one if the first one returns an array.
     // We can inspect the current array at any stage of the pipeline using the third parameter of the callback function.
     // Being able to access the current array is one of the great use cases in terms of debugging.
     // Because this array has to be the result of the previous operation.
     
-    // It is a bad practice in JavaScript to chain methods that mutate the underlying original array.
-    // And an example of that is the splice method. 
-    // You should not chain a method like the splice or the reverse method.
+    // important: It is a bad practice to chain methods that mutate the underlying original array.
+    // And an example of that is the 'splice' method or the 'reverse' method.
     // For a small application like this one, it's not a big deal and it's not going to cause problems,
     // but in a large scale application, it's usually always a good practice to avoid mutating arrays.
 
@@ -4280,15 +4297,15 @@ let jsCourse = {
 
 //#region The find Method 
 
-    // As the name says, we can use the Find method to retrieve one element of an array based on a condition.
-    // Just like the other array methods the find method also accepts a callback function and a condition.
-    // Unlike the Filter method, the Find method will not return a new array. 
+    // As the name says, we can use the 'find' method to retrieve one element of an array based on a condition.
+    // Just like the other array methods the 'find' method also accepts a callback function and a condition.
+    // Unlike the 'filter' method, the 'find' method will not return a new array. 
     // It returns the first element in the array that satisfies given condition.
 
-    // The Find method is a bit similar to the Filter method, but there are two fundamental differences.
-    // First Filter returns all the elements that match the condition while the Find method only returns the first one.
-    // Second and even more important difference is that, the Filter method returns a new array 
-    // while Find method only returns the element itself and not an array.
+    // The 'find' method is a bit similar to the 'filterf method, but there are two fundamental differences.
+    // First 'filter' returns all the elements that match the condition while the 'findf method only returns the first one.
+    // Second and even more important difference is that, the 'filterf method returns a new array 
+    // while 'find' method only returns the element itself and not an array.
 
     const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
     const firstWithdrawal = movements.find(mov => mov < 0);
@@ -4310,9 +4327,9 @@ let jsCourse = {
 
 //#region The findIndex Method 
 
-    // The findIndex method works almost the same way as find.
-    // But as the name says, findIndex returns the index of the found element and not the element itself.
-    // Both the find and findIndex methods were added to JavaScript in ES6.
+    // The 'findIndex' method works almost the same way as 'find' method.
+    // But as the name says, 'findIndex' returns the index of the found element and not the element itself.
+    // Both the 'find' and 'findIndex' methods were added to JavaScript in ES6.
 
     // MDN
     // The findIndex() method returns the index of the first element in the array 
@@ -4356,7 +4373,7 @@ let jsCourse = {
     console.log(movements);
 
     // we can use the 'includes' method to test if an array includes a certain value.
-    // 'Includes' returns true if any value in the array is exactly equal to the given value.
+    // 'includes' method returns true if any value in the array is exactly equal to the given value.
     // It only tests for equality but what if we wanted to test for a condition instead?
     // That's where the 'some' method comes into play.
 
@@ -4370,7 +4387,7 @@ let jsCourse = {
 
     // EVERY
     // The 'every' method is pretty similar to the 'some' method but the difference between them is that 
-    // 'every' only returns true if all of the elements in the array satisfy the condition that we pass in.
+    // 'every' method returns true if all of the elements in the array satisfy the condition that we pass in.
 
     console.log(movements.every(mov => mov > 0)); // false
     console.log([2,3,4,5].every(mov => mov > 0)); // true
@@ -4385,7 +4402,7 @@ let jsCourse = {
 
 //#region flat and flatMap 
 
-    // flat and also flat map methods were introduced in ES2019.
+    // 'flat' and also 'flatMap' methods were introduced in ES2019.
     // So they are pretty recent, they will therefore not work in old browsers.
 
     const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
@@ -4437,17 +4454,17 @@ let jsCourse = {
     console.log(overalBalance); // 17840
 
     // flatMap
-    // flat map method combines, a map and a flat method, into just one method, which is better for performance.
+    // 'flatMap' method combines, a 'map' and a 'flat' method, into just one method, which is better for performance.
 
     const overalBalance2 = accounts
     .flatMap(acc => acc.movements)
     .reduce((acc, mov) => acc + mov, 0);
-    // So this is essentially a map method that all it does is, in the end, it then flattens the result.
+    // So this is essentially a 'map' method that all it does is, in the end, it then flattens the result.
 
     console.log(overalBalance2); // 17840
 
-    // important: Just notice that, flatMap only goes one level deep and we cannot change it.
-    // So if you do need to go deeper than just one level, you still need to use the flat method.
+    // important: Just notice that, 'flatMap' only goes one level deep and we cannot change it.
+    // So if you do need to go deeper than just one level, you still need to use the 'flat' method.
 
 //#endregion
 
@@ -4501,12 +4518,12 @@ let jsCourse = {
     
     console.log(x.map(() => 5)); // (7) [empty × 7]
 
-    // There is one method that we can call on the empty array to fill it and that is the fill() method.
+    // There is one method that we can call on the empty array to fill it and that is the 'fill' method.
 
     x.fill(1);
     console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
 
-    // like slice method we can define start and end index parameters on fill method.
+    // like 'slice' method we can define start and end index parameters on 'fill' method.
 
     x.fill(1, 3);
     console.log(x); // (7) [empty x 3, 1, 1, 1, 1]
@@ -4520,7 +4537,7 @@ let jsCourse = {
     // Array.from
     // Array.from function takes object with the length property.
     // And then the second argument is a mapping function.
-    // So it is exactly like the callback function that we pass into the map() method.
+    // So it is exactly like the callback function that we pass into the 'map' method.
 
     const y = Array.from({ length: 7 }, () => 1);
     console.log(y); // (7) [1, 1, 1, 1, 1, 1, 1]
@@ -4528,8 +4545,8 @@ let jsCourse = {
     const z = Array.from({ length: 7 }, (_, i) => i + 1);
     console.log(z); // (7) [1, 2, 3, 4, 5, 6, 7]
 
-    // we can not directly call map method on nodelist instead we have to first create array 
-    // from the nodelist and then call map on that array
+    // we can not directly call 'map' method on nodelist instead we have to first create array 
+    // from the nodelist and then call 'map' on that array
 
     labelBalance.addEventListener('click', function () {
         const movementsUI = Array.from(
@@ -5137,8 +5154,8 @@ let jsCourse = {
 
 //#region The Remainder Operator 
 
-    console.log(5 % 2); // 1
-    console.log(5 / 2); // 5 = 2 * 2 + 1
+    console.log(5 % 2); // 1 5 = 2 * 2 + 1
+    console.log(5 / 2); // 2.5
     console.log(8 % 3); // 2
     console.log(8 / 3); // 8 = 2 * 3 + 2
     console.log(6 % 2); // 0
