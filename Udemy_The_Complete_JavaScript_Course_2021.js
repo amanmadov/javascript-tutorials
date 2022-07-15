@@ -5756,6 +5756,186 @@ let jsCourse = {
   
 //#endregion
 
+//#region Section 13 Advanced DOM and Events 
+
+//#region Basics 
+
+    console.log(document.documentElement);
+    console.log(document.head);
+    console.log(document.body);
+
+    const header = document.querySelector('.header');
+    const allSections = document.querySelectorAll('.section');
+
+    // selecting elements
+    const el = document.getElementById('myId');
+    const alButtons = document.getElementsByTagName('buttons');
+    const btns = document.getElementsByClassName('btn');
+
+    // important: 'getElementsByTagName' method returns an HTML collection.
+    // That's different from a node list because an HTML collection is actually
+    // a so-called life collection. And that means that if the DOM changes then this collection
+    // is also immediately updated automatically.
+
+    // Creating and Inserting elements
+
+    const message = document.createElement('div');
+    message.classList.add('cookie-message');
+    message.textContent = 'We use cookies for improved functionality';
+    message.innerHTML = 'We use cookies <button>Got It</button>';
+
+    // Will appear at the bottom. thats how we can move elements
+    header.prepend(message);
+    header.append(message);
+
+    // If we want message to appear both on the top and bottom
+    // Then we should opy it first
+
+    header.prepend(message);
+    header.append(message.cloneNode(true))
+
+    // Siblings
+    header.before(message);
+    header.after(message);
+
+    // To Delete
+    message.remove():
+
+    // To get css style
+    console.log(getComputedStyle(message));
+    console.log(getComputedStyle(message).color);
+    console.log(getComputedStyle(message).height);
+
+    // Setting property
+    document.documentElement.style.setProperty('.btn','orangered');
+
+    //<img src='img/logo.png' alt='Logo' class='logo' designer='Jonas'/>
+
+    // Getting attributes
+    const logo = document.querySelector('.nav');
+    console.log(logo.alt);
+    console.log(logo.src);
+    console.log(logo.className);
+
+    // Non standard 
+    console.log(logo.getAttribute('designer')); // Jonas
+
+    // Setting attributes
+    logo.alt = 'Beautiful logo';
+    logo.setAttribute('src','/images/logo1.png');
+
+    console.log(logo.src);      // img/logo.png
+    logo.getAttribute('src');   // http://www.127.0.0.1:8080/img/logo.png
+
+    // Data attributes
+    // <img src='img/logo.png' data-version-number='3.0'/>
+    console.log(logo.dataset.versionNumber);
 
 
+
+//#endregion
+
+//#region Types of Events and EvenHandlers 
+
+    const h1 = document.querySelector('h1');
+    h1.addEventListener('mouseenter', function (e) {
+        alert('Great.');
+    })
+
+    // alternative approach. old school
+    h1.onmouseenter = function (e) {
+        alert('Great.');
+    }
+
+    const alertH1 = function (e) {
+        alert('Great.');
+        h1.removeEventListener('mouseenter',alertH1)
+    }
+    h1.addEventListener('mouseenter',alertH1);
+
+    // Removing after certain time 
+    setTimeout(() => {
+        h1.removeEventListener('mouseenter',alertH1)
+    }, 3000);
+
+//#endregion
+
+//#region Event Propagation: Bubbling and Capturing 
+
+    /*
+        <body>
+            <section>
+                <p><a href="link"></a></p>
+            </section>
+        </body>
+    */
+
+    // JavaScript events have a very important property called capturing phase and a bubbling phase.
+    // when someone clicks on the link inside a element of p the DOM then generates a click event right away.
+    // However, this event is actually not generated at the target element.
+    // Instead, the event is actually generated at the root of the document(at the very top of the DOM tree)
+    // And from there, so-called capturing phase happens, where the event then travels all the way down
+    // from the document root to the target element.
+    // And as the event travels down the tree, it will pass through every single parent element of the target element.
+    // In our example, the HTML element, the body element, the section, then the paragraph, until it finally reaches its target.
+    // As soon as the event reaches the target, the target phase begins, where events can be handled right at the target.
+
+    // So event listeners wait for a certain event to happen on a certain element,
+    // and as soon as the event occurs, it runs the attached callback function.
+    // All right, now, after reaching the target, the event then actually travels
+    // all the way up to the document route again, in the so-called bubbling phase.
+
+
+//#endregion
+
+//#region DOM Traversing 
+
+    /*
+        <body>
+            <div>
+                <h1>
+                    <span class="h">Test1</span>
+                    <span class="h">Test2</span>
+                </h1>
+            </div>
+        </body>
+    */
+
+    const h1 = document.querySelector('h1');
+
+    // Going downwards: selecting childs
+    console.log(h1.querySelectorAll('.h'));
+    console.log(h1.childNodes);
+    console.log(h1.children);
+    console.log(h1.firstElementChild);
+    console.log(h1.lastElementChild);
+
+    // Going upwards: selecting parents 
+    console.log(h1.parentNode);
+    console.log(h1.parentElement);
+    console.log(h1.closest('.header'));
+
+    // important: querySelector method finds children closest method finds parent
+
+    // Going sideways: selecting siblings 
+    console.log(h1.previousElementSibling);
+    console.log(h1.nextElementSibling);
+    console.log(h1.parentElement.children);
+
+    [...h1.parentElement.children].forEach(function (el) {
+        if(el !== h1) el.style.transform = 'scale(0.5)'
+    });
+
+//#endregion
+
+    
+
+
+
+
+
+
+
+
+//#endregion
 
