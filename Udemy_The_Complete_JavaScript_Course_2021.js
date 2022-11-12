@@ -5984,12 +5984,115 @@ let jsCourse = {
 
 //#region Constructor Functions 
 
+    // We can use function expression or a function declaration to create constructor functions.
+    // But an arrow function will not work as a function constructor.
+    // Because it doesn't have its own this keyword and we need that.
 
+    const Person = function(firstName, birthYear){
+        // Instance properties
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    const p = new Person('Jonas',1991);
+    console.log(p);  
+
+    // Person{ birthYear: 1991, firstName: "Jonas" }
+
+    // The only difference between a regular function, and a constructor function is that we call the constructor using the new keyword.
+
+    // When we use the 'new' operator like this, behind the scenes, there have been four steps.
+    // First, a new empty object is created. So an empty object is created.
+    // Then afterwards the function is called and in this function call 'this' keyword will be set to this newly created object.
+    // Basically in the execution context of the person function, 'this' keyword will point to this new object here that was created in step number one.
+    // Step number three is that this newly created object is linked to a prototype.
+    // Finally, the last step, is that the object that was created in the beginning is automatically returned from the constructor function.
+
+    // We already know that in the end of this constructor function, the 'this' keyword will basically be returned.
+    // And so whatever we add to that empty object, will then be returned from the function.
+    // And that returned object, is gonna be the object, that we are trying to build here, actually.
+
+    // Constructor functions have been used since the beginning of JavaScript to kind of simulate classes.
+    // Therefore we can still say that 'p' object here is an instance of person.
+
+    console.log(p instanceof Person); // true
+
+    const Person = function(firstName, birthYear){
+        // Instance properties
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+
+        this.calcAge = function(){
+            console.log(2037 - this.birthYear);
+        }
+    }
+
+    // This would work just fine, but this is actually a really bad practice to create a method inside constructor function.
+    // You should never create a method inside of a constructor function.
+    // That's because imagine we were gonna create a hundred or thousands or even tens of thousands of person objects using this constructor function.
+    // Then what would happen, is that each of these objects would carry around this function here.
+    // Imagine if we had a thousand objects, we would essentially create a thousand copies of this 'calcAge' function.
+    // And that would be terrible for the performance of our code.
+    // But instead to solve this problem, we are gonna use prototypes and prototype inheritance.
 
 
 //#endregion
 
+//#region Prototypes 
 
+    // Each and every function in JavaScript automatically has a property called prototype.
+    // And that includes, of course, constructor functions.
+    // Every object that's created by a certain constructor function will get access to all the methods and properties 
+    // that we define on the constructors prototype property.
+
+    const Person = function(firstName, birthYear){
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    Person.prototype.calcAge = function(){
+        console.log(2037 - this.birthYear);
+    }
+
+    const p = new Person('Jonas',1991);
+
+    // Once again, remember that each object created by this constructor function will now get access to all the methods of this prototype property.
+    // So we can now use this clacAge method here on the 'p' object even though it is not really on the object itself.
+
+    // This way there exists only one copy of this function but then all of the objects that are created 
+    // using this constructor function can basically reuse this function on themselves.
+
+    // Any object always has access to the methods and properties from its prototype.
+
+    console.log(p.__proto__);
+    console.log(p.__proto__ === Person.prototype);
+
+
+    // And so this is the prototype of 'p' object. It's not the prototype property but it is simply the prototype.
+
+    console.log(Person.prototype.isPrototypePf(p)); // true
+
+    // So this confirms one more time that person dot prototype is indeed the prototype of Jonas.
+    // Step number three of object creation (which links the empty new object to the prototype) creates this 'proto' property.
+
+    // We can also set properties on the prototype not just methods.
+
+    Person.prototype.species = 'Homo Sapiens';
+    const adam = new Person('Adam', 1998);
+
+    // Now however, since when we take a look at this 'adam' object, this 'species' property is not really directly in the object.
+    // Adams properties are only the ones that are declared directly on the object itself not including the inherited properties.
+
+    console.log(adam.hasOwnProperty('birthYear'));  // true
+    console.log(adam.hasOwnProperty('species'));    // false
+
+//#endregion
+
+//#region Prototypical Inheritance and The Prototype Chain 
+
+
+
+//#endregion
 
 
 
