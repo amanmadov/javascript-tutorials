@@ -6090,13 +6090,97 @@ let jsCourse = {
 
 //#region Prototypical Inheritance and The Prototype Chain 
 
+    // This whole process is how it works with function constructors and also with ES6 classes but not with the 'object.create()' syntax.
+    // When we are attempting to call the calcAge function on the adam object JavaScript can not find the calcAge function directly in the adam object.
+    // If a property or a method cannot be found in a certain object JavaScript will look into its prototype and there it is.
+    // That's how the calcAge function can run correctly and return a result.
+    // And the behavior that we just described is what we already called prototypal inheritance or delegation.
 
+    // Just imagine that we had a 1,000 objects in the code and if all of them would have to carry the calcAge function then that would certainly impact performance.
+    // So instead, they can all simply use the calcAge function from their common prototype.
+
+    // Person function constructor and its prototype property and to 'adam' object linked to its prototype via the __proto__ property.
+    // But now let's remember that Person.prototype itself is also an object and all objects in JavaScript have a prototype.
+    // Therefore, Person.prototype itself must also have a prototype. And the prototype of Person.prototype is Object.prototype.
+
+    // Person.prototype is just a simple object which means that it has been built by the built in object constructor function
+    // and this is actually the function that is called behind the scenes whenever we create an object literal.
+
+    // Now this entire series of links between the objects is what is called the prototype chain 
+    // and Object.prototype is usually the top of the prototype chain which means that it's prototype is null.
+
+    // So in a certain way the prototype chain is very similar to the scope chain but with prototypes.
+    // In the scope chain whenever JavaScript can find a certain variable in a certain scope,
+    // it looks up into the next scope and a scope chain and tries to find the variable there.
+
+    // On the other hand in the prototype chain whenever JavaScript can find a certain property or method in a certain object
+    // it's gonna look up into the next prototype in the prototype chain and see if it can find it there, okay?
+
+    // When we call hasOwnProperty method on adam object Js cant find it on adam object and look for it in Person.prototype.
+    // Person.prototype does not have such method so Js keeps looks through prototype chain and reaches to Object.prototype.
+    // There it finds that method and adam object inherits that hasOwnProperty method.
+    // Remember the method has not been copied to the jonas object. Instead, it simply inherits the method.
 
 //#endregion
 
+//#region Prototypical Inheritance on Built-in Objects 
+
+    console.log(adam.__proto__);
+    console.log(adam.__proto__.__proto__);
+    console.log(adam.__proto__.__proto__.__proto__); // null
+
+    console.log(Person.prototype.constructor);
+    console.dir(Person.prototype.constructor);
+
+    const arr = [1,2,3];
+    console.log(arr.__proto__);
+    console.log(arr.__proto__ === Array.prototype); // true
+
+    // If we check the documentation on MDN for example, for filter, then you see that actually the name of the method is array.prototype.filter.
+    // And that is because this filter method, does of course, live in the prototype property of the array constructor.
+    
+    // So one more time you can see that the prototypal inheritance is really a mechanism for reusing code.
+    // So all of these built-in methods here have to exist only once somewhere in the JavaScript engine
+    // and then all the arrays in our code get access to the functions through the prototype chain and prototypal inheritance.
+
+    // And therefore we can use that knowledge to extend the functionality of arrays even further.
+    // Here we can add any new method to this prototype and all the arrays will then inherit it.
+
+    Array.prototype.unique = function(){
+        return [...new Set(this)];
+    }
+
+    const arr = [1,2,3,4,4];
+    console.log(arr.unique());
+
+    // This way we added a new method to the prototype property of the array constructor.
+    // And so therefore now all arrays will inherit this method.
+    // Extending the prototype of a built-in object is generally not a good idea for multiple reasons.
+    // The first reason is that the next version of JavaScript might add a method with the same name that we are adding, 
+    // for example this one here, but it might work in a different way.
+    // And your code will then use that new method which, remember, works differently. And then that will probably break your code.
+
+    const h1 = document.querySelector('h1');
+    console.log(h1.__proto__);  // HTMLHeadingElement
+    console.log(h1.__proto__.__proto__);    // HTMLElement
+    console.log(h1.__proto__.__proto__.__proto__);  // Element
+    console.log(h1.__proto__.__proto__.__proto__.__proto__);    // Node
+    console.log(h1.__proto__.__proto__.__proto__.__proto__.__proto__);  // EventTarget
+    console.log(h1.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__); // Object
+
+    console.dir( x => x + 1 );
+
+    // The function itself is also an object therefore it also has a prototype.
+    // And in this case function prototype will then contain the methods that we have used previously on functions.
+    // Like 'apply', 'bind' and 'call' . Once again this is the reason why we can actually call methods on functions.
+
+//#endregion
+
+//#region newregion 
 
 
 
+//#endregion
 
 //#endregion
 
