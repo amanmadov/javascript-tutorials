@@ -1,4 +1,4 @@
-import { object } from "prop-types";
+import { func, object } from "prop-types";
 
 
 
@@ -6176,8 +6176,60 @@ let jsCourse = {
 
 //#endregion
 
-//#region newregion 
+//#region ES6 Classes 
 
+    // Classes in JavaScript do not work like traditional classes in other languages like Java or C++.
+    // So instead, classes in JavaScript are just syntactic sugar.
+
+    // Class Expression
+    const Person = class {
+        // implementation
+    }
+
+    // Class declaration
+    class Person {
+        constructor(firstName, birthYear){
+            this.firstName = firstName;
+            this.birthYear = birthYear;
+        }
+
+        calcAge(){
+            console.log(2037 - this.birthYear);
+        }
+    }
+
+    // Now, what's important to understand here is that all of these methods that we write 
+    // inside the class, but outside of the constructor, will be on the prototype of the objects.
+    // Not on the objects themselves. So this is really just like before, prototypal inheritance.
+
+    const jessica = new Person('Jessica', 1996);
+    console.log(jessica);
+    jessica.calcAge();
+
+    console.log(jessica.__proto__ === Person.prototype); // true
+
+    // Alternative way of adding class
+
+    Person.prototype.greet = function(){
+        console.log(`Hey ${this.firstName}.`);
+    }
+
+    jessica.greet(); // Hey Jessica.
+
+    // New ES6 syntax is great for people who are coming from another language and have experience with object-oriented programming,
+    // because it's gonna be a bit easier for these developers to start writing object-oriented code in JavaScript.
+
+    // Important Notes:
+        // First of all, classes are not hoisted even so they are class declarations like function declarations.
+        // Functional declarations are hoisted, which means we can use them before they are declared in the code.
+        // But with classes, that doesn't work. Just like functions, classes are also first-class citizens.
+
+        // Second, just like functions, classes are also first-class citizens. 
+        // What that means is that we can pass them into functions and also return them from functions.
+        // That is because classes are really just a special kind of function behind the scenes.
+        
+        // And third, the body of a class is always executed in strict mode. Classes are executed in strict mode. 
+        // And so even if we didn't activate it for our entire script, all the code that is in the class will be executed in strict mode.
 
 
 //#endregion
