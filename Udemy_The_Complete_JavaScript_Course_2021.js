@@ -1,3 +1,4 @@
+import { object } from "prop-types";
 
 
 
@@ -5180,6 +5181,27 @@ let jsCourse = {
 
 //#endregion
 
+//#region Numeric Seperators 
+
+// Numeric separators are simply underscores that we can place anywhere that we want in or numbers,
+// and which will make it really easy to understand and to parse numbers this large.
+
+    const diameter = 287_460_000_000;
+    console.log(diameter); // 287460000000
+
+    const priceCents = 345_99;
+    console.log(priceCents); // 34599
+
+    const fee1 = 15_00;
+    const fee2 = 1_500;
+    console.log(fee1); // 1500
+    console.log(fee2); // 1500
+
+    // use only with numbers
+    console.log(Number('145_000')); // Wont work
+
+//#endregion
+
 //#region Working with BigInt 
 
     // BigInt is a special type of integers that was introduced in ES2020.
@@ -5756,7 +5778,7 @@ let jsCourse = {
   
 //#endregion
 
-//#region Section 13 Advanced DOM and Events 
+//#region Section 13: Advanced DOM and Events 
 
 //#region Basics 
 
@@ -5928,8 +5950,44 @@ let jsCourse = {
 
 //#endregion
 
-    
+//#endregion
 
+//#region Section 14:  Object Oriented Programming With Javascript
+
+//#region OOP Basics 
+
+    // Objects(instances) are instantiated from a class in classical OOP. 
+    // But in classical JS objects are linked to a prototype object.
+    // The prototype contains methods that are accessible to all objects linked to that prototype.
+    // And this is called prototypical inheritance. 
+    // In classical OOP methods(behavior) is copied from class to instances.
+    // But in prototypical inheritance behavior is delegated to the linked prototype object.
+
+    // For example, each time that we used an array method like map, we are able to use that method because of prototypal inheritance.
+    // So, when you go to MDN to check the documentation for any array method, what you will see there is that it's actually called array.prototype.map.
+
+    // Well, array.prototype is the prototype object of all the arrays that we create in JavaScript.
+    // Now this prototype object contains all the array methods, including map.
+    // So, since array.prototype is the prototype of the any array, it means that any array is linked to that prototype.
+    // And therefore, it has access to all the methods that are defined on the array.prototype object, just like the map method.
+    // So, in a sense, our array inherits the map method. Or again, we can also say that the array delegated the behavior of mapping to its prototype.
+
+
+    // How do we implement Object-Oriented Programming in JavaScript in practice?
+    // Well, in JavaScript there are actually three different ways of doing all this: 
+        // - the constructor function technique,
+        // - ES6 classes 
+        // - Object.create().
+
+
+//#endregion
+
+//#region Constructor Functions 
+
+
+
+
+//#endregion
 
 
 
