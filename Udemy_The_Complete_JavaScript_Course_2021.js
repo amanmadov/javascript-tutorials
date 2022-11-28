@@ -5956,37 +5956,41 @@ let jsCourse = {
 
 //#region OOP Basics 
 
-    // Objects(instances) are instantiated from a class in classical OOP. 
-    // But in classical JS objects are linked to a prototype object.
-    // The prototype contains methods that are accessible to all objects linked to that prototype.
-    // And this is called prototypical inheritance. 
-    // In classical OOP methods(behavior) is copied from class to instances.
-    // But in prototypical inheritance behavior is delegated to the linked prototype object.
+/*
 
-    // For example, each time that we used an array method like map, we are able to use that method because of prototypal inheritance.
-    // So, when you go to MDN to check the documentation for any array method, what you will see there is that it's actually called array.prototype.map.
+    Objects(instances) are instantiated from a class in classical OOP. 
+    But in classical javascript, objects are linked to a prototype object.
+    The prototype contains methods that are accessible to all objects linked to that prototype.
+    And this is called 'prototypical inheritance'. 
+    In classical OOP, methods(behavior) is copied from class to instances.
+    But in prototypical inheritance behavior is delegated to the linked prototype object.
 
-    // Well, array.prototype is the prototype object of all the arrays that we create in JavaScript.
-    // Now this prototype object contains all the array methods, including map.
-    // So, since array.prototype is the prototype of the any array, it means that any array is linked to that prototype.
-    // And therefore, it has access to all the methods that are defined on the array.prototype object, just like the map method.
-    // So, in a sense, our array inherits the map method. Or again, we can also say that the array delegated the behavior of mapping to its prototype.
+    For example, each time that we used an array method like map, 
+    we are able to use that method because of prototypical inheritance.
+    Thats why when you go to MDN to check the documentation for any array method, 
+    what you will see there is that it's actually called array.prototype.map.
 
+    Well, array.prototype is the prototype object of all the arrays that we create in JavaScript.
+    Now this prototype object contains all the array methods, including map.
+    Since array.prototype is the prototype of the any array, it means that any array is linked to that prototype.
+    Therefore, it has access to all the methods that are defined on the array.prototype object, just like the map method.
+    So, in a sense, our array inherits the map method. 
+    Or again, we can also say that the array delegated the behavior of mapping to its prototype.
 
-    // How do we implement Object-Oriented Programming in JavaScript in practice?
-    // Well, in JavaScript there are actually three different ways of doing all this: 
-        // - the constructor function technique,
-        // - ES6 classes 
-        // - Object.create().
+    How do we implement Object-Oriented Programming in JavaScript in practice?
+        In JavaScript there are three different ways of implementing OOP: 
+            - The Constructor Function technique
+            - ES6 Classes 
+            - Object.create()
 
+*/
 
 //#endregion
 
 //#region Constructor Functions 
 
     // We can use function expression or a function declaration to create constructor functions.
-    // But an arrow function will not work as a function constructor.
-    // Because it doesn't have its own this keyword and we need that.
+    // important: But an arrow function will not work as a function constructor. Because it doesn't have its own this keyword.
 
     const Person = function(firstName, birthYear){
         // Instance properties
@@ -5999,12 +6003,12 @@ let jsCourse = {
 
     // Person{ birthYear: 1991, firstName: "Jonas" }
 
-    // The only difference between a regular function, and a constructor function is that we call the constructor using the new keyword.
+    // The only difference between a regular function, and a constructor function is that we call the constructor using the 'new' keyword.
 
     // When we use the 'new' operator like this, behind the scenes, there have been four steps.
-    // First, a new empty object is created. So an empty object is created.
+    // First, a new empty object is created.
     // Then afterwards the function is called and in this function call 'this' keyword will be set to this newly created object.
-    // Basically in the execution context of the person function, 'this' keyword will point to this new object here that was created in step number one.
+    // Basically in the execution context of the person function, 'this' keyword will point to this new object that was created in step one.
     // Step number three is that this newly created object is linked to a prototype.
     // Finally, the last step, is that the object that was created in the beginning is automatically returned from the constructor function.
 
@@ -6017,6 +6021,8 @@ let jsCourse = {
 
     console.log(p instanceof Person); // true
 
+
+    // Adding methods to constructor function
     const Person = function(firstName, birthYear){
         // Instance properties
         this.firstName = firstName;
@@ -6027,13 +6033,13 @@ let jsCourse = {
         }
     }
 
-    // This would work just fine, but this is actually a really bad practice to create a method inside constructor function.
-    // You should never create a method inside of a constructor function.
-    // That's because imagine we were gonna create a hundred or thousands or even tens of thousands of person objects using this constructor function.
-    // Then what would happen, is that each of these objects would carry around this function here.
+    // This would work just fine, but this is a really bad practice to create a method inside constructor function.
+    // important: You should never create a method inside of a constructor function.
+    // That's because imagine we were gonna create a hundred/thousands of person objects using this constructor function.
+    // Then what would happen, is that each of these objects would carry around this function.
     // Imagine if we had a thousand objects, we would essentially create a thousand copies of this 'calcAge' function.
     // And that would be terrible for the performance of our code.
-    // But instead to solve this problem, we are gonna use prototypes and prototype inheritance.
+    // But instead to solve this problem, we are gonna use 'prototypes' and 'prototype inheritance'.
 
 
 //#endregion
@@ -6233,6 +6239,11 @@ let jsCourse = {
 
 
 //#endregion
+
+
+
+
+
 
 //#endregion
 
