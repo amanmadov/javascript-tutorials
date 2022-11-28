@@ -6352,7 +6352,48 @@ let jsCourse = {
 
 //#region Object.Create 
 
+    // There is actually a third way of implementing prototypal inheritance or delegation.
+    // This third way is to use a function called Object.create, which works in a pretty different way than constructor functions and classes work.
 
+    // We can use Object.create to manually set the prototype of an object, to any other object that we want.
+
+    const PersonProto =  {
+        calcAge() {
+            console.log(2037 - this.birthYear);
+        }
+    }
+
+    const steven = Object.create(PersonProto);
+    console.log(steven);
+    steven.name= 'Steven';
+    steven.birthYear = 2002;
+    steven.calcAge();
+
+    console.log(steven.__proto__ === PersonProto); // true
+
+    // When we use the new operator in constructor functions or classes, it automatically sets the prototype of the instances to the constructors, prototype property.
+    // This happens automatically. But on the other hand, with Object.create, we can set the prototype of objects manually to any object that we want.
+    // And in this case, we manually set the prototype of the Steven object to the person proto object.
+    // The big difference is that we didn't need any constructor function, and also no prototype property at all, to achieve the exact same thing.
+    // So this is actually a bit more straightforward, and a bit more natural.
+    // In the real world, this is actually the least used way of implementing prototypal inheritance.
+
+    // better way of implementing
+    const PersonProto = {
+        calcAge() {
+            console.log(2037 - this.birthYear);
+        }
+        init(firstName, birthYear) {
+            this.firstname = firstName;
+            this.birthYear = birthYear;
+        },
+    }
+
+    const sarah = Object.create(PersonProto);
+    sarah.init('Sarah', 1979);
+    sarah.calcAge();
+
+    // So the big takeaway is that Object.create creates a new object, and the prototype of that object will be the object that we passed in.
 
 //#endregion
 
