@@ -6295,6 +6295,67 @@ let jsCourse = {
 
 //#endregion
 
+//#region Static Methods 
+
+    let nodeList = document.querySelectorAll('h1');
+    let arr = Array.from(nodeList);
+
+    // What's the point is that this 'from' method here is really a method that is attached to the Array constructor.
+    // So we could not use the from method on an Array.
+    // let a = [1,2,3].from() is not gonna work
+
+    // Arrays do not inherit this method because its not on their prototype. Its simply attached to the constructor itself. 
+    // Array.from is basically just a simple function, but its a function that's attached to the Array constructor.
+    // Number.parseFloat() method is another static method and its static on the number constructor.
+
+    const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    Person.hey = function () {
+        console.log('Hey there.');
+        console.log(this);
+    }
+
+    const matilda = new Person('Matilda', 2017);
+    Person.hey();
+
+    // can not use matilda.hey()
+
+    class Person {
+        constructor(firstName, birthYear) {
+            this.firstName = firstName;
+            this.birthYear = birthYear;
+        }
+
+        calcAge() {
+            console.log(2037 - this.birthYear);
+        }
+
+        // Static method
+        static hey() {
+            console.log('Hey there.');
+            console.log(this);
+        }
+    }
+
+    const walter = new Person('Walter', 1965);
+    Person.hey();
+
+    // can not use walter.hey()
+
+    // Keep in mind that these static methods are not available on the instances.
+    // They are still useful to implement some kind of helper function about a class or about a constructor function.
+
+//#endregion
+
+//#region Object.Create 
+
+
+
+//#endregion
+
 
 
 //#endregion
