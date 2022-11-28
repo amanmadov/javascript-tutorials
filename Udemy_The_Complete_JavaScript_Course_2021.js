@@ -6240,8 +6240,60 @@ let jsCourse = {
 
 //#endregion
 
+//#region Getters and Setters 
 
+    // Every object in JavaScript can have setter and getter properties.
+    // We call these special properties assessor properties, while the more normal properties are called data properties.
+    // Getters and setters are basically functions that get and set a value so just as the name says.
 
+    const account = {
+        owner: 'Jonas',
+        movements: [200, 350, 120, 300],
+
+        get latest() {
+            return this.movements.slice(-1).pop();
+        },
+
+        set latest(mov) {
+            this.movements.push(mov);
+        }
+    }
+
+    console.log(account.latest); // 300
+
+    // we don't call the method, but instead we write it as if it was just a property.
+
+    account.latest = 50;
+    console.log(account.movements);
+
+    class Person {
+        constructor(firstName, birthYear) {
+            this.firstName = firstName;
+            this.birthYear = birthYear;
+        }
+
+        calcAge() {
+            console.log(2037 - this.birthYear);
+        }
+
+        get age() {
+            return 2037 - this.birthYear;
+        }
+
+        // Setters and getters are very useful for data validation.
+
+        set fullName(name) {
+            if(name.includes(' ')) this._fullName = name;
+        }
+
+        get fullName() {
+            return this._fullName;
+        }
+    }
+
+    
+
+//#endregion
 
 
 
