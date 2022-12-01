@@ -5952,7 +5952,7 @@ let jsCourse = {
 
 //#endregion
 
-//#region Section 14:  Object Oriented Programming With Javascript
+//#region Section 14:  Object Oriented Programming With Javascript]
 
 //#region OOP Basics 
 
@@ -6396,6 +6396,428 @@ let jsCourse = {
     // So the big takeaway is that Object.create creates a new object, and the prototype of that object will be the object that we passed in.
 
 //#endregion
+
+//#region Inheritance Between Classes: Constructor Functions
+
+    const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+    }
+
+    const Student = function (firstName, birthYear, course) {
+        Person.call(this, firstName, birthYear);
+        this.course = course;
+    }
+
+    // Linking prototypes
+    Student.prototype = Object.create(Person.prototype);
+
+    // cant do Student.prototype = Person.prototype; 
+
+    Student.prototype.introduce = function () {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`);
+    }
+
+    const mike = new Student('Mike', 2020, 'Computer Science');
+    mike.introduce();   // My name is Mike and I study Computer Science
+    mike.calcAge();     // 17
+
+    console.log(mike.__proto__);
+    console.log(mike.__proto__.__proto__);
+
+    console.log(mike instanceof Student);
+    console.log(mike instanceof Person);
+    console.log(Student.prototype.constructor); // Person
+    Student.prototype.constructor = Student;
+    console.log(Student.prototype.constructor); // Student
+
+
+    /* 
+
+    Coding Challenge #3
+
+    1. Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property);
+    2. Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo';
+    3. Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%';
+    4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%). 
+       Notice what happens when you 'accelerate'! HINT: Review the definiton of polymorphism DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
+  
+    */
+
+
+    const Car = function (make, speed) {
+        this.make = make;
+        this.speed = speed;
+    };
+    
+    Car.prototype.accelerate = function () {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+    };
+
+    Car.prototype.brake = function () {
+        this.speed -= 5;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+    };
+
+    const EV = function (make, speed, charge) {
+        Car.call(this, make, speed);
+        this.charge = charge;
+    };
+
+    // Link the prototypes
+    EV.prototype = Object.create(Car.prototype);
+    EV.prototype.chargeBattery = function (chargeTo) {
+        this.charge = chargeTo;
+    };
+
+    EV.prototype.accelerate = function () {
+        this.speed += 20;
+        this.charge--;
+        console.log(
+            `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+        );
+    };
+
+    const tesla = new EV('Tesla', 120, 23);
+    tesla.chargeBattery(90);
+    console.log(tesla);
+    tesla.brake();
+    tesla.accelerate();
+
+
+    // When there are two methods or properties with the same name in a prototype chain, 
+    // then the first one that appears in the chain is the one that's gonna be used.
+    // So the same is true also for the scope chain.
+
+//#endregion
+
+//#region Inheritance Between Classes: ES6 Classes 
+
+    class Person {
+        constructor(firstName, birthYear) {
+            this.firstName = firstName;
+            this.birthYear = birthYear;
+        }
+
+        calcAge() {
+            console.log(2037 - this.birthYear);
+        }
+
+        greet() {
+            console.log(`Hey ${this.fullName}`);
+        }
+
+        get age() {
+            return 2037 - this.birthYear;
+        }
+
+        set fullName(name) {
+            if (name.includes(' ')) this._fullName = name;
+        }
+
+        get fullName() {
+            return this._fullName;
+        }
+
+        // Static method
+        static hey() {
+            console.log('Hey there.');
+        }
+    }
+
+    class Student extends Person {
+        constructor(fullName, birthYear, course){
+            super(fullName,birthYear);
+            this.course = course;  
+        }
+
+        instroduce() {
+            console.log(`My name is ${this.fullName} and I study ${this.course}`);
+        }
+
+        calcAge() {
+            console.log(`I am ${2037 - this.birthYear} but I feel more like ${2037 - this.birthYear + 10}`);
+        }
+    }
+
+    const martha = new Student('Martha Jones', 2012, 'Computer Science');
+    martha.introduce();
+    martha.calcAge();
+
+//#endregion
+
+//#region Inheritance Between Classes: Object.Create
+
+    const PersonProto = {
+        calcAge() {
+            console.log(2037 - this.birthYear);
+        },
+        init(firstName, birthYear) {
+            this.firstName = firstName;
+            this.birthYear = birthYear;
+        },
+    };
+
+    const steven = Object.create(PersonProto);
+
+    const StudentProto = Object.create(PersonProto);
+
+    StudentProto.init = function (firstName, birthYear, course) {
+        PersonProto.init.call(this, firstName, birthYear);
+        this.course = course;
+    };
+
+    StudentProto.introduce = function () {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`);
+    };
+
+    const jay = Object.create(StudentProto);
+    jay.init('Jay', 2010, 'Computer Science');
+    jay.introduce();
+    jay.calcAge();
+
+//#endregion
+
+//#region Advanced Class Example 
+
+    class Account {
+        constructor(owner, currency, pin) {
+            this.owner = owner;
+            this.currency = currency;
+            this.pin = pin;
+            this.movements = [];
+            this.locale = navigator.language;
+            console.log(`Thanks for opening an account, ${owner}`);
+        }
+
+        deposit(val) {
+            this.movements.push(val);
+        }
+
+        withdraw(val) {
+            this.deposit(-val);
+        }
+
+        approveLoan(val) {
+            return true;
+        }
+
+        requestLoan(val) {
+            if (this.approveLoan(val)) {
+                this.deposit(val);
+                console.log(`Loan approved`);
+            }
+        }
+    }
+
+    const acc1 = new Account('Jonas', 'EUR', 1111);
+
+    // acc1.movements.push(250);
+    // acc1.movements.push(-140);
+    // acc1.approveLoan(1000);
+
+    acc1.deposit(250);
+    acc1.withdraw(140);
+    acc1.requestLoan(1000);
+    console.log(acc1.getMovements());
+    console.log(acc1);
+
+//#endregion
+
+//#region Encapsulation, Protected Properties and Methods
+
+    class Account {
+        constructor(owner, currency, pin) {
+            this.owner = owner;
+            this.currency = currency;
+            this._pin = pin;
+            this._movements = [];
+            this.locale = navigator.language;
+            console.log(`Thanks for opening an account, ${owner}`);
+        }
+
+        getMovements() {
+            return this._movements;
+        }
+
+        deposit(val) {
+            this._movements.push(val);
+        }
+
+        withdraw(val) {
+            this.deposit(-val);
+        }
+
+        _approveLoan(val) {
+            return true;
+        }
+
+        requestLoan(val) {
+            if (this._approveLoan(val)) {
+                this.deposit(val);
+                console.log(`Loan approved`);
+            }
+        }
+    }
+
+//#endregion
+
+//#region Encapsulation, Private Class Fields and Methods 
+
+    // Private class fields and methods are actually part of a bigger proposal for 
+    // improving and changing JavaScript classes which is simply called Class fields.
+
+    // Now this Class fields proposal is currently at stage three.
+    // And so right now it's actually not yet part of the JavaScript language.
+
+    // However, being at stage three means that it's very likely that at some point, it will move forward to stage number four.
+    // And then it will actually become a part of the JavaScript language.
+    // And that's probably gonna happen some point soon in the future.
+
+    // In fact, some parts of this proposal actually already work in Google Chrome, but other parts don't.
+
+    // Now for starters, why is this proposal actually called Class fields?
+    // Well, in traditional OOP languages like Java and C++, properties are usually called fields.
+
+    // Public fields 
+    // Private fields
+    // Public methods 
+    // Private methods
+    // Static methids
+
+    class Account {
+
+        // Public fields (on instances)
+        locale = navigator.language;
+
+        // Private fields (on instances)
+        #movements = [];
+        #pin;
+
+        constructor(owner, currency, pin) {
+            this.owner = owner;
+            this.currency = currency;
+            this.#pin = pin;
+            console.log(`Thanks for opening an account, ${owner}`);
+        }
+
+        // Public methods (Public Interface)
+
+        getMovements() {
+            return this.#movements;
+        }
+
+        deposit(val) {
+            this.#movements.push(val);
+        }
+
+        withdraw(val) {
+            this.deposit(-val);
+        }
+
+        requestLoan(val) {
+            if (this.#approveLoan(val)) {
+                this.deposit(val);
+                console.log(`Loan approved`);
+            }
+        }
+
+        // Private Method
+        #approveLoan(val) {
+            return true;
+        }
+
+        // Static method
+        static helper(){
+            console.log(`The value of PI is 3.14`);
+        }
+    }
+
+    const acc1 = new Account('Jonas', 'EUR', 1111);
+
+    acc1.deposit(250);
+    acc1.withdraw(140);
+    acc1.requestLoan(1000);
+    console.log(acc1.getMovements());
+    console.log(acc1);
+
+    // Lets try to access private fields
+    console.log(acc1.#movements);
+    console.log(acc1.#pin);
+    console.log(acc1.#approveLoan(100));
+
+    console.log(Account.helper());
+
+//#endregion
+
+//#region Chaining Methods 
+
+    class Account {
+
+        // Public fields (on instances)
+        locale = navigator.language;
+
+        // Private fields (on instances)
+        #movements = [];
+        #pin;
+
+        constructor(owner, currency, pin) {
+            this.owner = owner;
+            this.currency = currency;
+            this.#pin = pin;
+            console.log(`Thanks for opening an account, ${owner}`);
+        }
+
+        // Public methods (Public Interface)
+
+        getMovements() {
+            return this.#movements;
+        }
+
+        deposit(val) {
+            this.#movements.push(val);
+            return this; // to make this chainable
+        }
+
+        withdraw(val) {
+            this.deposit(-val);
+            return this;
+        }
+
+        requestLoan(val) {
+            if (this.#approveLoan(val)) {
+                this.deposit(val);
+                console.log(`Loan approved`);
+                return this;
+            }
+        }
+
+        // Private Method
+        #approveLoan(val) {
+            return true;
+        }
+
+        // Static method
+        static helper() {
+            console.log(`The value of PI is 3.14`);
+        }
+    }
+
+    const acc1 = new Account('Jonas', 'EUR', 1111);
+
+    acc1.deposit(300).deposit(500).withdraw(200).requestLoan(15000).withdraw(3000);
+    console.log(acc1.getMovements());
+
+//#endregion
+
+
+
+
 
 
 
