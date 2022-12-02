@@ -1,7 +1,3 @@
-import { func, object } from "prop-types";
-
-
-
 
 let jsCourse = {
 
@@ -5952,7 +5948,7 @@ let jsCourse = {
 
 //#endregion
 
-//#region Section 14:  Object Oriented Programming With Javascript]
+//#region Section 14:  Object Oriented Programming With Javascript
 
 //#region OOP Basics 
 
@@ -6815,9 +6811,9 @@ let jsCourse = {
 
 //#endregion
 
+//#endregion
 
-
-
+//#region Section 15: Mapty Project 
 
 
 
